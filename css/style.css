@@ -3,9 +3,71 @@
     src: url(/fonts/SF-Pro.ttf);
 }
 
+:root {
+    --main-color: #991b1b;
+    --text1-color: #6c757d;
+    --text2-color: #171717;
+    --success-color: #fb923c;
+}
+
 * {
-    font-family: 'SF-Pro';
+    font-family: 'SF-Pro', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    background-color: #f5f5f5;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    width: 50%;
+    padding: 10px 20px;
+    margin: 20px auto;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+header .logo img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    object-fit: cover; 
+    transition: transform 0.5s, color 0.5s;
+}
+
+header .logo img:hover {
+    transform: rotate(360deg);
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+}
+
+header .fa-brands {
+    font-size: 1.8rem;
+    margin-right: 10px;
+    transition: transform 0.5s, color 0.5s;
+}
+
+header .fa-brands:hover {
+    transform: scale(1.2);
+    color: var(--main-color);
 }
