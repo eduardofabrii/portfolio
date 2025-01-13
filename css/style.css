@@ -33,6 +33,7 @@
     /* --background: #2C332B; */
     --header: white;
     --gradient: linear-gradient(90deg, #47753B 0%, #8BC34A 100%);
+    --blur: blur(5px);
 }
 
 /* Configurações globais */
@@ -66,7 +67,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--header);
+    background-color: rgba(255, 255, 255, 0.119);
+    backdrop-filter: var(--blur);
     width: 50%;
     padding: 10px 20px;
     margin: 20px auto;
@@ -248,7 +250,7 @@ section.presentation-container #curriculobutton:hover {
 }
 
 /* Responsividade */
-/* Telas até 768px - celulares */
+/* Telas até 920px - celulares/alguns tablets */
 @media (max-width: 920px) {
     header {
         display: flex;
