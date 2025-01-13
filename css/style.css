@@ -246,3 +246,61 @@ section.presentation-container #curriculobutton:hover {
     background-color: var(--main-color);
     transform: scale(1.04);
 }
+
+/* Responsividade */
+/* Telas até 768px - celulares */
+@media (max-width: 920px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+        border-radius: 0;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .wave {
+        margin-top: 60px;
+    }
+
+    section .text-center {
+        width: 90%;
+    }
+
+    section.hello-container {
+        text-align: center;
+    }
+
+    section.hello-container p {
+        font-size: 3rem;
+    }
+
+    section.presentation-container img {
+        height: 200px;
+        width: 200px;
+    }
+
+    section.presentation-container .text-center {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    section.presentation-container #curriculobutton {
+        margin-top: 20px;
+    }
+}
+
+@media ((min-width: 800px) and (max-width: 1650px)) {
+    section.presentation-container #curriculobutton {
+        margin-top: 20px;
+    }
+
+    section.presentation-container img {
+        height: 500px;
+    }
+}
