@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'SF-Pro';
+    src: url(/fonts/SF-Pro.ttf);
+}
+
+* {
+    font-family: 'SF-Pro';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
