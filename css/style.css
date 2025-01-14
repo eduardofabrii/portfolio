@@ -17,6 +17,17 @@
     }
 }
 
+/* Animação para rolagem contínua */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
 @font-face {
     font-family: 'SF-Pro';
     src: url(/fonts/SF-Pro.ttf);
@@ -227,6 +238,11 @@ section.presentation-container .text-me {
 section.presentation-container .text-me #about-me {
     font-size: 2rem;
     font-weight: 700;
+    transition: font-size 0.3s;
+}
+
+section.presentation-container .text-me #about-me:hover {
+    font-size: 2.5rem;
 }
 
 section.presentation-container #curriculobutton {
@@ -247,6 +263,60 @@ section.presentation-container #curriculobutton {
 section.presentation-container #curriculobutton:hover {
     background-color: var(--main-color);
     transform: scale(1.04);
+}
+
+/* Section Skills */
+.skills-container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 50px;
+}
+
+.skills-title {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 50px;
+}
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+
+    /* Máscara para criar efeito de opacidade nas bordas */
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.carousel-track {
+    display: flex;
+    animation: scroll 11s linear infinite; 
+}
+
+.carousel-item {
+    min-width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+.carousel-item i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.carousel-item p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.carousel-item:hover {
+    color: #000;
 }
 
 /* Responsividade */
