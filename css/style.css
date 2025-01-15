@@ -3,19 +3,19 @@
 /* Animação */
 @keyframes colorChange {
     0% {
-        background-color: var(--tertiary-color);
+        color: var(--tertiary-color);
     }
     25% {
-        background-color: var(--main-color);
+        color: var(--main-color);
     }
     50% {
-        background-color: var(--secondary-color);
+        color: var(--secondary-color);
     }
     75% {
-        background-color: var(--inverse-color);
+        color: var(--inverse-color);
     }
     100% {
-        background-color: var(--tertiary-color);
+        color: var(--tertiary-color);
     }
 }
 
@@ -167,10 +167,6 @@ main {
     margin-right: 10px;
 }
 
-.hello-container #hello-text {
-    animation: colorChange 10s infinite;
-}
-
 .hello-container span {
     font-size: 2rem;
     font-weight: 400;
@@ -182,16 +178,17 @@ main {
     transition: margin-top 0.3s;
 }
 
-
 .hello-container #name-text p {
     align-items: center;
     color: var(--text2-color);
     font-size: 4.5rem;
     font-weight: 700;
-    transition: font-size 0.3s;
+    transition: 0.7s;
     line-height: 80px;
     width: 100%;
     margin-top: 20px;
+    cursor: pointer;
+    animation: colorChange 10s infinite;
 }
 
 .hello-container #job-text {
@@ -346,6 +343,7 @@ main {
     margin-bottom: 10px;
 }
 
+
 .skills-container .carousel-item:hover {
     color: #000;
 }
@@ -440,7 +438,7 @@ main {
     gap: 10px;
 }
 
-.projects-container .project-description h2, p {
+.projects-container .project-description h2, .projects-container .project-description p {
     color: var(--text1-color);
 }
 
