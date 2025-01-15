@@ -40,6 +40,7 @@
     --inverse-color: orange;
     --text1-color: white;
     --text2-color: #171717;
+    --text3-color: #555;
     --background: white;
     /* --background: #2C332B; */
     --header: white;
@@ -121,8 +122,9 @@ header .fa-brands:hover {
 
 /* Estilo para todas alinhar todas as sections */
 section .text-center {
+    display: flex;
     width: 50%;
-    margin: 140px auto;
+    flex-direction: column;
 }
 
 /* "Onda" da tela principal */
@@ -144,41 +146,52 @@ main {
     margin-top: 100px;
 }
 
-section.hello-container {
+.hello-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100%;
     height: 90vh;
     color: var(--text2-color);
 }
 
-section.hello-container #hello-text {
-    animation: colorChange 10s infinite;
-}
-
-section.hello-container span {
-    font-size: 2rem;
-    font-weight: 400;
-}
-
-section.hello-container #hello-text {
+.hello-container #hello-text {
     background-color: var(--tertiary-color);
     font-weight: 300;
     color: var(--text1-color);
     padding: 7px;
     border-radius: 10px;
-    width: 100%;
+    width: 20%;
     margin-right: 10px;
 }
 
-section.hello-container p {
-    font-size: 5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+.hello-container #hello-text {
+    animation: colorChange 10s infinite;
 }
 
-section.hello-container button {
+.hello-container span {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.hello-container #name-text {
+    display: flex;
+    flex-direction: column;
+    transition: margin-top 0.3s;
+}
+
+.hello-container #name-text p {
+    align-items: center;
+    color: var(--text2-color);
+    font-size: 4.5rem;
+    font-weight: 700;
+    transition: font-size 0.3s;
+    line-height: 80px;
+    margin: 20px 0;
+}
+
+.hello-container button {
     background-color: var(--tertiary-color);
     color: var(--text1-color);
     padding: 15px;
@@ -186,36 +199,42 @@ section.hello-container button {
     border-radius: 30px;
     font-size: 1rem;
     cursor: pointer;
+    width: 200px;
     transition: transform 0.5s;
 }
 
-section.hello-container button:hover {
+.hello-container button:hover {
     background-color: var(--main-color);
     transform: scale(1.04);
 }
 
+.hello-container .hello-banner {  /* Mantém o titulo principal (eduardo fabri) alinhado */
+    width: 50%;
+    margin: 140px auto;
+}
 
 /* Section de apresentação */
-section.presentation-container {
+.presentation-container {
     display: flex;
     width: 100%;
     color: var(--text2-color);
 }
 
-section.presentation-container .presentation-banner {
+.presentation-container .presentation-banner {
     background: var(--gradient);
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px;
     color: var(--text1-color);
 }
 
-section.presentation-container .text-center {
+.presentation-container .text-center {
     display: flex;
     flex-direction: row;
 }
 
-section.presentation-container img {
+.presentation-container img {
     border-radius: 30px;
     max-height: 300px;
     width: 300px;
@@ -225,27 +244,27 @@ section.presentation-container img {
     transition: transform 0.5s;
 }
 
-section.presentation-container img:hover {
+presentation-container img:hover {
     transform: scale(1.04);
 }
 
-section.presentation-container .text-me {
+.presentation-container .text-me {
     display: flex;
     margin-top: 20px;
     flex-direction: column;
 }
 
-section.presentation-container .text-me #about-me {
+.presentation-container .text-me #about-me {
     font-size: 2rem;
     font-weight: 700;
     transition: font-size 0.3s;
 }
 
-section.presentation-container .text-me #about-me:hover {
+.presentation-container .text-me #about-me:hover {
     font-size: 2.5rem;
 }
 
-section.presentation-container #curriculobutton {
+.presentation-container #curriculobutton {
     background-color: var(--text2-color);
     color: #fff;
     padding: 10px;
@@ -260,7 +279,7 @@ section.presentation-container #curriculobutton {
     transition: transform 0.5s;
 }
 
-section.presentation-container #curriculobutton:hover {
+.presentation-container #curriculobutton:hover {
     background-color: var(--main-color);
     transform: scale(1.04);
 }
@@ -272,13 +291,13 @@ section.presentation-container #curriculobutton:hover {
     margin: 50px;
 }
 
-.skills-title {
+.skills-container .skills-title {
     font-size: 1.5rem;
-    color: #555;
+    color: var(--text3-color);
     margin-bottom: 50px;
 }
 
-.carousel {
+.skills-container .carousel {
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -290,12 +309,12 @@ section.presentation-container #curriculobutton:hover {
     -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
-.carousel-track {
+.skills-container .carousel-track {
     display: flex;
     animation: scroll 11s linear infinite; 
 }
 
-.carousel-item {
+.skills-container .carousel-item {
     min-width: 200px;
     flex-shrink: 0;
     display: flex;
@@ -305,23 +324,173 @@ section.presentation-container #curriculobutton:hover {
     transition: color 0.3s;
 }
 
-.carousel-item i {
-    font-size: 3rem;
+.skills-container .carousel-item i {
+    font-size: 4rem;
     margin-bottom: 10px;
 }
 
-.carousel-item p {
-    font-size: 1rem;
-    margin: 0;
-}
-
-.carousel-item:hover {
+.skills-container .carousel-item:hover {
     color: #000;
 }
 
+/* Section projetos */
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    color: var(--text2-color);
+}
+
+.projects-container .projects-banner {
+    background: var(--gradient);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    width: 100%;
+}
+
+.projects-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--text1-color);
+}
+
+.projects-container .project-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.projects-container .project-image {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden; 
+    border-radius: 20px;
+}
+
+.projects-container .project-image img {
+    max-width: 100%;
+    height: 300px; 
+    object-fit: cover;
+    border-radius: 20px;
+    transition: filter 0.3s ease;
+}
+
+.projects-container .project-image:hover img {
+    filter: brightness(0.7);
+}
+
+.projects-container .project-image .overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.projects-container .project-image:hover .overlay {
+    opacity: 1;
+}
+
+.projects-container .project-image .overlay a {
+    color: var(--text1-color);
+    font-size: 3rem;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.projects-container .project-image .overlay a:hover {
+    transform: scale(1.1);
+}
+
+.projects-container .project-description {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    gap: 10px;
+}
+
+.projects-container .project-description {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    gap: 10px;
+}
+
+.projects-container .project-description h2, p {
+    color: var(--text1-color);
+}
+
+.projects-container .project-description h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.projects-container .project-description h2:hover {
+    transform: scale(1.05);
+}
+
+.projects-container .project-description p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.projects-container .project-tags span {
+    display: inline-block;
+    background: #f0f0f0;
+    color: var(--text3-color);
+    padding: 5px 10px;
+    margin: 10px 0px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.projects-container .project-tags span:hover {
+    background: var(--main-color);
+    color: var(--text1-color);
+    transform: scale(1.1);
+}
+
+.projects-container .project-tags span:last-child {
+    margin-right: 0;
+}
+
+.projects-container .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--text2-color);
+    color: var(--text1-color);
+    text-decoration: none;
+    border-radius: 15px;
+    font-size: 16px;
+    width: 200px;
+    transition: 0.3s;
+}
+
+.projects-container .btn:hover {
+    background: var(--main-color);
+    transform: scale(1.1);
+}
+
 /* Responsividade */
-/* Telas até 920px - celulares/alguns tablets */
-@media (max-width: 920px) {
+/* Telas até 1280px - celulares/alguns tablets */
+@media (max-width: 1280px) {
     header {
         display: flex;
         justify-content: space-between;
@@ -340,39 +509,70 @@ section.presentation-container #curriculobutton:hover {
     }
 
     section .text-center {
-        width: 90%;
+        width: 100%;
     }
 
-    section.hello-container {
-        text-align: center;
-    }
-
-    section.hello-container p {
-        font-size: 3rem;
-    }
-
-    section.presentation-container img {
-        height: 200px;
-        width: 200px;
-    }
-
-    section.presentation-container .text-center {
+    .hello-container .text-center {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
-    section.presentation-container #curriculobutton {
+    .hello-container #hello-text {
+        font-size: 1.5rem;
+    }
+
+    .presentation-container img {
+        height: 200px;
+        width: 200px;
+    }
+
+    .presentation-container .text-center {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .presentation-container #curriculobutton {
         margin-top: 20px;
+    }
+
+    .projects-container .project-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .projects-container .project-description {
+        max-width: 80%;
+    }
+
+    .projects-container .btn {
+        width: 100%;
     }
 }
 
-@media ((min-width: 800px) and (max-width: 1650px)) {
-    section.presentation-container #curriculobutton {
+/* Telas até 768px - celulares entre 768 e 1650 */
+@media (min-width: 768px) and (max-width: 1650px) {
+    .presentation-container #curriculobutton {
         margin-top: 20px;
     }
 
-    section.presentation-container img {
+    .presentation-container img {
         height: 500px;
+    }
+}
+
+/* Acima de 768px entre 1300px mantém a seção presentation no formato padrão */
+@media (min-width: 768px) and (max-width: 1300px) {
+    .presentation-container .text-center {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    section.presentation-container img {
+        height: auto;
+        width: auto;
     }
 }
