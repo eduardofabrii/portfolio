@@ -490,6 +490,164 @@ main {
     transform: scale(1.1);
 }
 
+/* Section Contato */
+.contact-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    color: var(--text2-color);
+    position: relative;
+}
+
+.contact-container {
+    display: grid;
+    padding: 40px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 2rem;
+    width: 50%;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+    background-size: cover;
+}
+
+.contact-container h2 {
+    font-size: 1.5rem;
+    color: var(--text3-color);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Formulário */
+.form-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-column: 1;
+    grid-row: span 2; /* Indica q está ocupando duas linhas */
+    width: 100%;
+    height: 100%;
+    background: var(--blur);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-section input, .form-section textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.form-section button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navigation, .social-icons {
+    width: 100%;
+    background: var(--blur);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-section button:hover {
+    background-color: #43a047;
+}
+
+/* Navegação */
+.navigation {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: center;
+}
+
+.navigation h2 {
+    font-size: 1.5rem;
+    color: var(--text3-color);
+    margin-bottom: 1rem;
+}
+
+.navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation ul li {
+    margin: 0.5rem 0;
+}
+
+.navigation ul li a {
+    text-decoration: none;
+    color: var(--text3-color);
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navigation ul li a:hover {
+    color: #4caf50;
+}
+
+/* Redes Sociais */
+.social-icons {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2;
+    grid-row: 2;
+    text-align: center;
+}
+
+.social-icons-elements {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-icons-section h2 {
+    font-size: 1.5rem;
+    color: var(--text3-color);
+    margin-bottom: 1rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-icons a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--secondary-color);
+    color: white;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: var(--secondary-color);
+}
+
+
 /* Responsividade */
 /* Telas até 1280px - celulares/alguns tablets */
 @media (max-width: 1280px) {
@@ -551,6 +709,13 @@ main {
 
     .projects-container .btn {
         width: 100%;
+    }
+
+    .contact-container {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        padding: 20px;
     }
 }
 
