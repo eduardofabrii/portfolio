@@ -9,4 +9,6 @@ Tecnologias: HTML, CSS, JavaScript<br>
 
 Controle de Versão: Git/GitHub<br>
 
+Trello para organização: <a href='https://trello.com/invite/b/67853e2556781dfc3682ab5b/ATTIe55342e235cfa5d1b328b21c7baa65b8F7F38DE5/portfolio-pessoal'>Clique</a>
+
 # Clique e acesse [EM BREVE]...
