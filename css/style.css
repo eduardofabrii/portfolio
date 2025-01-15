@@ -490,6 +490,7 @@ main {
     transform: scale(1.1);
 }
 
+
 /* Section Contato */
 .contact-section {
     display: flex;
@@ -498,6 +499,7 @@ main {
     width: 100%;
     color: var(--text2-color);
     position: relative;
+    background-size: cover;
 }
 
 .contact-container {
@@ -529,8 +531,8 @@ main {
     grid-row: span 2; /* Indica q está ocupando duas linhas */
     width: 100%;
     height: 100%;
-    background: var(--blur);
     border-radius: 20px;
+    background-color: var(--text1-color);
     padding: 2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -557,8 +559,8 @@ main {
 }
 
 .navigation, .social-icons {
+    background-color: var(--text1-color);
     width: 100%;
-    background: var(--blur);
     border-radius: 20px;
     padding: 2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -621,12 +623,6 @@ main {
     font-size: 1.5rem;
     color: var(--text3-color);
     margin-bottom: 1rem;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
 }
 
 .social-icons a {
