@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 /* Animação */
 @keyframes colorChange {
     0% {
@@ -27,12 +29,6 @@
     }
 }
 
-
-@font-face {
-    font-family: 'SF-Pro';
-    src: url(/fonts/SF-Pro.ttf);
-}
-
 :root {
     --main-color: #374B32;
     --secondary-color: #4CA035;
@@ -50,7 +46,7 @@
 
 /* Configurações globais */
 * {
-    font-family: 'SF-Pro', sans-serif;
+    font-family: 'Inter Tight', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -188,6 +184,7 @@ main {
     font-weight: 700;
     transition: font-size 0.3s;
     line-height: 80px;
+    width: 100%;
     margin: 20px 0;
 }
 
