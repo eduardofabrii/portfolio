@@ -565,7 +565,7 @@ main {
 }
 
 .form-section button:hover {
-    background-color: #43a047;
+    background-color: var(--main-color);
 }
 
 /* Navegação */
@@ -599,7 +599,7 @@ main {
 }
 
 .navigation ul li a:hover {
-    color: #4caf50;
+    color: var(--secondary-color);
 }
 
 /* Redes Sociais */
@@ -644,7 +644,7 @@ main {
 }
 
 .social-icons a:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--main-color);
 }
 
 
