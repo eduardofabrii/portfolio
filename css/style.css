@@ -386,6 +386,7 @@ main {
     height: 300px;
     overflow: hidden; 
     border-radius: 20px;
+    box-shadow: 10px 10px 5px rgba(2, 5, 10, 0.1);
 }
 
 .projects-container .project-image img {
