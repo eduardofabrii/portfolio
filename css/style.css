@@ -239,9 +239,10 @@ main {
     margin: 20px auto;
     margin-right: 20px;
     transition: transform 0.5s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-presentation-container img:hover {
+.presentation-container img:hover {
     transform: scale(1.04);
 }
 
@@ -362,8 +363,12 @@ presentation-container img:hover {
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-    padding: 20px;
+    padding: 30px;
     border-radius: 15px;
+}
+
+.projects-container .project-content:last-child {
+    margin-bottom: 0;
 }
 
 .projects-container .project-image {
@@ -537,7 +542,7 @@ presentation-container img:hover {
     .projects-container .project-content {
         flex-direction: column;
         text-align: center;
-        gap: 20px;
+        padding: 40px;
     }
 
     .projects-container .project-description {
