@@ -57,6 +57,11 @@ a {
     color: inherit;
 }
 
+html {
+    scroll-behavior: smooth;
+
+}
+
 html, body {
     overflow-x: hidden !important; 
 }
@@ -177,6 +182,7 @@ main {
     transition: margin-top 0.3s;
 }
 
+
 .hello-container #name-text p {
     align-items: center;
     color: var(--text2-color);
@@ -185,7 +191,24 @@ main {
     transition: font-size 0.3s;
     line-height: 80px;
     width: 100%;
+    margin-top: 20px;
+}
+
+.hello-container #job-text {
     margin: 20px 0;
+}
+
+.hello-container #job-text p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--text3-color);
+    transition: font-size 0.3s;
+}
+
+.hello-container #job-text span {
+    font-weight: 300;
+    font-size: 16px;
+    color: var(--text3-color);
 }
 
 .hello-container button {
@@ -214,10 +237,6 @@ main {
 .presentation-container {
     display: flex;
     width: 100%;
-    color: var(--text2-color);
-}
-
-.presentation-container .presentation-banner {
     background: var(--gradient);
     display: flex;
     justify-content: center;
@@ -333,14 +352,6 @@ main {
 
 /* Section projetos */
 .projects-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    color: var(--text2-color);
-}
-
-.projects-container .projects-banner {
     background: var(--gradient);
     display: flex;
     justify-content: center;
@@ -349,6 +360,7 @@ main {
     padding: 40px;
     width: 100%;
 }
+
 
 .projects-container h1 {
     font-size: 1.5rem;
@@ -361,7 +373,6 @@ main {
 .projects-container .project-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 30px;
     padding: 30px;
     border-radius: 15px;
@@ -380,11 +391,10 @@ main {
 }
 
 .projects-container .project-image img {
-    max-width: 100%;
-    height: 300px; 
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 20px;
-    transition: filter 0.3s ease;
+    transition: 0.3s;
 }
 
 .projects-container .project-image:hover img {
@@ -394,6 +404,7 @@ main {
 .projects-container .project-image .overlay {
     position: absolute;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
@@ -413,10 +424,6 @@ main {
     font-size: 3rem;
     transition: 0.3s;
     cursor: pointer;
-}
-
-.projects-container .project-image .overlay a:hover {
-    transform: scale(1.1);
 }
 
 .projects-container .project-description {
