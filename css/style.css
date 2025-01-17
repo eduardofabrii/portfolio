@@ -649,7 +649,6 @@ main {
     background-color: var(--main-color);
 }
 
-
 /* Responsividade */
 /* Telas até 1280px - celulares/alguns tablets */
 @media (max-width: 1280px) {

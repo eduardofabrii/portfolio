@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+    --main-color: #374B32;
+    --secondary-color: #4CA035;
+    --tertiary-color: #3d5e35;
+    --inverse-color: orange;
+    --text1-color: white;
+    --text2-color: #171717;
+    --text3-color: #555;
+    --background: white;
+    /* --background: #2C332B; */
+    --header: white;
+    --gradient: linear-gradient(90deg, #47753B 0%, #8BC34A 100%);
+    --blur: blur(5px);
+}
+
+/* Configurações globais */
+* {
+    font-family: 'Inter Tight', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    font-size: 16px;
+    line-height: 1.5;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Email Resposta */
+.email-response {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    background-color: var(--text1-color);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: var(--text3-color);
+}
+
+#button {
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: var(--secondary-color);
+    color: var(--text1-color);
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    box-shadow: 10px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#button:hover {
+    background-color: var(--tertiary-color);
+}
