@@ -1,5 +1,4 @@
 var nodeArray = [
-    document.querySelector('#header'),
     document.querySelector('#hello-text'),
     document.querySelector('#im-text'),
     document.querySelector('#name-text'),
