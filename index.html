@@ -188,7 +188,10 @@
                 <div class="form-section" id="contact-form">
                     <h2>Contato</h2>
                     <form action="https://formsubmit.co/eduardohfabri@gmail.com" method="POST">
-                        <input type="text" name="name" placeholder="Informe seu nome" required>
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_subject" value="Entrando em contato através do portfólio.">
+                        <input type="hidden" name="_autoresponse" value="Obrigado por entrar em contato! Em breve retornarei sua mensagem.">
+                        <input name="name" placeholder="Informe seu nome" required>
                         <input type="email" name="email" placeholder="Informe seu e-mail" required>
                         <textarea name="message" placeholder="Informe sua mensagem" required style="resize: none;"></textarea>
                         <button type="submit" data-button>Enviar</button>
