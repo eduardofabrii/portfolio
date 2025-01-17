@@ -9,8 +9,12 @@ Tecnologias: HTML, CSS, JavaScript<br>
 
 Controle de Versão: Git/GitHub<br>
 
-Trello para organização: <a href='https://trello.com/invite/b/67853e2556781dfc3682ab5b/ATTIe55342e235cfa5d1b328b21c7baa65b8F7F38DE5/portfolio-pessoal'>Clique</a>
-![image](https://github.com/user-attachments/assets/97f8a72f-71ec-4e15-9377-c20172d85c4e)
+Trello para organização: <a href='https://trello.com/invite/b/67853e2556781dfc3682ab5b/ATTIe55342e235cfa5d1b328b21c7baa65b8F7F38DE5/portfolio-pessoal'>Clique</a><br>
+
+<div style="border: 2px solid black; display: inline-block; padding: 4px;">
+  <img src="https://github.com/user-attachments/assets/97f8a72f-71ec-4e15-9377-c20172d85c4e" alt="Trello do Projeto">
+</div>
+
 
 
 # <a href='https://eduardofabrii.github.io/portfolio/'>Clique e acesse...</a>
