@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="script/script.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <title>Eduardo Fabri: Desenvolvedor de Software</title>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="logo">
             <img src="img/img-face.jpg" alt="Logo">
         </div>
@@ -37,7 +37,7 @@
                         <span>Trainee <b>@Wise Systems</b></span>
                     </div>
                   <div>
-                      <a href="#contact"><button>Vamos conversar? <i class="fa-solid fa-arrow-right"></i></button></a>
+                      <a href="#contact" id="button"><button>Vamos conversar? <i class="fa-solid fa-arrow-right"></i></button></a>
                   </div>
                     <!-- Onda SVG -->
                     <div class="wave">
@@ -122,7 +122,7 @@
             <h1>Projetos</h1>
             <div class="text-center">
                 <!-- Projeto 1 -->
-                <div class="project-content">
+                <div class="project-content" id="projects-1">
                     <div class="project-image">
                         <img src="img/img-projeto-economizeja.png" alt="Preview do EconomizeJa" />
                         <div class="overlay">
@@ -147,7 +147,7 @@
                 </div>
 
                 <!-- Projeto 2 -->
-                <div class="project-content">
+                <div class="project-content" id="projects-2">
                     <div class="project-description">
                         <h2>Pack de pequenos projetos Android</h2>
                         <p>
@@ -185,7 +185,7 @@
             </svg>
 
             <div class="contact-container">
-                <div class="form-section">
+                <div class="form-section" id="contact-form">
                     <h2>Contato</h2>
                     <form>
                         <input type="text" name="name" placeholder="Nome" required>
@@ -194,7 +194,7 @@
                         <button type="submit">Enviar</button>
                     </form>
                 </div>
-                <div class="navigation">
+                <div class="navigation" id="navigation">
                     <h2>Navegar</h2>
                     <ul>
                         <li><a href="#hello">Início</a></li>
@@ -203,7 +203,7 @@
                         <li><a href="#projects">Projetos</a></li>
                     </ul>
                 </div>
-                <div class="social-icons">
+                <div class="social-icons" id="social-icons">
                     <h2>Redes Sociais</h2>
                     <div class="social-icons-elements">
                         <a href="https://www.linkedin.com/in/eduardofabri/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -223,6 +223,8 @@
             </svg>
         </section>
         
-    </main>        
+    </main>  
+    
+    <script src="script/script.js" defer></script>
 </body>
 </html>
