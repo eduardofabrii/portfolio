@@ -65,6 +65,23 @@ html, body {
     overflow-x: hidden !important; 
 }
 
+
+/* Scroll */
+body::-webkit-scrollbar {
+    width: 12px;
+    background: #ffffff00;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    background-color: var(--text3-color);
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: rgba(88, 88, 88, 0.459);
+}
+
 body {
     display: flex;
     background-color: var(--background);
@@ -128,25 +145,14 @@ header nav ul li {
     transition: transform 0.5s, color 0.5s;
 }
 
-header .social-links {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
 header .fa-brands {
     font-size: 1.8rem;
     margin-right: 10px;
     transition: transform 0.5s, color 0.5s;
 }
 
-header .fa-brands:hover {
-    transform: scale(1.2);
-    color: var(--main-color);
-}
-
-header nav ul li:hover {
-    transform: scale(1.2);
+header .fa-brands:hover, nav ul li:hover {
+    transform: scale(1.1);
     color: var(--main-color);
 }
 
