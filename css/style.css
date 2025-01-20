@@ -333,15 +333,15 @@ main {
 }
 
 .presentation-container img {
-    border-radius: 50px;
-    max-height: 300px;
+    animation: borderRadiusChange 10s infinite;
+    height: 320px;
     width: 300px;
+    margin-right: 40px;
+    border-radius: 50px;
     object-fit: cover;
-    margin: 20px auto;
-    margin-right: 20px;
-    transition: transform 0.5s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* animation: borderRadiusChange 3s infinite; */
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: 10px 10px 5px rgba(2, 5, 10, 0.1);
 }
 
 .presentation-container img:hover, .presentation-container img:active {
@@ -792,6 +792,7 @@ main {
     .presentation-container img {
         height: 200px;
         width: 200px;
+        margin-right: 0;
     }
 
     .presentation-container .text-center {
@@ -837,7 +838,7 @@ main {
     }
 
     .presentation-container img {
-        height: 500px;
+        height: 350px;
     }
 }
 
@@ -849,8 +850,9 @@ main {
         text-align: left;
     }
 
-    section.presentation-container img {
-        height: auto;
-        width: auto;
+    .presentation-container img {
+        height: 300px;
+        width: 300px;
+        margin-right: 40px;
     }
 }
