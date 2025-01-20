@@ -167,6 +167,7 @@ header .fa-brands:hover, nav ul li:hover {
 
 .nav-bar.active {
     display: flex;
+    justify-content: center;
 }
 
 /* Estilo para todas alinhar todas as sections */
