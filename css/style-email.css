@@ -1,5 +1,5 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 :root {
     --main-color: #374B32;
     --secondary-color: #4CA035;
@@ -23,50 +23,66 @@
     box-sizing: border-box;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--secondary-color);
-    font-size: 16px;
-    line-height: 1.5;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-}
-
-/* Email Resposta */
 .email-response {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    background-color: var(--text1-color);
+    padding: 20px;
+    background: var(--gradient);
+    color: var(--text1-color);
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.email-response h1 {
+    font-size: 2.3rem;
+    margin-bottom: 20px;
+}
+
+.video {
+    display: flex;
+    flex-direction: column;
     border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: var(--text3-color);
-    margin: 0 auto; 
+    justify-content: center;
+    align-items: center;
+}
+
+.video iframe {
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 #button {
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 10px 20px;
-    margin-top: 20px;
-    background-color: var(--secondary-color);
-    color: var(--text1-color);
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s;
+    width: 100%;
+    background-color: var(--background);
+    color: var(--text3-color);
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: 10px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 #button:hover {
-    background-color: var(--tertiary-color);
+    background-color: var(--main-color);
+    color: var(--text1-color);
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 768px) {
+    .video iframe {
+        width: 100%;
+    }
+
+    .email-response h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
 }
