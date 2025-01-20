@@ -1,3 +1,5 @@
+
+// Elementos para o Scroll Reveal
 var nodeArray = [
     document.querySelector('#hello-text'),
     document.querySelector('#greeting-text'),
@@ -48,4 +50,13 @@ ScrollReveal().reveal(rightToCenter, {
     distance: '100%', 
     easing: 'ease-in-out',
     reset: true 
+});
+
+// Meny Sanduiche
+const menuToggle = document.querySelector('.menu-toggle');
+const navBar = document.querySelector('.nav-bar');
+
+menuToggle.addEventListener('click', () => {
+    navBar.classList.toggle('active');
+    menuToggle.classList.toggle('open');
 });
