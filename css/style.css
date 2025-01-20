@@ -121,7 +121,7 @@ header .logo img {
     transition: transform 0.5s, color 0.5s;
 }
 
-header .logo img:hover {
+header .logo img:hover, header .logo img:active {
     transform: rotate(360deg);
 }
 
@@ -150,7 +150,7 @@ header .fa-brands {
     transition: transform 0.5s, color 0.5s;
 }
 
-header .fa-brands:hover, nav ul li:hover {
+header .fa-brands:hover, nav ul li:hover, nav ul li:active, header .fa-brands:active {
     transform: scale(1.1);
     color: var(--main-color);
 }
@@ -240,7 +240,7 @@ main {
     animation: colorChange 10s infinite;
 }
 
-.hello-container #name-text p:hover {
+.hello-container #name-text p:hover, .hello-container #name-text p:active {
     transform: scale(1.1);
 }
 
@@ -273,7 +273,7 @@ main {
     transition: transform 0.5s;
 }
 
-.hello-container button:hover {
+.hello-container button:hover, .hello-container button:active {
     background-color: var(--main-color);
     transform: scale(1.04);
 }
@@ -311,7 +311,7 @@ main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.presentation-container img:hover {
+.presentation-container img:hover, .presentation-container img:active {
     transform: scale(1.04);
 }
 
@@ -327,7 +327,7 @@ main {
     transition: font-size 0.3s;
 }
 
-.presentation-container .text-me #about-me:hover {
+.presentation-container .text-me #about-me:hover, .presentation-container .text-me #about-me:active {
     font-size: 2.5rem;
 }
 
@@ -346,7 +346,7 @@ main {
     transition: transform 0.5s;
 }
 
-.presentation-container #curriculobutton:hover {
+.presentation-container #curriculobutton:hover, .presentation-container #curriculobutton:active {
     background-color: var(--main-color);
     transform: scale(1.04);
 }
@@ -397,7 +397,7 @@ main {
 }
 
 
-.skills-container .carousel-item:hover {
+.skills-container .carousel-item:hover, .skills-container .carousel-item:active {
     color: #000;
 }
 
@@ -449,7 +449,7 @@ main {
     transition: 0.3s;
 }
 
-.projects-container .project-image:hover img {
+.projects-container .project-image:hover img, .projects-container .project-image:active img {
     filter: brightness(0.7);
 }
 
@@ -467,7 +467,7 @@ main {
     transition: 0.3s;
 }
 
-.projects-container .project-image:hover .overlay {
+.projects-container .project-image:hover .overlay, .projects-container .project-image:active .overlay {
     opacity: 1;
 }
 
@@ -502,7 +502,7 @@ main {
     transition: 0.3s;
 }
 
-.projects-container .project-description h2:hover {
+.projects-container .project-description h2:hover, .projects-container .project-description h2:active {
     transform: scale(1.05);
 }
 
@@ -522,7 +522,7 @@ main {
     transition: .3s;
 }
 
-.projects-container .project-tags span:hover {
+.projects-container .project-tags span:hover, .projects-container .project-tags span:active {
     background: var(--main-color);
     color: var(--text1-color);
     transform: scale(1.1);
@@ -544,7 +544,7 @@ main {
     transition: 0.3s;
 }
 
-.projects-container .btn:hover {
+.projects-container .btn:hover, .projects-container .btn:active {
     background: var(--main-color);
     transform: scale(1.1);
 }
@@ -625,7 +625,7 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.form-section button:hover {
+.form-section button:hover, .form-section button:active {
     background-color: var(--main-color);
 }
 
@@ -659,7 +659,7 @@ main {
     transition: color 0.3s ease;
 }
 
-.navigation ul li a:hover {
+.navigation ul li a:hover, .navigation ul li a:active {
     color: var(--secondary-color);
 }
 
@@ -698,7 +698,7 @@ main {
     transition: background-color 0.3s ease;
 }
 
-.social-icons a:hover {
+.social-icons a:hover, .social-icons a:active {
     background-color: var(--main-color);
 }
 
