@@ -251,28 +251,33 @@ main {
     font-weight: 400;
 }
 
+.hello-container #greeting-text {
+    width: 600px;
+}
+
 .hello-container #name-text {
     display: flex;
     flex-direction: column;
+    width: 500px;
+    margin-top: 10px;
     transition: margin-top 0.3s;
     animation: float 5s infinite;
 }
 
-.hello-container #name-text p {
+.hello-container #name-text h1 {
     align-items: center;
     color: var(--text2-color);
     font-family: 'SF-Pro', sans-serif;
     font-size: 4.5rem;
     font-weight: 700;
     transition: 0.7s;
-    line-height: 80px;
-    width: 100%;
+    line-height: 65px;
     margin-top: 5px;
     cursor: pointer;
     animation: colorChange 10s infinite;
 }
 
-.hello-container #name-text p:hover, .hello-container #name-text p:active {
+.hello-container #name-text h1:hover, .hello-container #name-text h1:active {
     transform: scale(1.1);
 }
 
@@ -787,6 +792,12 @@ main {
 
     .hello-container #hello-text {
         font-size: 1.5rem;
+    }
+
+    .hello-container #name-text {
+        display: flex;
+        justify-content: center;
+        width: 300px;
     }
 
     .presentation-container img {
