@@ -264,7 +264,7 @@ main {
     animation: float 5s infinite;
 }
 
-.hello-container #name-text h1 {
+.hello-container #name {
     align-items: center;
     color: var(--text2-color);
     font-family: 'SF-Pro', sans-serif;
