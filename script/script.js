@@ -52,7 +52,7 @@ ScrollReveal().reveal(rightToCenter, {
     reset: true 
 });
 
-// Meny Sanduiche
+// Menu Sanduiche
 const menuToggle = document.querySelector('.menu-toggle');
 const navBar = document.querySelector('.nav-bar');
 

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
+
 /* Animação */
 @keyframes colorChange {
     0% {
@@ -743,38 +744,6 @@ main {
 /* Responsividade */
 /* Telas até 1280px - celulares/alguns tablets */
 @media (max-width: 1280px) {
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 0;
-        border-radius: 0;
-        background-color: var(--background);
-        position: fixed;
-        width: 100%;
-        z-index: 1000;
-    }
-    
-    .menu-toggle {
-        display: block;
-    }
-
-    header nav {
-        display: none;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        height: 35px;
-        background-color: var(--background);
-        border-radius: 10px;
-        z-index: 1000;
-    }
-
-    .wave {
-        margin-top: 60px;
-    }
-
     section .text-center {
         width: 100%;
     }
@@ -836,6 +805,45 @@ main {
         padding: 20px;
     }
 }
+
+/* Altera o header em 1280px */
+@media (max-width: 1280px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+        border-radius: 0;
+        background-color: var(--background);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .wave {
+        margin-top: 60px;
+    }
+}
+
+/* Altera o header em 700px */
+@media (max-width: 700px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    header nav {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 35px;
+        background-color: var(--background);
+        border-radius: 10px;
+        z-index: 1000;
+    }
+}
+
 
 /* Telas até 768px - celulares entre 768 e 1650 */
 @media (min-width: 768px) and (max-width: 1650px) {
