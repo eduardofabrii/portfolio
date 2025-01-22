@@ -1,8 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-@font-face {
-    font-family: 'SF-Pro';
-    src: url(/fonts/SF-Pro.ttf);
-}
 
 /* Animação */
 @keyframes colorChange {
@@ -264,10 +260,9 @@ main {
     animation: float 5s infinite;
 }
 
-.hello-container #name {
+.hello-container h1#name {
     align-items: center;
     color: var(--text2-color);
-    font-family: 'SF-Pro', sans-serif;
     font-size: 4.5rem;
     font-weight: 700;
     transition: 0.7s;
