@@ -194,7 +194,21 @@ header .fa-brands:hover, nav ul li:hover {
 
 .nav-bar.active {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    background-color: var(--background);
+    z-index: 999;
+    transition: 0.5s;
+}
+
+.nav-bar.active ul {
+    flex-direction: column;
+    display: flex;
 }
 
 /* Estilo para todas alinhar todas as sections */
@@ -762,6 +776,84 @@ main {
     scroll-margin-top: 90px; 
 }
 
+/* Section Perguntas Frequentes */
+.faq-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    color: var(--text2-color);
+    background-size: cover;
+}
+
+.faq-section .text-center {
+    padding: 40px;
+}
+
+.faq-section p {
+    font-size: 1rem;
+    color: var(--text2-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.faq-section h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--text3-color);
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    text-align: left;
+    padding: 20px;
+    color: var(--text3-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.faq-question:hover {
+    background-color: #f9f9f9;
+}
+
+.faq-toggle {
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.faq-answer {
+    display: none;
+    font-size: 1rem;
+    color: var(--text2-color);
+    padding: 10px;
+    border-left: 4px solid var(--text3-color);
+    margin-top: 5px;
+    background-color: #f9f9f9;
+}
+
+.faq-answer.active {
+    display: block;
+}
+
+.fa-chevron-down, .fa-chevron-up {
+    font-size: 1rem;
+}
+
 /* Quadradinho lateral */
 .back-to-top {
     position: fixed;
@@ -887,7 +979,6 @@ main {
         z-index: 1000;
     }
 }
-
 
 /* Telas até 768px - celulares entre 768 e 1650 */
 @media (min-width: 768px) and (max-width: 1650px) {
