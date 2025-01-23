@@ -16,6 +16,7 @@ var nodeArray = [
     document.querySelector('#contact-form'),
     document.querySelector('#navigation'),
     document.querySelector('#social-icons'),
+    document.querySelector('#faq'),
 ];
 
 var leftToCenter = [
@@ -61,6 +62,7 @@ menuToggle.addEventListener('click', () => {
     menuToggle.classList.toggle('open');
 });
 
+
 // Quadradinho lateral para subir tela
 function scrollToTop() {
     window.scrollTo({
@@ -68,3 +70,26 @@ function scrollToTop() {
         behavior: 'smooth'
     });
 }
+
+
+// Abrir perguntas frequentes
+document.addEventListener("DOMContentLoaded", () => {
+    const faqQuestions = document.querySelectorAll(".faq-question");
+
+    faqQuestions.forEach((question) => {
+        question.addEventListener("click", () => {
+            const answer = question.nextElementSibling;
+            const toggleIcon = question.querySelector(".faq-toggle i");
+
+            // Muda a visibilidade da resposta
+            answer.classList.toggle("active");
+
+            // Altera o ícone
+            if (answer.classList.contains("active")) {
+                toggleIcon.classList.replace("fa-chevron-down", "fa-chevron-up");
+            } else {
+                toggleIcon.classList.replace("fa-chevron-up", "fa-chevron-down");
+            }
+        });
+    });
+});
