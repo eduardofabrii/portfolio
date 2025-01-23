@@ -60,3 +60,11 @@ menuToggle.addEventListener('click', () => {
     navBar.classList.toggle('active');
     menuToggle.classList.toggle('open');
 });
+
+// Quadradinho lateral para subir tela
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
