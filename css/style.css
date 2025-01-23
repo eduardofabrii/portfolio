@@ -273,7 +273,7 @@ main {
     animation: colorChange 10s infinite;
 }
 
-.hello-container #name-text p:hover {
+.hello-container h1#name:hover {
     transform: scale(1.1);
 }
 
@@ -738,6 +738,50 @@ main {
 }
 
 .social-icons a:hover {
+    background-color: var(--main-color);
+}
+
+/* Ajustando a posição do redirecionamento */
+#hello {
+    scroll-margin-top: 80px;
+}
+
+#about {
+    scroll-margin-top: 100px; 
+}
+
+#tech {
+    scroll-margin-top: 220px; 
+}
+
+#projects {
+    scroll-margin-top: 90px; 
+}
+
+#contact-id {
+    scroll-margin-top: 90px; 
+}
+
+/* Quadradinho lateral */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.back-to-top:hover {
     background-color: var(--main-color);
 }
 
