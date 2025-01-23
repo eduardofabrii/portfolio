@@ -17,6 +17,8 @@ var nodeArray = [
     document.querySelector('#navigation'),
     document.querySelector('#social-icons'),
     document.querySelector('#faq'),
+    document.querySelector('#styled-hr-1'),
+    
 ];
 
 var leftToCenter = [

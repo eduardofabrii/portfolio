@@ -800,12 +800,22 @@ main {
     border: none;
     font-size: 1.1rem;
     text-align: left;
-    padding: 20px;
+    padding: 30px;
+    border-bottom: 1px solid #afc34a;
     color: var(--text3-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+}
+
+.text-center .faq-item:first-of-type .faq-question {
+    padding: 30px;
+    border-top: 1px solid #afc34a;
+}
+
+.text-center .faq-item:last-of-type .faq-question {
+    border: 0;
 }
 
 .faq-question:hover {
@@ -822,17 +832,20 @@ main {
 }
 
 .faq-answer {
-    display: none;
+    max-height: 0; 
+    overflow: hidden; 
     font-size: 1rem;
     color: var(--text2-color);
-    padding: 10px;
+    padding: 0 10px;
     border-left: 4px solid var(--text3-color);
     margin-top: 5px;
     background-color: #f9f9f9;
+    transition: all 0.5s ease-in-out;
 }
 
 .faq-answer.active {
-    display: block;
+    max-height: 300px; 
+    padding: 10px;
 }
 
 .fa-chevron-down, .fa-chevron-up {
