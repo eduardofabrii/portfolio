@@ -75,23 +75,21 @@ function scrollToTop() {
 
 
 // Abrir perguntas frequentes
-document.addEventListener("DOMContentLoaded", () => {
-    const faqQuestions = document.querySelectorAll(".faq-question");
+const faqQuestions = document.querySelectorAll(".faq-question");
 
-    faqQuestions.forEach((question) => {
-        question.addEventListener("click", () => {
-            const answer = question.nextElementSibling;
-            const toggleIcon = question.querySelector(".faq-toggle i");
+faqQuestions.forEach((question) => {
+    question.addEventListener("click", () => {
+        const answer = question.nextElementSibling;
+        const toggleIcon = question.querySelector(".faq-toggle i");
 
-            // Muda a visibilidade da resposta
-            answer.classList.toggle("active");
+        // Muda a visibilidade da resposta
+        answer.classList.toggle("active");
 
-            // Altera o ícone
-            if (answer.classList.contains("active")) {
-                toggleIcon.classList.replace("fa-chevron-down", "fa-chevron-up");
-            } else {
-                toggleIcon.classList.replace("fa-chevron-up", "fa-chevron-down");
-            }
-        });
+        // Altera o ícone
+        if (answer.classList.contains("active")) {
+            toggleIcon.classList.replace("fa-chevron-down", "fa-chevron-up");
+        } else {
+            toggleIcon.classList.replace("fa-chevron-up", "fa-chevron-down");
+        }
     });
 });
