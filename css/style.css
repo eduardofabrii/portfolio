@@ -122,14 +122,18 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
     background-color: rgba(255, 255, 255, 0.119);
     backdrop-filter: var(--blur);
-    width: 50%;
-    padding: 10px 20px;
+    -webkit-backdrop-filter: var(--blur);
+    width: max-content;
+    max-width: 94vw;
+    padding: 10px 24px;
     margin: 20px auto;
     border-radius: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: fixed;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
@@ -161,14 +165,17 @@ header nav {
 header nav ul {
     display: flex;
     list-style: none;
+    white-space: nowrap;
 }
 
 header nav ul li {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 10px;
-    transition: transform 0.5s, color 0.5s;
+    margin: 0 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: transform 0.3s, color 0.3s;
 }
 
 header .fa-brands {
@@ -177,23 +184,9 @@ header .fa-brands {
     transition: transform 0.5s, color 0.5s;
 }
 
-header .nav-links .fa-solid {
-    display: none;
-}
-
 header .fa-brands:hover, nav ul li:hover {
     transform: scale(1.1);
     color: var(--main-color);
-}
-
-/* Menu hambúrguer */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--text2-color);
 }
 
 /* Estilo para todas alinhar todas as sections */
@@ -201,6 +194,31 @@ section .text-center {
     display: flex;
     width: 50%;
     flex-direction: column;
+}
+
+/* Padrão de títulos de seção */
+.section-label {
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+}
+
+.section-label-light {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text2-color);
+    margin-bottom: 40px;
 }
 
 /* "Onda" da tela principal */
@@ -211,6 +229,18 @@ section .text-center {
     width: 100%;
     height: 100%;
     z-index: -1;
+}
+
+/* Ensure SVG scales properly and isn't clipped on small screens */
+.wave svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* allow the hello container to show overflowing SVG */
+.hello-container {
+    overflow: visible;
 }
 
 /* Section principal */
@@ -232,14 +262,20 @@ main {
     color: var(--text2-color);
 }
 
+.hello-container .text-center {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
 .hello-container #hello-text {
     background-color: var(--tertiary-color);
     font-weight: 300;
     color: var(--text1-color);
-    padding: 7px;
+    padding: 7px 16px;
     border-radius: 10px;
-    width: 20%;
     margin-right: 10px;
+    white-space: nowrap;
 }
 
 .hello-container span {
@@ -248,25 +284,30 @@ main {
 }
 
 .hello-container #greeting-text {
-    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .hello-container #name-text {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    align-items: center;
+    width: 100%;
     margin-top: 10px;
     transition: margin-top 0.3s;
     animation: float 5s infinite;
 }
 
 .hello-container h1#name {
-    align-items: center;
+    text-align: center;
     color: var(--text2-color);
-    font-size: 4.5rem;
-    font-weight: 700;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -2px;
     transition: 0.7s;
-    line-height: 65px;
+    line-height: 1;
     margin-top: 5px;
     cursor: pointer;
     animation: colorChange 10s infinite;
@@ -277,6 +318,10 @@ main {
 }
 
 .hello-container #job-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -308,6 +353,16 @@ main {
 .hello-container button:hover {
     background-color: var(--main-color);
     transform: scale(1.04);
+}
+
+.hello-container button i,
+.projects-container .btn i {
+    transition: transform 0.3s;
+}
+
+.hello-container button:hover i,
+.projects-container .btn:hover i {
+    transform: translateX(5px);
 }
 
 .hello-container .hello-banner {  /* Mantém o titulo principal (eduardo fabri) alinhado */
@@ -392,8 +447,6 @@ main {
 }
 
 .skills-container .skills-title {
-    font-size: 1.5rem;
-    color: var(--text3-color);
     margin-bottom: 50px;
 }
 
@@ -434,6 +487,101 @@ main {
     color: #000;
 }
 
+/* Section Experiência — minimalista */
+.experience-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 60px 20px;
+    color: var(--text2-color);
+}
+
+.experience-content {
+    width: 100%;
+}
+
+.experience-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.experience-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.company-mark {
+    display: block;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.experience-brand h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text2-color);
+}
+
+.experience-role {
+    display: block;
+    color: var(--text3-color);
+    font-size: 0.9rem;
+}
+
+.experience-meta {
+    color: var(--text3-color);
+    font-size: 0.9rem;
+}
+
+.experience-summary {
+    max-width: 700px;
+    text-align: left;
+    color: var(--text3-color);
+    margin-bottom: 30px;
+}
+
+.experience-projects {
+    margin-bottom: 30px;
+}
+
+.experience-projects .faq-question p,
+.experience-projects .faq-answer {
+    text-align: left;
+}
+
+.experience-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.experience-tags span {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid #ddd;
+    color: var(--text3-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: .25s;
+}
+
+.experience-tags span:hover {
+    background: var(--text2-color);
+    border-color: var(--text2-color);
+    color: var(--text1-color);
+}
+
 /* Section projetos */
 .projects-container {
     background: var(--gradient);
@@ -441,48 +589,120 @@ main {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding: 40px;
+    padding: 40px 20px;
     width: 100%;
 }
 
-.projects-container h1 {
-    font-size: 1.5rem;
-    margin-bottom: 0;
-    margin-bottom: 30px;
-    text-align: center;
+.projects-container .section-title {
     color: var(--text1-color);
 }
 
+/* Remove o estilo de "card" — layout mais limpo e transparente */
 .projects-container .project-content {
     display: flex;
     align-items: center;
-    gap: 30px;
-    padding: 30px;
-    border-radius: 15px;
+    gap: 32px;
+    margin: 0 0 28px 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
 }
 
-.projects-container .project-content:last-child {
-    margin-bottom: 0;
+/* separador sutil entre itens (em vez de cards) */
+.projects-container .project-content + .project-content {
+    /* separator removed as requested; keep spacing between items */
+    margin-top: 28px;
 }
 
 .projects-container .project-image {
     position: relative;
+    width: 45%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 12px;
+    background: transparent;
+}
+
+/* Carousel styles inside project-image */
+.projects-container .project-image .carousel-track {
+    display: flex;
+    transition: transform 0.4s ease;
     width: 100%;
-    height: 300px;
-    overflow: hidden; 
-    border-radius: 20px;
-    box-shadow: 10px 10px 5px rgba(2, 5, 10, 0.1);
+    height: 100%;
+}
+
+.projects-container .project-image .carousel-slide {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.projects-container .project-image .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.projects-container .carousel-prev,
+.projects-container .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.45);
+    border: none;
+    color: white;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 6;
+}
+
+.projects-container .carousel-prev { left: 12px; }
+.projects-container .carousel-next { right: 12px; }
+
+.projects-container .carousel-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 6;
+}
+
+.projects-container .carousel-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.45);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.projects-container .carousel-dot.active {
+    background: var(--text1-color);
 }
 
 .projects-container .project-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: 0.3s;
+    display: block;
+    transition: transform 0.35s ease, filter 0.35s ease;
 }
 
 .projects-container .project-image:hover img {
-    filter: brightness(0.7);
+    filter: brightness(0.92);
+    transform: scale(1.02);
 }
 
 .projects-container .project-image .overlay {
@@ -491,101 +711,120 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 16px;
     opacity: 0;
-    transition: 0.3s;
+    transition: opacity 0.25s ease;
 }
 
 .projects-container .project-image:hover .overlay {
     opacity: 1;
 }
 
-.projects-container .project-image .overlay a {
+.projects-container .project-image .icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.45);
     color: var(--text1-color);
-    font-size: 3rem;
-    transition: 0.3s;
-    cursor: pointer;
+    font-size: 1.1rem;
 }
 
 .projects-container .project-description {
     display: flex;
     flex-direction: column;
-    max-width: 50%;
-    gap: 10px;
-}
-
-.projects-container .project-description {
-    display: flex;
-    flex-direction: column;
-    max-width: 50%;
-    gap: 10px;
-}
-
-.projects-container .project-description h2, .projects-container .project-description p {
+    gap: 12px;
+    max-width: 55%;
+    /* align text to the right as requested for both image-left and image-right */
+    text-align: right;
+    align-items: flex-end;
     color: var(--text1-color);
 }
 
 .projects-container .project-description h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    transition: 0.3s;
-}
-
-.projects-container .project-description h2:hover {
-    transform: scale(1.05);
+    font-size: 2rem; /* increased size */
+    margin: 0;
+    color: var(--text1-color); /* ensure titles are white */
 }
 
 .projects-container .project-description p {
-    font-size: 1rem;
-    margin-bottom: 10px;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text1-color);
+}
+
+.projects-container .project-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.projects-container .btn {
+    margin-top: 8px;
+}
+
+/* Linha estilizada que separa os projetos (hr dentro de cada .project-content) */
+.projects-container .styled-hr {
+    display: block;
+    width: 70%;
+    height: 12px;
+    margin: 32px auto 0;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    opacity: 1 !important;
+}
+
+
+.projects-container .project-description h2,
+.projects-container .project-description p {
+    /* keep colors set earlier (titles white, body inherits); no overrides here */
 }
 
 .projects-container .project-tags span {
     display: inline-block;
-    background: #f0f0f0;
-    color: var(--text3-color);
-    padding: 5px 10px;
-    margin: 10px 0px;
+    background: #eef1e8;
+    border: 1px solid transparent;
+    color: var(--tertiary-color);
+    padding: 5px 12px;
+    margin: 4px 8px 4px 0;
     border-radius: 20px;
     font-size: 14px;
+    font-weight: 500;
     transition: .3s;
 }
 
 .projects-container .project-tags span:hover {
     background: var(--main-color);
     color: var(--text1-color);
-    transform: scale(1.1);
-}
-
-.projects-container .project-tags span:last-child {
-    margin-right: 0;
+    transform: scale(1.08);
 }
 
 .projects-container .btn {
-    display: inline-block;
-    padding: 10px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 12px 24px;
     background: var(--text2-color);
     color: var(--text1-color);
     text-decoration: none;
-    border-radius: 15px;
+    border-radius: 30px;
     font-size: 16px;
-    width: 200px;
+    font-weight: 600;
+    margin-top: 10px;
     transition: 0.3s;
 }
 
 .projects-container .btn:hover {
     background: var(--main-color);
-    transform: scale(1.1);
-}
-
-.projects-container .styled-hr {
-    display: none;
-    width: 100%;
-    height: 1px;
-    margin: 20px 0;
+    color: var(--text1-color);
+    transform: scale(1.05);
 }
 
 /* Section Contato */
@@ -775,77 +1014,76 @@ main {
     padding: 40px;
 }
 
-.faq-section p {
-    font-size: 1rem;
+.faq-section .faq-question p {
+    font-size: 1.05rem;
     color: var(--text2-color);
-    margin-bottom: 20px;
-    text-align: center;
+    margin: 0;
+    text-align: left;
 }
 
-.faq-section h1 {
-    text-align: center;
-    font-size: 1.5rem;
-    color: var(--text3-color);
-    font-weight: bold;
-    margin-bottom: 20px;
-}
 
 .faq-item {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.faq-item:hover {
+    box-shadow: 0 8px 24px rgba(2, 5, 10, 0.06);
+    transform: translateY(-2px);
 }
 
 .faq-question {
     width: 100%;
     background: none;
     border: none;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+    font-weight: 600;
     text-align: left;
-    padding: 30px;
-    border-bottom: 1px solid #afc34a;
-    color: var(--text3-color);
+    padding: 20px 24px;
+    color: var(--text2-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
 }
 
-.text-center .faq-item:first-of-type .faq-question {
-    padding: 30px;
-    border-top: 1px solid #afc34a;
-}
-
-.text-center .faq-item:last-of-type .faq-question {
-    border: 0;
-}
-
 .faq-question:hover {
-    background-color: #f9f9f9;
+    background-color: #f4f6f1;
 }
 
 .faq-toggle {
     background-color: var(--main-color);
     color: white;
     border-radius: 50%;
-    width: 30px;
-    text-align: center;
-    font-size: 1.5rem;
+    min-width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.faq-question:hover .faq-toggle {
+    background-color: var(--secondary-color);
+    transform: rotate(180deg);
 }
 
 .faq-answer {
-    max-height: 0; 
-    overflow: hidden; 
+    max-height: 0;
+    overflow: hidden;
     font-size: 1rem;
-    color: var(--text2-color);
-    padding: 0 10px;
-    border-left: 4px solid var(--text3-color);
-    margin-top: 5px;
-    background-color: #f9f9f9;
+    color: var(--text3-color);
+    padding: 0 24px;
     transition: all 0.5s ease-in-out;
 }
 
 .faq-answer.active {
-    max-height: 300px; 
-    padding: 10px;
+    max-height: 600px;
+    padding: 10px 24px 20px;
 }
 
 .fa-chevron-down, .fa-chevron-up {
@@ -914,6 +1152,16 @@ main {
         margin-top: 20px;
     }
 
+    /* reduce top spacing so the green wave starts near the top on smaller screens */
+    .hello-container .hello-banner {
+        margin: 20px auto;
+    }
+
+    /* lower the main top margin on mobile to avoid extra white gap above the hero */
+    main {
+        margin-top: 60px;
+    }
+
     .projects-container .project-content {
         flex-direction: column;
         text-align: center;
@@ -922,14 +1170,12 @@ main {
 
     .projects-container .project-description {
         max-width: 80%;
+        text-align: center;
+        align-items: center;
     }
 
     .projects-container .btn {
         width: 100%;
-    }
-
-    .projects-container .styled-hr {
-        display: block;
     }
 
     .contact-container {
@@ -938,69 +1184,24 @@ main {
         width: 80%;
         padding: 20px;
     }
+
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
-/* Altera o header em 1280px */
+/* Ajusta espaçamento abaixo do header flutuante em telas menores */
 @media (max-width: 1280px) {
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 0;
-        border-radius: 0;
-        background-color: var(--background);
-        position: fixed;
-        width: 100%;
-        z-index: 1000;
-    }
-
     .wave {
         margin-top: 60px;
     }
 }
 
-/* Altera o header em 700px */
-@media (max-width: 700px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    header nav {
-        display: none;
-    }
-
+/* Altera o header em 1040px */
+@media (max-width: 1040px) {
     .nav-bar {
-        display: flex;
-        position: absolute;
-        justify-content: center;
-        top: 60px;
-        left: 0;
-        height: 0; 
-        overflow: hidden; 
-        background-color: var(--background);
-        border-radius: 0 0 20px 20px;
-        transition: height 0.5s ease-in-out; 
-    }
-
-    .nav-bar.active {
-        height: 100px;
-    }
-
-    .nav-bar ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .nav-bar ul li, .nav-bar.active ul li {
-        margin: 10px;
-        justify-content: start;
-        text-align: center;
-        width: 100px;
-    }
-
-    header .nav-links .fa-solid {
-        display: inline;
+        display: none;
     }
 }
 

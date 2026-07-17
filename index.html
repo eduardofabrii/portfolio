@@ -14,17 +14,15 @@
         <div class="logo">
             <img src="img/img-face.jpg" alt="Logo">
         </div>
-        <button class="menu-toggle" aria-label="Abrir menu">
-            <i class="fa-solid fa-bars"></i>
-        </button>
         <nav class="nav-bar">
             <ul class="nav-links">
-                <li class="center"><a href="#hello"><i class="fa-solid fa-house"></i> Início</a></li>
-                <li class="center"><a href="#about"><i class="fa-solid fa-user"></i> Sobre</a></li>
-                <li class="center"><a href="#tech"><i class="fa-solid fa-laptop-code"></i>Tecnologias</a></li>
-                <li class="center"><a href="#projects"><i class="fa-solid fa-folder-open"></i> Projetos</a></li>
-                <li class="center"><a href="#contact-id"><i class="fa-solid fa-envelope"></i> Contato</a></li>
-                <li class="center"><a href="#faq"><i class="fa-solid fa-question"></i> Perguntas</a></li>
+                <li class="center"><a href="#hello">Início</a></li>
+                <li class="center"><a href="#about">Sobre</a></li>
+                <li class="center"><a href="#experience">Experiência</a></li>
+                <li class="center"><a href="#tech">Tecnologias</a></li>
+                <li class="center"><a href="#projects">Projetos</a></li>
+                <li class="center"><a href="#contact-id">Contato</a></li>
+                <li class="center"><a href="#faq">Perguntas</a></li>
             </ul>
         </nav>
         <nav>
@@ -48,10 +46,12 @@
                   </div>
                     <div id="job-text">
                         <p>Desenvolvedor de Software</p>
-                        <span>Trainee <b>@Wise Systems</b></span>
+                        <span>Júnior <b>@Wise Systems</b></span>
                     </div>
                   <div id="btnn">
-                      <a href="#contact-id" id="button"><button>Vamos conversar? <i class="fa-solid fa-arrow-right"></i></button></a>
+                      <a id="button" href="https://wa.me/5547992792189?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vim%20pelo%20portf%C3%B3lio." target="_blank" rel="noopener noreferrer">
+                          <button aria-label="Chamar no WhatsApp">Vamos conversar? <i class="fa-solid fa-arrow-right"></i></button>
+                      </a>
                   </div>
                     <!-- Onda SVG -->
                     <div class="wave">
@@ -76,9 +76,7 @@
                 </div>
                 <div class="text-me" id="about-me-sec">
                     <p id="about-me">Sobre mim</p>
-                    <p id="text-aboutme">Olá, eu sou o Eduardo Fabri, desenvolvedor de software. Atualmente trabalho com desenvolvimento web, utilizando tecnologias como Java, Angular, Spring Boot, Node.js, JavaScript, HTML e CSS. Estou sempre em busca de novos desafios e aprendizados, e acredito que a tecnologia é uma ferramenta poderosa para transformar o mundo.</p>
-                    <p>
-                    </p>
+                    <p id="text-aboutme">Me chamo Eduardo. É um prazer te ter aqui! Sou nascido em Curitiba e atualmente, curso Sistemas de Informação na PUCPR. Hoje atuo como júnior na Wise Systems, focado no back-end, mas às vezes dou uma mãozinha no front-end em Angular. Sou curioso por natureza e, sobre mim, amo esportes que desafiem, como corrida, futebol, lutas etc. Não gosto de ficar parado :O</p>
                     <div id="cv">
                         <a href="files/Eduardo - CV.pdf" download="c.eduardofabri.pdf" class="download-cv">
                             <button id="curriculobutton">Baixar Currículo</button>
@@ -88,8 +86,75 @@
             </div>
         </section>
 
+        <section class="experience-container" id="experience">
+            <span class="section-label">Carreira</span>
+            <h1 class="section-title">Experiência</h1>
+            <div class="text-center">
+                <div class="experience-content">
+                    <div class="experience-header">
+                        <div class="experience-brand">
+                            <img class="company-mark" src="img/wise-logo.jpg" alt="Logo Wise Group">
+                            <div>
+                                <h2>Wise Group</h2>
+                                <span class="experience-role">Desenvolvedor</span>
+                            </div>
+                        </div>
+                        <span class="experience-meta">Curitiba, PR — desde 04/2025</span>
+                    </div>
+
+                    <p class="experience-summary">
+                        Atuação fullcycle com foco em back-end Java, em produtos voltados a sistemas de saúde/odontológicos, autoatendimento financeiro e suporte ao consumidor via WhatsApp.
+                        <br><br>
+                        No dia a dia: features e APIs em Spring Boot, sustentação de sistemas em produção e padronização de documentação com Swagger entre times.
+                    </p>
+
+                    <div class="experience-projects">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <p>Autocontratação de Empréstimo Consignado</p>
+                                <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                Sistema de autoatendimento para contratação de empréstimo consignado, permitindo que o usuário conclua o processo sem intervenção manual.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <p>Suporte ao Consumidor via WhatsApp</p>
+                                <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                Plataforma de atendimento integrada à API do WhatsApp, com troca de mídia entre cliente e sistema. Destaques: envio/recebimento de figurinhas, reestruturação do upload/download em chunks (resolvendo payloads pesados), mapeamento de tipos de arquivo por plataforma (iOS/Android), i18n para pt-BR e pt-PT, integração com a DirectData, gráficos de métricas de FGTS/vendas e primeiro contato com GCP (buckets).
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <p>Migração de Sistema Odontológico Legado</p>
+                                <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                Migração de um sistema odontológico legado para uma arquitetura moderna — em desenvolvimento. Envolve análise do legado com apoio de IA, refatoração do Odontograma e da área de Produtos e Planos, migração da busca de regiões para server-side e padronização da documentação Swagger.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experience-tags">
+                        <span>Java</span>
+                        <span>Spring Boot</span>
+                        <span>Node</span>
+                        <span>Angular</span>
+                        <span>PostgreSQL</span>
+                        <span>MongoDB</span>
+                        <span>Docker</span>
+                        <span>GCP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="skills-container" id="tech">
-            <h2 class="skills-title">Principais tecnologias...</h2>
+            <span class="section-label">Stack</span>
+            <h2 class="skills-title section-title">Principais tecnologias</h2>
             <div class="carousel">
                 <div class="carousel-track">
                     <div class="carousel-item">
@@ -133,60 +198,85 @@
         </section>      
         
         <section class="projects-container" id="projects">
-            <h1>Projetos</h1>
+            <span class="section-label section-label-light">Portfólio</span>
+            <h1 class="section-title">Projetos</h1>
             <div class="text-center">
                 <!-- Projeto 1 -->
                 <div class="project-content">
-                    <div class="project-image" id="projects-img-1">
+                    <div class="project-image" data-images="img/chrono-logo.png">
                         <img src="img/image.png" alt="Preview do Chrono" />
                         <div class="overlay">
-                            <a href="https://github.com/eduardofabrii/chrono-angular" target="_blank" class="github-link">
-                            <i class="fa-brands fa-github"></i>
+                            <a href="https://github.com/eduardofabrii/chrono-angular" target="_blank" class="icon-link" aria-label="Ir para o GitHub">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a href="files/chrono.pdf" download class="icon-link" aria-label="Baixar PDF do projeto">
+                                <i class="fa-solid fa-file-pdf"></i>
                             </a>
                         </div>
                     </div>
-                    <div class="project-description" id="projects-desc-1">
+                    <div class="project-description">
                         <h2>Chrono</h2>
-                        <p>
-                            Chrono é um sistema em Java Spring Boot e Angular para lançar e gerenciar horas em projetos, com dashboard, relatórios e controle de usuários e atividades.
-                        </p>
+                        <p>Sistema em Java Spring Boot e Angular para lançar e gerenciar horas em projetos, com dashboard, relatórios e controle de usuários e atividades.</p>
                         <div class="project-tags">
                             <span>Java</span>
                             <span>Spring Boot</span>
                             <span>Angular</span>
                         </div>
-                        <a href="https://github.com/eduardofabrii/chrono-api" target="_blank" class="btn">Ver projeto <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="https://github.com/eduardofabrii/chrono-api" target="_blank" class="btn">Ir para o GitHub <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
-                    <hr class="styled-hr" id="styled-hr-1">
                 </div>
 
-
                 <!-- Projeto 2 -->
-                <div class="project-content" id="projects-2">
-                    <div class="project-description" id="projects-desc-2">
-                        <h2>Pack de pequenos projetos Android</h2>
-                        <p>
-                            Esse repositório é de projetos Android simples, feitos afim de estudar, e que podem ser utilizados como base para projetos maiores. Na imagem ao lado, tem uma tela de um pequeno projeto Contador de Gestação.
-                        </p>
+                <div class="project-content">
+                    <div class="project-description">
+                        <h2>Agiota Bank</h2>
+                        <p>Simulador de banco digital com API REST em Spring Boot e app mobile em Kotlin. Conta com autenticação JWT, transferências via PIX, gerenciamento de chaves e notificações por e-mail.</p>
                         <div class="project-tags">
                             <span>Java</span>
-                            <span>Android Studio</span>
+                            <span>Spring Boot</span>
+                            <span>Kotlin</span>
                         </div>
-                        <a href="https://github.com/eduardofabrii/android-estudos" target="_blank" class="btn">Ver projeto <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="https://github.com/eduardofabrii/agiota-server" target="_blank" class="btn">Ir para o GitHub <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
-                    <div class="project-image" id="projects-img-2">
-                        <img src="img/img-projeto-android.jpg" alt="Preview dos Projetos Android" />
+                    <div class="project-image" data-images="img/image.png">
+                        <img src="img/agiota-preview.png" alt="Preview do Agiota Bank" />
                         <div class="overlay">
-                            <a href="https://github.com/eduardofabrii/android-estudos" target="_blank" class="github-link">
-                            <i class="fa-brands fa-github"></i>
+                            <a href="https://github.com/eduardofabrii/agiota-server" target="_blank" class="icon-link" aria-label="Ir para o GitHub">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a href="files/agiota-bank.pdf" download class="icon-link" aria-label="Baixar PDF do projeto">
+                                <i class="fa-solid fa-file-pdf"></i>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Projeto 3... -->
+                <!-- Projeto 3 -->
+                <div class="project-content">
+                    <div class="project-image" data-images="img/image.png">
+                        <img src="img/repz-preview.svg" alt="Ilustração da tela de treino do Repz" />
+                        <div class="overlay">
+                            <a href="https://github.com/eduardofabrii/repz" target="_blank" class="icon-link" aria-label="Ir para o GitHub">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a href="files/repz.pdf" download class="icon-link" aria-label="Baixar PDF do projeto">
+                                <i class="fa-solid fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-description">
+                        <h2>Repz</h2>
+                        <p>Sistema de gestão para academias e treinos personalizados, com controle de acesso por perfil, fichas de treino, avaliações físicas e check-in de frequência. Projeto final da faculdade, feito com um time de 3 pessoas.</p>
+                        <div class="project-tags">
+                            <span>Spring Boot</span>
+                            <span>Angular</span>
+                            <span>PostgreSQL</span>
+                        </div>
+                        <a href="https://github.com/eduardofabrii/repz" target="_blank" class="btn">Ir para o GitHub <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
-        </section>      
+        </section>
         
         <section class="contact-section">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -218,6 +308,7 @@
                     <ul>
                         <li><a href="#hello">Início</a></li>
                         <li><a href="#about">Sobre Mim</a></li>
+                        <li><a href="#experience">Experiência</a></li>
                         <li><a href="#tech">Tecnologias</a></li>
                         <li><a href="#projects">Projetos</a></li>
                     </ul>
@@ -254,41 +345,50 @@
 
         <section class="faq-section">
             <div class="text-center" id="faq">
-                <h1>Perguntas frequentes</h1>
+                <span class="section-label">FAQ</span>
+                <h1 class="section-title">Perguntas frequentes</h1>
                 <div class="faq-item">
                     <button class="faq-question">
-                        <p>Em qual cidade você mora?</p>
+                        <p>De onde você é?</p>
                         <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
                     </button>
                     <div class="faq-answer">
-                        Eu sou de Curitiba, Paraná. mas morei boa parte da minha vida em Blumenau, e um pouco em Balneario Camboriu.
+                        Sou de Curitiba, mas nem sempre morei aqui: passei boa parte da vida em Blumenau e um tempo em Balneário Camboriú antes de voltar pro Paraná.
                     </div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">
-                        <p>Quais tecnologias preferidas?</p>
+                        <p>Com quais tecnologias você trabalha?</p>
                         <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
                     </button>
                     <div class="faq-answer">
-                        Eu gosto de trabalhar com tecnologias web, como Java, Angular, Spring Boot, Node.js, JavaScript, HTML e CSS.
+                        No dia a dia uso Java e Spring Boot no back-end e Angular no front-end. Também trabalho com SQL e PostgreSQL.                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <p>Como você aprende algo novo?</p>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        Construindo. Prefiro pegar uma ideia e transformar em projeto de verdade, foi assim com o Chrono, o Repz e o Agiota Bank, o que é só assistir aula sem colocar a mão no código.
                     </div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">
-                        <p>Como é seu tempo livre?</p>
+                        <p>E fora do código, o que você curte?</p>
                         <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
                     </button>
                     <div class="faq-answer">
-                        Procuro sempre estar em lugares calmos, como cafeterias, praias. Gosto de assistir filmes e de me sentir relaxado.
+                        Gosto de desacelerar em lugares tranquilos, como cafeterias e praia, e de maratonar um bom filme pra desligar a cabeça.
                     </div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">
-                        <p>Qual seu propósito?  </p>
+                        <p>O que te motiva a desenvolver?</p>
                         <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
                     </button>
                     <div class="faq-answer">
-                        Meu propósito é ajudar as pessoas a terem suas vidas simplificadas com as aplicações e projetos desenvolvidos por mim.
+                        Gosto de resolver problemas reais e simplificar a vida de quem usa o que eu construo, é essa sensação de ver algo sair do papel e funcionar que me mantém curioso.
                     </div>
                 </div>
             </div>
