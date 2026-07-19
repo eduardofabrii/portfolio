@@ -11,7 +11,6 @@ var nodeArray = [
     document.querySelector('#text-center'),
     document.querySelector('#about-me-sec'),
     document.querySelector('#text-aboutme'),
-    document.querySelector('#cv'),
     document.querySelector('#experience'),
     document.querySelector('#tech'),
     document.querySelector('#projects'),
