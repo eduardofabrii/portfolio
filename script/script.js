@@ -13,7 +13,6 @@ var nodeArray = [
     document.querySelector('#text-aboutme'),
     document.querySelector('#experience'),
     document.querySelector('#tech'),
-    document.querySelector('#projects'),
     document.querySelector('#contact-form'),
     document.querySelector('#navigation'),
     document.querySelector('#social-icons'),
@@ -26,6 +25,16 @@ ScrollReveal().reveal(nodeArray, {
     scale: 0.9, // escala inicial menor para dar efeito de zoom
     easing: 'ease-in-out',
     reset: true // permite que a animação aconteça novamente ao rolar para cima
+});
+
+// Animação específica dos cards de projetos, sem expandir a seção inteira
+ScrollReveal().reveal('.projects-container .project-content', {
+    duration: 1100,
+    origin: 'bottom',
+    distance: '30px',
+    easing: 'ease-in-out',
+    interval: 180,
+    reset: true
 });
 
 // Quadradinho lateral para subir tela
@@ -62,7 +71,7 @@ faqQuestions.forEach((question) => {
 function initProjectCarousels() {
     const projectImages = document.querySelectorAll('.projects-container .project-image');
 
-    projectImages.forEach((container, idx) => {
+    projectImages.forEach((container) => {
         // gather image URLs (+ alt text): existing <img> children or data-images attribute
         const existingImgs = Array.from(container.querySelectorAll('img'));
         let slides = [];
