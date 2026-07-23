@@ -283,11 +283,17 @@ main {
     font-weight: 400;
 }
 
+.hello-container #im-text {
+    white-space: nowrap;
+}
+
 .hello-container #greeting-text {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    flex-wrap: wrap;
+    row-gap: 8px;
 }
 
 .hello-container #name-text {
@@ -622,6 +628,16 @@ main {
     overflow: hidden;
     border-radius: 12px;
     background: transparent;
+}
+
+/* Prints de app mobile (retrato) não devem ser cortados */
+.projects-container .project-image.is-portrait {
+    background: #12210f;
+}
+
+.projects-container .project-image.is-portrait img,
+.projects-container .project-image.is-portrait .carousel-slide img {
+    object-fit: contain;
 }
 
 /* Carousel styles inside project-image */
@@ -1154,12 +1170,13 @@ main {
 
     /* reduce top spacing so the green wave starts near the top on smaller screens */
     .hello-container .hello-banner {
+        width: 92%;
         margin: 20px auto;
     }
 
-    /* lower the main top margin on mobile to avoid extra white gap above the hero */
+    /* header flutua sobre o hero: sem margem reservada, sem faixa branca acima do verde */
     main {
-        margin-top: 60px;
+        margin-top: 0;
     }
 
     .projects-container .project-content {
@@ -1168,8 +1185,23 @@ main {
         padding: 20px;
     }
 
+    /* ordem fixa no mobile: título, texto, tecnologias, depois foto — independente da ordem no desktop */
     .projects-container .project-description {
-        max-width: 80%;
+        order: 1;
+    }
+
+    .projects-container .project-image {
+        order: 2;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+    }
+
+    .projects-container .project-image.is-portrait {
+        aspect-ratio: 4 / 5;
+    }
+
+    .projects-container .project-description {
+        max-width: 100%;
         text-align: center;
         align-items: center;
     }
@@ -1191,12 +1223,6 @@ main {
     }
 }
 
-/* Ajusta espaçamento abaixo do header flutuante em telas menores */
-@media (max-width: 1280px) {
-    .wave {
-        margin-top: 60px;
-    }
-}
 
 /* Altera o header em 1040px */
 @media (max-width: 1040px) {

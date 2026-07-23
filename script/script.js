@@ -63,20 +63,20 @@ function initProjectCarousels() {
     const projectImages = document.querySelectorAll('.projects-container .project-image');
 
     projectImages.forEach((container, idx) => {
-        // gather image URLs: existing <img> children or data-images attribute
+        // gather image URLs (+ alt text): existing <img> children or data-images attribute
         const existingImgs = Array.from(container.querySelectorAll('img'));
         let slides = [];
 
         if (existingImgs.length > 1) {
-            slides = existingImgs.map(img => img.src);
+            slides = existingImgs.map(img => ({ src: img.src, alt: img.alt }));
         } else if (existingImgs.length === 1 && container.dataset.images) {
             // data-images="url1,url2"
             const extra = container.dataset.images.split(',').map(s => s.trim()).filter(Boolean);
-            slides = [existingImgs[0].src, ...extra];
+            slides = [{ src: existingImgs[0].src, alt: existingImgs[0].alt }, ...extra.map(src => ({ src, alt: '' }))];
         } else if (existingImgs.length === 1) {
-            slides = [existingImgs[0].src];
+            slides = [{ src: existingImgs[0].src, alt: existingImgs[0].alt }];
         } else if (container.dataset.images) {
-            slides = container.dataset.images.split(',').map(s => s.trim()).filter(Boolean);
+            slides = container.dataset.images.split(',').map(s => s.trim()).filter(Boolean).map(src => ({ src, alt: '' }));
         }
 
         // preserve existing overlay HTML (GitHub/download icons), then clear container and build carousel structure
@@ -85,12 +85,13 @@ function initProjectCarousels() {
         container.innerHTML = '';
         const track = document.createElement('div');
         track.className = 'carousel-track';
-        slides.forEach((src, i) => {
+        slides.forEach((slideData, i) => {
             const slide = document.createElement('div');
             slide.className = 'carousel-slide';
             const img = document.createElement('img');
-            img.src = src;
-            img.alt = container.getAttribute('aria-label') || `Projeto imagem ${i + 1}`;
+            img.src = slideData.src;
+            img.alt = slideData.alt || container.getAttribute('aria-label') || `Projeto imagem ${i + 1}`;
+            img.loading = 'lazy';
             slide.appendChild(img);
             track.appendChild(slide);
         });
@@ -180,15 +181,11 @@ function initProjectCarousels() {
                 if (e.key === 'ArrowRight') goTo(current + 1);
             });
 
-            // initial layout
-            track.style.width = `${slideCount * 100}%`;
-            Array.from(track.children).forEach(slide => slide.style.width = `${100 / slideCount}%`);
+            // initial layout (track e slides ficam 100% via CSS/flex; só a transform muda)
             update();
         } else {
             // single image: make sure track fills and no controls
             track.style.transform = 'translateX(0)';
-            track.style.width = '100%';
-            Array.from(track.children).forEach(slide => slide.style.width = '100%');
         }
     });
 }
