@@ -1,6 +1,4 @@
-
-// Elementos para o Scroll Reveal
-var nodeArray = [
+const revealTargets = [
     document.querySelector('#hello-text'),
     document.querySelector('#greeting-text'),
     document.querySelector('#im-text'),
@@ -19,15 +17,14 @@ var nodeArray = [
     document.querySelector('#faq'),
 ].filter(Boolean);
 
-ScrollReveal().reveal(nodeArray, {
+ScrollReveal().reveal(revealTargets, {
     duration: 1500,
     origin: 'bottom',
-    scale: 0.9, // escala inicial menor para dar efeito de zoom
+    scale: 0.9,
     easing: 'ease-in-out',
-    reset: true // permite que a animação aconteça novamente ao rolar para cima
+    reset: true
 });
 
-// Animação específica dos cards de projetos, sem expandir a seção inteira
 ScrollReveal().reveal('.projects-container .project-content', {
     duration: 1100,
     origin: 'bottom',
@@ -37,7 +34,6 @@ ScrollReveal().reveal('.projects-container .project-content', {
     reset: true
 });
 
-// Quadradinho lateral para subir tela
 function scrollToTop() {
     window.scrollTo({
         top: 0,
@@ -45,160 +41,190 @@ function scrollToTop() {
     });
 }
 
+function initFaq() {
+    document.querySelectorAll('.faq-question').forEach((question) => {
+        question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            const toggleIcon = question.querySelector('.faq-toggle i');
 
-// Abrir perguntas frequentes
-const faqQuestions = document.querySelectorAll(".faq-question");
+            answer.classList.toggle('active');
 
-faqQuestions.forEach((question) => {
-    question.addEventListener("click", () => {
-        const answer = question.nextElementSibling;
-        const toggleIcon = question.querySelector(".faq-toggle i");
+            if (answer.classList.contains('active')) {
+                toggleIcon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                toggleIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        });
+    });
+}
 
-        // Muda a visibilidade da resposta
-        answer.classList.toggle("active");
+function readSlides(container) {
+    const images = Array.from(container.querySelectorAll('img'));
+    const extraSources = container.dataset.images
+        ? container.dataset.images.split(',').map(source => source.trim()).filter(Boolean)
+        : [];
 
-        // Altera o ícone
-        if (answer.classList.contains("active")) {
-            toggleIcon.classList.replace("fa-chevron-down", "fa-chevron-up");
-        } else {
-            toggleIcon.classList.replace("fa-chevron-up", "fa-chevron-down");
+    if (images.length > 1) {
+        return images.map(image => ({ src: image.src, alt: image.alt }));
+    }
+
+    if (images.length === 1) {
+        const first = { src: images[0].src, alt: images[0].alt };
+        return [first, ...extraSources.map(src => ({ src, alt: '' }))];
+    }
+
+    return extraSources.map(src => ({ src, alt: '' }));
+}
+
+function buildTrack(container, slides) {
+    const track = document.createElement('div');
+    track.className = 'carousel-track';
+
+    slides.forEach((slide, index) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'carousel-slide';
+
+        const image = document.createElement('img');
+        image.src = slide.src;
+        image.alt = slide.alt || container.getAttribute('aria-label') || `Projeto imagem ${index + 1}`;
+        image.loading = 'lazy';
+
+        wrapper.appendChild(image);
+        track.appendChild(wrapper);
+    });
+
+    return track;
+}
+
+function buildOverlay(container, savedOverlayHTML) {
+    const overlay = document.createElement('div');
+    overlay.className = 'overlay';
+
+    if (savedOverlayHTML) {
+        overlay.innerHTML = savedOverlayHTML;
+    }
+
+    if (container.dataset.links) {
+        container.dataset.links
+            .split(',')
+            .map(link => link.trim())
+            .filter(Boolean)
+            .forEach((link) => {
+                const anchor = document.createElement('a');
+                anchor.href = link;
+                anchor.target = '_blank';
+                anchor.className = 'icon-link';
+                anchor.setAttribute('aria-label', 'Abrir projeto');
+                anchor.innerHTML = '<i class="fa-brands fa-github"></i>';
+                overlay.appendChild(anchor);
+            });
+    }
+
+    return overlay;
+}
+
+function buildArrow(direction) {
+    const isPrevious = direction === 'prev';
+    const button = document.createElement('button');
+
+    button.className = isPrevious ? 'carousel-prev' : 'carousel-next';
+    button.setAttribute('aria-label', isPrevious ? 'Anterior' : 'Próximo');
+    button.innerHTML = `<i class="fa-solid fa-chevron-${isPrevious ? 'left' : 'right'}"></i>`;
+
+    return button;
+}
+
+function setupCarouselControls(container, track, slideCount) {
+    let current = 0;
+
+    const previous = buildArrow('prev');
+    const next = buildArrow('next');
+    container.appendChild(previous);
+    container.appendChild(next);
+
+    const dots = document.createElement('div');
+    dots.className = 'carousel-dots';
+    const dotButtons = [];
+
+    for (let index = 0; index < slideCount; index++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot';
+        dot.setAttribute('aria-label', `Ir para slide ${index + 1}`);
+
+        if (index === 0) {
+            dot.classList.add('active');
+        }
+
+        dot.addEventListener('click', () => goTo(index));
+        dots.appendChild(dot);
+        dotButtons.push(dot);
+    }
+
+    container.appendChild(dots);
+
+    function update() {
+        track.style.transform = `translateX(${-current * 100}%)`;
+        dotButtons.forEach((dot, index) => dot.classList.toggle('active', index === current));
+    }
+
+    function goTo(index) {
+        current = (index + slideCount) % slideCount;
+        update();
+    }
+
+    previous.addEventListener('click', () => goTo(current - 1));
+    next.addEventListener('click', () => goTo(current + 1));
+
+    let startX = 0;
+    let deltaX = 0;
+
+    track.addEventListener('touchstart', (event) => {
+        startX = event.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchmove', (event) => {
+        deltaX = event.touches[0].clientX - startX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', () => {
+        if (Math.abs(deltaX) > 50) {
+            goTo(deltaX < 0 ? current + 1 : current - 1);
+        }
+        deltaX = 0;
+    });
+
+    container.tabIndex = 0;
+    container.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+            goTo(current - 1);
+        }
+        if (event.key === 'ArrowRight') {
+            goTo(current + 1);
         }
     });
-});
 
+    update();
+}
 
-// Projetos: carousel simples por projeto
 function initProjectCarousels() {
-    const projectImages = document.querySelectorAll('.projects-container .project-image');
-
-    projectImages.forEach((container) => {
-        // gather image URLs (+ alt text): existing <img> children or data-images attribute
-        const existingImgs = Array.from(container.querySelectorAll('img'));
-        let slides = [];
-
-        if (existingImgs.length > 1) {
-            slides = existingImgs.map(img => ({ src: img.src, alt: img.alt }));
-        } else if (existingImgs.length === 1 && container.dataset.images) {
-            // data-images="url1,url2"
-            const extra = container.dataset.images.split(',').map(s => s.trim()).filter(Boolean);
-            slides = [{ src: existingImgs[0].src, alt: existingImgs[0].alt }, ...extra.map(src => ({ src, alt: '' }))];
-        } else if (existingImgs.length === 1) {
-            slides = [{ src: existingImgs[0].src, alt: existingImgs[0].alt }];
-        } else if (container.dataset.images) {
-            slides = container.dataset.images.split(',').map(s => s.trim()).filter(Boolean).map(src => ({ src, alt: '' }));
-        }
-
-        // preserve existing overlay HTML (GitHub/download icons), then clear container and build carousel structure
+    document.querySelectorAll('.projects-container .project-image').forEach((container) => {
+        const slides = readSlides(container);
         const existingOverlay = container.querySelector('.overlay');
-        const existingOverlayHTML = existingOverlay ? existingOverlay.innerHTML : '';
+        const savedOverlayHTML = existingOverlay ? existingOverlay.innerHTML : '';
+
         container.innerHTML = '';
-        const track = document.createElement('div');
-        track.className = 'carousel-track';
-        slides.forEach((slideData, i) => {
-            const slide = document.createElement('div');
-            slide.className = 'carousel-slide';
-            const img = document.createElement('img');
-            img.src = slideData.src;
-            img.alt = slideData.alt || container.getAttribute('aria-label') || `Projeto imagem ${i + 1}`;
-            img.loading = 'lazy';
-            slide.appendChild(img);
-            track.appendChild(slide);
-        });
+
+        const track = buildTrack(container, slides);
         container.appendChild(track);
+        container.appendChild(buildOverlay(container, savedOverlayHTML));
 
-        // overlay (icons) already existed in markup before; create a wrapper and restore previous content if any
-        const overlay = document.createElement('div');
-        overlay.className = 'overlay';
-        if (existingOverlayHTML) overlay.innerHTML = existingOverlayHTML;
-        // keep existing icon links from data-links (optional) in addition to restored HTML
-        if (container.dataset.links) {
-            const links = container.dataset.links.split(',').map(s => s.trim()).filter(Boolean);
-            links.forEach(link => {
-                const a = document.createElement('a');
-                a.href = link;
-                a.target = '_blank';
-                a.className = 'icon-link';
-                a.setAttribute('aria-label', 'Abrir projeto');
-                a.innerHTML = '<i class="fa-brands fa-github"></i>';
-                overlay.appendChild(a);
-            });
-        }
-        container.appendChild(overlay);
-
-        // controls and dots only if more than 1 slide
-        let current = 0;
-        const slideCount = slides.length;
-
-        if (slideCount > 1) {
-            const prev = document.createElement('button');
-            prev.className = 'carousel-prev';
-            prev.setAttribute('aria-label', 'Anterior');
-            prev.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-
-            const next = document.createElement('button');
-            next.className = 'carousel-next';
-            next.setAttribute('aria-label', 'Próximo');
-            next.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
-
-            container.appendChild(prev);
-            container.appendChild(next);
-
-            const dots = document.createElement('div');
-            dots.className = 'carousel-dots';
-            const dotButtons = [];
-            for (let i = 0; i < slideCount; i++) {
-                const b = document.createElement('button');
-                b.className = 'carousel-dot';
-                b.setAttribute('aria-label', `Ir para slide ${i + 1}`);
-                if (i === 0) b.classList.add('active');
-                dots.appendChild(b);
-                dotButtons.push(b);
-                b.addEventListener('click', () => goTo(i));
-            }
-            container.appendChild(dots);
-
-            function update() {
-                const offset = -current * 100;
-                track.style.transform = `translateX(${offset}%)`;
-                dotButtons.forEach((b, i) => b.classList.toggle('active', i === current));
-            }
-
-            function goTo(i) {
-                current = (i + slideCount) % slideCount;
-                update();
-            }
-
-            prev.addEventListener('click', () => goTo(current - 1));
-            next.addEventListener('click', () => goTo(current + 1));
-
-            // touch support
-            let startX = 0;
-            let deltaX = 0;
-            track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
-            track.addEventListener('touchmove', (e) => { deltaX = e.touches[0].clientX - startX; }, {passive:true});
-            track.addEventListener('touchend', () => {
-                if (Math.abs(deltaX) > 50) {
-                    if (deltaX < 0) goTo(current + 1); else goTo(current - 1);
-                }
-                deltaX = 0;
-            });
-
-            // keyboard navigation when container focused
-            container.tabIndex = 0;
-            container.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') goTo(current - 1);
-                if (e.key === 'ArrowRight') goTo(current + 1);
-            });
-
-            // initial layout (track e slides ficam 100% via CSS/flex; só a transform muda)
-            update();
+        if (slides.length > 1) {
+            setupCarouselControls(container, track, slides.length);
         } else {
-            // single image: make sure track fills and no controls
             track.style.transform = 'translateX(0)';
         }
     });
 }
 
-// initialize after DOM ready
+initFaq();
 document.addEventListener('DOMContentLoaded', initProjectCarousels);
-

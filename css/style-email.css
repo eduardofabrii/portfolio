@@ -9,13 +9,12 @@
     --text2-color: #171717;
     --text3-color: #555;
     --background: white;
-    /* --background: #2C332B; */
+
     --header: white;
     --gradient: linear-gradient(90deg, #47753B 0%, #8BC34A 100%);
     --blur: blur(5px);
 }
 
-/* Configurações globais */
 * {
     font-family: 'Inter Tight', sans-serif;
     margin: 0;

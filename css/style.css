@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-
-/* Animação */
 @keyframes colorChange {
     0% {
         color: var(--tertiary-color);
@@ -20,7 +18,6 @@
     }
 }
 
-/* Animação para rolagem contínua */
 @keyframes scroll {
     0% {
         transform: translateX(0);
@@ -30,7 +27,6 @@
     }
 }
 
-/* Animação de flutuar */
 @keyframes float {
     0% {
         transform: translateY(0);
@@ -43,7 +39,6 @@
     }
 }
 
-/* Mudar bordas de imagem */
 @keyframes borderRadiusChange {
     0% {
         border-radius: 42.5% 34% 25.5% 51% / 42.5% 25.5% 51% 34%;
@@ -65,13 +60,11 @@
     --text2-color: #171717;
     --text3-color: #555;
     --background: white;
-    /* --background: #2C332B; */
     --header: white;
     --gradient: linear-gradient(90deg, #47753B 0%, #8BC34A 100%);
     --blur: blur(5px);
 }
 
-/* Configurações globais */
 * {
     font-family: 'Inter Tight', sans-serif;
     margin: 0;
@@ -89,10 +82,9 @@ html {
 }
 
 html, body {
-    overflow-x: hidden !important; 
+    overflow-x: hidden !important;
 }
 
-/* Scroll */
 body::-webkit-scrollbar {
     width: 12px;
     background: #ffffff00;
@@ -117,7 +109,6 @@ body {
     height: 100%;
 }
 
-/* Header */
 header {
     display: flex;
     align-items: center;
@@ -148,7 +139,7 @@ header .logo img {
     border-radius: 50%;
     height: 50px;
     width: 50px;
-    object-fit: cover; 
+    object-fit: cover;
     transition: transform 0.5s, color 0.5s;
 }
 
@@ -189,14 +180,12 @@ header .fa-brands:hover, nav ul li:hover {
     color: var(--main-color);
 }
 
-/* Estilo para todas alinhar todas as sections */
 section .text-center {
     display: flex;
     width: 50%;
     flex-direction: column;
 }
 
-/* Padrão de títulos de seção */
 .section-label {
     display: block;
     text-align: center;
@@ -221,7 +210,6 @@ section .text-center {
     margin-bottom: 40px;
 }
 
-/* "Onda" da tela principal */
 .wave {
     position: absolute;
     top: 0;
@@ -231,19 +219,16 @@ section .text-center {
     z-index: -1;
 }
 
-/* Ensure SVG scales properly and isn't clipped on small screens */
 .wave svg {
     display: block;
     width: 100%;
     height: auto;
 }
 
-/* allow the hello container to show overflowing SVG */
 .hello-container {
     overflow: visible;
 }
 
-/* Section principal */
 main {
     display: flex;
     flex-direction: column;
@@ -371,12 +356,11 @@ main {
     transform: translateX(5px);
 }
 
-.hello-container .hello-banner {  /* Mantém o titulo principal (eduardo fabri) alinhado */
+.hello-container .hello-banner {
     width: 50%;
     margin: 140px auto;
 }
 
-/* Section de apresentação */
 .presentation-container {
     display: flex;
     width: 100%;
@@ -445,7 +429,6 @@ main {
     transform: scale(1.04);
 }
 
-/* Section Skills */
 .skills-container {
     text-align: center;
     font-family: Arial, sans-serif;
@@ -462,15 +445,13 @@ main {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-
-    /* Máscara para criar efeito de opacidade nas bordas */
     mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
 .skills-container .carousel-track {
     display: flex;
-    animation: scroll 11s linear infinite; 
+    animation: scroll 11s linear infinite;
 }
 
 .skills-container .carousel-item {
@@ -488,12 +469,10 @@ main {
     margin-bottom: 10px;
 }
 
-
 .skills-container .carousel-item:hover {
     color: #000;
 }
 
-/* Section Experiência — minimalista */
 .experience-container {
     display: flex;
     flex-direction: column;
@@ -588,7 +567,6 @@ main {
     color: var(--text1-color);
 }
 
-/* Section projetos */
 .projects-container {
     background: var(--gradient);
     display: flex;
@@ -603,7 +581,6 @@ main {
     color: var(--text1-color);
 }
 
-/* Remove o estilo de "card" — layout mais limpo e transparente */
 .projects-container .project-content {
     display: flex;
     align-items: center;
@@ -615,9 +592,8 @@ main {
     box-shadow: none;
 }
 
-/* separador sutil entre itens (em vez de cards) */
 .projects-container .project-content + .project-content {
-    /* separator removed as requested; keep spacing between items */
+
     margin-top: 28px;
 }
 
@@ -630,7 +606,6 @@ main {
     background: transparent;
 }
 
-/* Prints de app mobile (retrato) não devem ser cortados */
 .projects-container .project-image.is-portrait {
     background: #12210f;
 }
@@ -640,7 +615,6 @@ main {
     object-fit: contain;
 }
 
-/* Carousel styles inside project-image */
 .projects-container .project-image .carousel-track {
     display: flex;
     transition: transform 0.4s ease;
@@ -756,16 +730,15 @@ main {
     flex-direction: column;
     gap: 12px;
     max-width: 55%;
-    /* align text to the right as requested for both image-left and image-right */
     text-align: right;
     align-items: flex-end;
     color: var(--text1-color);
 }
 
 .projects-container .project-description h2 {
-    font-size: 2rem; /* increased size */
+    font-size: 2rem;
     margin: 0;
-    color: var(--text1-color); /* ensure titles are white */
+    color: var(--text1-color);
 }
 
 .projects-container .project-description p {
@@ -784,7 +757,6 @@ main {
     margin-top: 8px;
 }
 
-/* Linha estilizada que separa os projetos (hr dentro de cada .project-content) */
 .projects-container .styled-hr {
     display: block;
     width: 70%;
@@ -794,12 +766,6 @@ main {
     border-radius: 8px;
     background: rgba(255,255,255,0.06);
     opacity: 1 !important;
-}
-
-
-.projects-container .project-description h2,
-.projects-container .project-description p {
-    /* keep colors set earlier (titles white, body inherits); no overrides here */
 }
 
 .projects-container .project-tags span {
@@ -843,7 +809,6 @@ main {
     transform: scale(1.05);
 }
 
-/* Section Contato */
 .contact-section {
     display: flex;
     flex-direction: column;
@@ -874,13 +839,12 @@ main {
     margin-bottom: 1rem;
 }
 
-/* Formulário */
 .form-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     grid-column: 1;
-    grid-row: span 2; /* Indica q está ocupando duas linhas */
+    grid-row: span 2;
     width: 100%;
     height: 100%;
     border-radius: 20px;
@@ -922,7 +886,6 @@ main {
     background-color: var(--main-color);
 }
 
-/* Navegação */
 .navigation {
     grid-column: 2;
     grid-row: 1;
@@ -956,7 +919,6 @@ main {
     color: var(--secondary-color);
 }
 
-/* Redes Sociais */
 .social-icons {
     display: flex;
     flex-direction: column;
@@ -995,28 +957,26 @@ main {
     background-color: var(--main-color);
 }
 
-/* Ajustando a posição do redirecionamento */
 #hello {
     scroll-margin-top: 80px;
 }
 
 #about {
-    scroll-margin-top: 100px; 
+    scroll-margin-top: 100px;
 }
 
 #tech {
-    scroll-margin-top: 220px; 
+    scroll-margin-top: 220px;
 }
 
 #projects {
-    scroll-margin-top: 90px; 
+    scroll-margin-top: 90px;
 }
 
 #contact-id {
-    scroll-margin-top: 90px; 
+    scroll-margin-top: 90px;
 }
 
-/* Section Perguntas Frequentes */
 .faq-section {
     display: flex;
     flex-direction: column;
@@ -1036,7 +996,6 @@ main {
     margin: 0;
     text-align: left;
 }
-
 
 .faq-item {
     margin-bottom: 12px;
@@ -1106,7 +1065,6 @@ main {
     font-size: 1rem;
 }
 
-/* Quadradinho lateral */
 .back-to-top {
     position: fixed;
     bottom: 20px;
@@ -1129,8 +1087,6 @@ main {
     background-color: var(--main-color);
 }
 
-/* Responsividade */
-/* Telas até 1280px - celulares/alguns tablets */
 @media (max-width: 1280px) {
     section .text-center {
         width: 100%;
@@ -1168,13 +1124,11 @@ main {
         margin-top: 20px;
     }
 
-    /* reduce top spacing so the green wave starts near the top on smaller screens */
     .hello-container .hello-banner {
         width: 92%;
         margin: 20px auto;
     }
 
-    /* header flutua sobre o hero: sem margem reservada, sem faixa branca acima do verde */
     main {
         margin-top: 0;
     }
@@ -1185,7 +1139,6 @@ main {
         padding: 20px;
     }
 
-    /* ordem fixa no mobile: título, texto, tecnologias, depois foto — independente da ordem no desktop */
     .projects-container .project-description {
         order: 1;
     }
@@ -1223,15 +1176,12 @@ main {
     }
 }
 
-
-/* Altera o header em 1040px */
 @media (max-width: 1040px) {
     .nav-bar {
         display: none;
     }
 }
 
-/* Telas até 768px - celulares entre 768 e 1650 */
 @media (min-width: 768px) and (max-width: 1650px) {
     .presentation-container #curriculobutton {
         margin-top: 20px;
@@ -1242,7 +1192,6 @@ main {
     }
 }
 
-/* Acima de 768px entre 1300px mantém a seção presentation no formato padrão */
 @media (min-width: 768px) and (max-width: 1300px) {
     .presentation-container .text-center {
         flex-direction: row;
