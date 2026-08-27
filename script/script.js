@@ -1,39 +1,3 @@
-const revealTargets = [
-    document.querySelector('#hello-text'),
-    document.querySelector('#greeting-text'),
-    document.querySelector('#im-text'),
-    document.querySelector('#name-text'),
-    document.querySelector('#job-text'),
-    document.querySelector('#btnn'),
-    document.querySelector('#photo'),
-    document.querySelector('#text-center'),
-    document.querySelector('#about-me-sec'),
-    document.querySelector('#text-aboutme'),
-    document.querySelector('#experience'),
-    document.querySelector('#tech'),
-    document.querySelector('#contact-form'),
-    document.querySelector('#navigation'),
-    document.querySelector('#social-icons'),
-    document.querySelector('#faq'),
-].filter(Boolean);
-
-ScrollReveal().reveal(revealTargets, {
-    duration: 1500,
-    origin: 'bottom',
-    scale: 0.9,
-    easing: 'ease-in-out',
-    reset: true
-});
-
-ScrollReveal().reveal('.projects-container .project-content', {
-    duration: 1100,
-    origin: 'bottom',
-    distance: '30px',
-    easing: 'ease-in-out',
-    interval: 180,
-    reset: true
-});
-
 function scrollToTop() {
     window.scrollTo({
         top: 0,
