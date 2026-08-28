@@ -525,7 +525,7 @@ main {
 }
 
 .experience-summary {
-    max-width: 700px;
+    width: 100%;
     font-size: 1.05rem;
     font-weight: 600;
     text-align: left;
