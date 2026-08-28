@@ -1,20 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400..800;1,400..800&display=swap');
 
-@keyframes colorChange {
+@keyframes shimmer {
     0% {
-        color: var(--tertiary-color);
-    }
-    25% {
-        color: var(--main-color);
-    }
-    50% {
-        color: var(--secondary-color);
-    }
-    75% {
-        color: var(--inverse-color);
+        background-position: 150% center;
     }
     100% {
-        color: var(--tertiary-color);
+        background-position: -50% center;
     }
 }
 
@@ -266,7 +257,7 @@ main {
 
 .hello-container span {
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .hello-container #im-text {
@@ -302,7 +293,14 @@ main {
     line-height: 1;
     margin-top: 5px;
     cursor: pointer;
-    animation: colorChange 10s infinite;
+    background-color: var(--main-color);
+    background-image: linear-gradient(105deg, transparent 0%, transparent 40%, rgba(255, 255, 255, 0.9) 50%, transparent 60%, transparent 100%);
+    background-size: 200%;
+    background-position: 150% center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 2.6s ease-in-out infinite;
 }
 
 .hello-container h1#name:hover {
@@ -414,15 +412,13 @@ main {
     background-color: var(--text2-color);
     color: #fff;
     padding: 10px;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 30px;
     font-size: 1.3rem;
     cursor: pointer;
     width: 200px;
-    margin-top: 90px;
-    transition: background-color 0.5s;
-    border: 1px solid transparent;
-    transition: transform 0.5s;
+    margin-top: 30px;
+    transition: background-color 0.5s, transform 0.5s;
 }
 
 .presentation-container #curriculobutton:hover {
@@ -605,6 +601,7 @@ main {
     overflow: hidden;
     border-radius: 12px;
     background: transparent;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14), 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
 .projects-container .project-image.is-portrait {
