@@ -526,6 +526,7 @@ main {
 
 .experience-summary {
     max-width: 700px;
+    font-size: 1.05rem;
     text-align: left;
     color: var(--text3-color);
     margin-bottom: 30px;
