@@ -1,20 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400..800;1,400..800&family=Caveat:wght@500..700&display=swap');
 
-@keyframes colorChange {
+@keyframes shimmer {
     0% {
-        color: var(--tertiary-color);
-    }
-    25% {
-        color: var(--main-color);
-    }
-    50% {
-        color: var(--secondary-color);
-    }
-    75% {
-        color: var(--inverse-color);
+        background-position: 150% center;
     }
     100% {
-        color: var(--tertiary-color);
+        background-position: -50% center;
     }
 }
 
@@ -66,7 +57,8 @@
 }
 
 * {
-    font-family: 'Inter Tight', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -253,6 +245,71 @@ main {
     text-align: center;
 }
 
+#btnn {
+    position: relative;
+    display: inline-block;
+}
+
+.hello-container .doodle-note {
+    position: absolute;
+    top: -38px;
+    right: -110px;
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    font-family: 'Caveat', cursive;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--main-color);
+    transform: rotate(-6deg);
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.doodle-arrow {
+    width: 34px;
+    height: 24px;
+    transform: rotate(8deg) scaleX(-1);
+}
+
+@media (max-width: 600px) {
+    .doodle-note {
+        display: none;
+    }
+}
+
+.hello-container .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #eef4e9;
+    color: var(--tertiary-color);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.85);
+    }
+}
+
 .hello-container #hello-text {
     background-color: var(--tertiary-color);
     font-weight: 300;
@@ -301,7 +358,14 @@ main {
     line-height: 1;
     margin-top: 5px;
     cursor: pointer;
-    animation: colorChange 10s infinite;
+    background-color: var(--main-color);
+    background-image: linear-gradient(105deg, transparent 0%, transparent 40%, rgba(255, 255, 255, 0.9) 50%, transparent 60%, transparent 100%);
+    background-size: 200%;
+    background-position: 150% center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 2.6s ease-in-out infinite;
 }
 
 .hello-container h1#name:hover {
@@ -413,20 +477,20 @@ main {
     background-color: var(--text2-color);
     color: #fff;
     padding: 10px;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 30px;
     font-size: 1.3rem;
     cursor: pointer;
     width: 200px;
     margin-top: 90px;
-    transition: background-color 0.5s;
-    border: 1px solid transparent;
-    transition: transform 0.5s;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 
 .presentation-container #curriculobutton:hover {
     background-color: var(--main-color);
-    transform: scale(1.04);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16), 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .skills-container {
@@ -586,15 +650,26 @@ main {
     align-items: center;
     gap: 32px;
     margin: 0 0 28px 0;
-    padding: 0;
-    background: transparent;
-    border-radius: 0;
-    box-shadow: none;
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.projects-container .project-content:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.14), 0 4px 10px rgba(0, 0, 0, 0.06);
 }
 
 .projects-container .project-content + .project-content {
-
     margin-top: 28px;
+}
+
+.projects-container .project-content--no-image .project-description {
+    max-width: 100%;
+    text-align: left;
+    align-items: flex-start;
 }
 
 .projects-container .project-image {
@@ -733,6 +808,17 @@ main {
     text-align: right;
     align-items: flex-end;
     color: var(--text1-color);
+}
+
+.projects-container .project-category {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text1-color);
+    background: rgba(255, 255, 255, 0.15);
+    padding: 4px 12px;
+    border-radius: 999px;
+    text-transform: lowercase;
 }
 
 .projects-container .project-description h2 {
@@ -998,17 +1084,18 @@ main {
 }
 
 .faq-item {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     background: #fafafa;
-    border: 1px solid #eee;
-    border-radius: 14px;
+    border: none;
+    border-radius: 20px;
     overflow: hidden;
-    transition: box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.03);
+    transition: box-shadow var(--transition), transform var(--transition);
 }
 
 .faq-item:hover {
-    box-shadow: 0 8px 24px rgba(2, 5, 10, 0.06);
-    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.09), 0 3px 8px rgba(0, 0, 0, 0.05);
+    transform: translateY(-3px);
 }
 
 .faq-question {
