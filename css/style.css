@@ -1,5 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400..800;1,400..800&display=swap');
 
+/* ---------------------------------------------------------------------------
+   FONTES COMPRADAS — Acorn (Typeverything) e GT Standard (Grilli Type).
+   As duas são licenciadas: os arquivos não vêm de CDN, precisam ser comprados
+   e hospedados aqui. Quando tiver os .woff2:
+     1. crie a pasta  fonts/  na raiz do projeto
+     2. jogue os arquivos lá com estes nomes
+     3. descomente os dois blocos abaixo
+   Até isso acontecer, a Montserrat assume via fallback nas variáveis.
+
+@font-face {
+    font-family: 'Acorn';
+    src: url('../fonts/acorn-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT Standard';
+    src: url('../fonts/gt-standard-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+--------------------------------------------------------------------------- */
+
 @keyframes shimmer {
     0% {
         background-position: 150% center;
@@ -9,12 +33,17 @@
     }
 }
 
-@keyframes scroll {
+
+/* O movimento da foto vem daqui: as bordas se deformando devagar. */
+@keyframes borderRadiusChange {
     0% {
-        transform: translateX(0);
+        border-radius: 42.5% 34% 25.5% 51% / 42.5% 25.5% 51% 34%;
+    }
+    50% {
+        border-radius: 25.5% 42.5% 51% 34% / 34% 42.5% 25.5% 42.5%;
     }
     100% {
-        transform: translateX(-100%);
+        border-radius: 42.5% 34% 25.5% 51% / 42.5% 25.5% 51% 34%;
     }
 }
 
@@ -30,18 +59,6 @@
     }
 }
 
-@keyframes borderRadiusChange {
-    0% {
-        border-radius: 42.5% 34% 25.5% 51% / 42.5% 25.5% 51% 34%;
-    }
-    50% {
-        border-radius: 25.5% 42.5% 51% 34% / 34% 42.5% 25.5% 42.5%;
-    }
-    100% {
-        border-radius: 42.5% 34% 25.5% 51% / 42.5% 25.5% 51% 34%;
-    }
-}
-
 :root {
     --main-color: #374B32;
     --secondary-color: #4CA035;
@@ -54,10 +71,19 @@
     --header: white;
     --gradient: linear-gradient(90deg, #47753B 0%, #8BC34A 100%);
     --blur: blur(5px);
+    --font-display: 'Acorn', 'Montserrat', sans-serif;
+    --font-text: 'GT Standard', 'Montserrat', sans-serif;
+    --accent-yellow: #F2C94C;
+    --shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.05);
+    --shadow-soft-hover: 0 14px 32px rgba(0, 0, 0, 0.14), 0 4px 10px rgba(0, 0, 0, 0.07);
+    --radius-card: 20px;
 }
 
 * {
-    font-family: 'Montserrat', sans-serif;
+    /* Tudo em caixa baixa: aplicado no site inteiro, inclusive nomes próprios
+       e siglas (java, pucpr, whatsapp) — é a estética escolhida. */
+    text-transform: lowercase;
+    font-family: var(--font-text);
     font-weight: 500;
     margin: 0;
     padding: 0;
@@ -69,9 +95,9 @@ a {
     color: inherit;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+/* Sem scroll-behavior aqui de propósito: a animação dos links do menu é feita
+   no JS (initSmoothAnchors, 420ms). Se o nativo ficasse ligado, os dois
+   disputariam a mesma rolagem. */
 
 html, body {
     overflow-x: hidden !important;
@@ -106,20 +132,31 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    background-color: rgba(255, 255, 255, 0.119);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     width: max-content;
     max-width: 94vw;
     padding: 10px 24px;
     margin: 20px auto;
     border-radius: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
+    transition: background-color 0.35s ease, backdrop-filter 0.35s ease,
+                box-shadow 0.35s ease;
+}
+
+/* O header não muda de forma nem de lugar: o raio fica sempre em 20px e só o
+   fundo, o blur e a sombra entram ao sair do topo. */
+header.is-stuck {
+    background-color: rgba(255, 255, 255, 0.119);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 header .logo {
@@ -174,14 +211,16 @@ header .fa-brands:hover, nav ul li:hover {
 
 section .text-center {
     display: flex;
-    width: 50%;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     flex-direction: column;
 }
 
 .section-label {
     display: block;
     text-align: center;
-    text-transform: uppercase;
+    text-transform: lowercase;
     letter-spacing: 4px;
     font-size: 0.8rem;
     font-weight: 600;
@@ -193,13 +232,48 @@ section .text-center {
     color: rgba(255, 255, 255, 0.75);
 }
 
+/* Acorn (display) fica na saudação, no nome e nos títulos de seção. */
+.hello-container #greeting-text span,
+.hello-container h1#name,
 .section-title {
-    text-align: center;
+    font-family: var(--font-display);
+}
+
+.section-title {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
     font-size: clamp(1.6rem, 4vw, 2.2rem);
     font-weight: 700;
     letter-spacing: -0.5px;
     color: var(--text2-color);
     margin-bottom: 40px;
+}
+
+/* Segue a mesma caixa de 1200px do título, pra encostar na mesma borda esquerda. */
+.section-intro {
+    width: 100%;
+    max-width: 1200px;
+    margin: -24px auto 40px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text3-color);
+}
+
+.projects-container .section-intro {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Nota de rodapé da seção: mesma caixa de 1200px, mas discreta. */
+.section-note {
+    width: 100%;
+    max-width: 1200px;
+    margin: 28px auto 0;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .wave {
@@ -217,6 +291,7 @@ section .text-center {
     height: auto;
 }
 
+
 .hello-container {
     overflow: visible;
 }
@@ -229,35 +304,105 @@ main {
     margin-top: 100px;
 }
 
+/* O padding-bottom cancela o margin-top de 100px do <main>, senão o bloco
+   fica centralizado no hero mas 60px abaixo do centro da tela. */
 .hello-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 90vh;
+    height: calc(100vh - 100px);
+    padding-bottom: 100px;
     color: var(--text2-color);
 }
 
 .hello-container .text-center {
     width: 100%;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
 }
 
+#hero-tagline {
+    max-width: 38ch;
+    margin-top: 22px;
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--text3-color);
+}
+
+.hero-star {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+    z-index: 0;
+    /* O transform aqui e' do parallax do mouse; o brilho fica no svg de dentro
+       pra as duas animações não disputarem a mesma propriedade. */
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+.hero-star svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: var(--secondary-color);
+    animation: twinkle 4.5s ease-in-out infinite;
+}
+
+/* Uma em cada ponta da diagonal: acima da direita do nome e abaixo da esquerda. */
+.hero-star--one {
+    top: -28%;
+    right: -4%;
+    width: 52px;
+    height: 52px;
+}
+
+.hero-star--one svg {
+    animation-delay: -0.6s;
+}
+
+.hero-star--two {
+    bottom: -26%;
+    left: -5%;
+    width: 38px;
+    height: 38px;
+}
+
+.hero-star--two svg {
+    animation-delay: -2.2s;
+    fill: var(--main-color);
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.95;
+    }
+    50% {
+        transform: scale(1.2) rotate(15deg);
+        opacity: 0.5;
+    }
+}
+
+/* A saudação virou parte do título: sem caixa, mesma família, só menor e mais
+   leve que o nome. O ponto final é o único acento de cor. */
 .hello-container #hello-text {
-    background-color: var(--tertiary-color);
-    font-weight: 300;
-    color: var(--text1-color);
-    padding: 7px 16px;
-    border-radius: 10px;
-    margin-right: 10px;
+    margin-right: 12px;
     white-space: nowrap;
 }
 
+.hello-container #hello-text em {
+    font-style: normal;
+    color: var(--secondary-color);
+}
+
 .hello-container span {
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: clamp(1.3rem, 3vw, 2.1rem);
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    color: var(--text3-color);
 }
 
 .hello-container #im-text {
@@ -266,29 +411,37 @@ main {
 
 .hello-container #greeting-text {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     flex-wrap: wrap;
     row-gap: 8px;
 }
 
+/* As estrelas se ancoram aqui, e não no .text-center: aquele é ancestral da
+   .wave, e posicioná-lo fazia a onda encolher pra largura do hero. */
+/* fit-content: assim a caixa abraça o texto do nome e as estrelas caem junto
+   das pontas dele, e não nos cantos do container inteiro. */
 .hello-container #name-text {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
+    align-items: flex-start;
+    width: fit-content;
+    max-width: 100%;
     margin-top: 10px;
     transition: margin-top 0.3s;
     animation: float 5s infinite;
 }
 
 .hello-container h1#name {
-    text-align: center;
+    position: relative;
+    z-index: 1;
+    text-align: left;
     color: var(--text2-color);
-    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-size: clamp(3.2rem, 11vw, 8rem);
     font-weight: 800;
-    letter-spacing: -2px;
+    letter-spacing: -3px;
     transition: 0.7s;
     line-height: 1;
     margin-top: 5px;
@@ -303,61 +456,19 @@ main {
     animation: shimmer 2.6s ease-in-out infinite;
 }
 
-.hello-container h1#name:hover {
-    transform: scale(1.1);
-}
-
-.hello-container #job-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.hello-container #job-text p {
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: var(--text3-color);
-    transition: font-size 0.3s;
-}
-
-.hello-container #job-text span {
-    font-weight: 300;
-    font-size: 16px;
-    color: var(--text3-color);
-}
-
-.hello-container button {
-    background-color: var(--tertiary-color);
-    color: var(--text1-color);
-    padding: 15px;
-    border: none;
-    border-radius: 30px;
-    font-size: 1rem;
-    cursor: pointer;
-    width: 200px;
-    transition: transform 0.5s;
-}
-
-.hello-container button:hover {
-    background-color: var(--main-color);
-    transform: scale(1.04);
-}
-
-.hello-container button i,
 .projects-container .btn i {
     transition: transform 0.3s;
 }
 
-.hello-container button:hover i,
 .projects-container .btn:hover i {
     transform: translateX(5px);
 }
 
+/* Mesma caixa das outras seções, pra borda esquerda do hero bater com elas. */
 .hello-container .hello-banner {
-    width: 50%;
-    margin: 140px auto;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .presentation-container {
@@ -374,22 +485,28 @@ main {
 .presentation-container .text-center {
     display: flex;
     flex-direction: row;
+    align-items: center;
+}
+
+.presentation-container .photo {
+    position: relative;
+    flex-shrink: 0;
+    margin-right: 40px;
+    line-height: 0;
 }
 
 .presentation-container img {
-    animation: borderRadiusChange 10s infinite;
-    height: 320px;
-    width: 300px;
-    margin-right: 40px;
-    border-radius: 50px;
+    height: 380px;
+    width: 380px;
     object-fit: cover;
-    transition: 0.3s;
+    animation: borderRadiusChange 10s infinite;
+    transition: transform 0.4s;
     cursor: pointer;
-    box-shadow: 10px 10px 5px rgba(2, 5, 10, 0.1);
+    box-shadow: var(--shadow-soft-hover);
 }
 
 .presentation-container img:hover {
-    transform: scale(1.04);
+    transform: scale(1.03);
 }
 
 .presentation-container .text-me {
@@ -404,15 +521,30 @@ main {
     transition: font-size 0.3s;
 }
 
-.presentation-container .text-me #about-me:hover {
-    font-size: 2.5rem;
+
+#text-aboutme {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 16px;
 }
 
+#text-aboutme p {
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#text-aboutme strong {
+    font-weight: 700;
+    color: var(--text1-color);
+}
+
+
 .presentation-container #curriculobutton {
-    background-color: var(--text2-color);
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
     color: #fff;
     padding: 10px;
-    border: 1px solid transparent;
     border-radius: 30px;
     font-size: 1rem;
     cursor: pointer;
@@ -422,52 +554,26 @@ main {
 }
 
 .presentation-container #curriculobutton:hover {
-    background-color: var(--main-color);
+    background-color: rgba(255, 255, 255, 0.3);
     transform: scale(1.04);
 }
 
-.skills-container {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    margin: 50px;
+/* A lista fica dentro da seção verde, então herda o texto claro dela. */
+.curiosities-list {
+    list-style: none;
+    padding: 0;
+    margin: 26px 0 0;
+    text-align: left;
 }
 
-.skills-container .skills-title {
-    margin-bottom: 50px;
+.curiosities-list li {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.92);
 }
 
-.skills-container .carousel {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-}
-
-.skills-container .carousel-track {
-    display: flex;
-    animation: scroll 11s linear infinite;
-}
-
-.skills-container .carousel-item {
-    min-width: 200px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #aaa;
-    transition: color 0.3s;
-}
-
-.skills-container .carousel-item i {
-    font-size: 4rem;
-    margin-bottom: 10px;
-}
-
-.skills-container .carousel-item:hover {
-    color: #000;
+.curiosities-list li + li {
+    margin-top: 12px;
 }
 
 .experience-container {
@@ -481,6 +587,7 @@ main {
 
 .experience-content {
     width: 100%;
+    text-align: left;
 }
 
 .experience-header {
@@ -489,7 +596,26 @@ main {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 16px;
-    margin-bottom: 24px;
+}
+
+.experience-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    text-align: right;
+}
+
+.experience-period {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.experience-place {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text3-color);
 }
 
 .experience-brand {
@@ -519,27 +645,128 @@ main {
     font-size: 0.9rem;
 }
 
-.experience-meta {
-    color: var(--text3-color);
-    font-size: 0.9rem;
-}
-
 .experience-summary {
     width: 100%;
     font-size: 1.05rem;
-    font-weight: 600;
+    font-weight: 500;
+    line-height: 1.7;
     text-align: left;
     color: var(--text3-color);
     margin-bottom: 30px;
 }
 
-.experience-projects {
-    margin-bottom: 30px;
+.experience-stage {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    cursor: pointer;
+    transition: height 0.5s ease;
 }
 
-.experience-projects .faq-question p,
-.experience-projects .faq-answer {
-    text-align: left;
+.experience-track {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    padding-bottom: 4px;
+    opacity: 0.35;
+    transition: opacity 0.5s ease;
+}
+
+.experience-slide.is-active {
+    opacity: 1;
+}
+
+.slide-label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 18px;
+}
+
+.slide-projects {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.slide-projects li + li {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid #ececec;
+}
+
+.slide-projects h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text2-color);
+    margin-bottom: 8px;
+}
+
+.slide-projects p {
+    line-height: 1.7;
+    color: var(--text3-color);
+}
+
+.experience-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.experience-dots {
+    display: flex;
+    gap: 10px;
+}
+
+.experience-dot {
+    width: 32px;
+    height: 3px;
+    padding: 0;
+    border: none;
+    border-radius: 2px;
+    background: #dcdcdc;
+    cursor: pointer;
+    transition: background-color 0.3s, width 0.3s;
+}
+
+.experience-dot.is-active {
+    width: 52px;
+    background: var(--main-color);
+}
+
+.experience-next {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text3-color);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.experience-next:hover {
+    color: var(--main-color);
+}
+
+.experience-next i {
+    transition: transform 0.3s;
+}
+
+.experience-next:hover i {
+    transform: translateX(4px);
 }
 
 .experience-tags {
@@ -564,6 +791,7 @@ main {
     background: var(--text2-color);
     border-color: var(--text2-color);
     color: var(--text1-color);
+    transform: scale(1.05);
 }
 
 .projects-container {
@@ -572,7 +800,7 @@ main {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
+    padding: 40px 48px;
     width: 100%;
 }
 
@@ -581,6 +809,7 @@ main {
 }
 
 .projects-container .project-content {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 32px;
@@ -591,6 +820,29 @@ main {
     box-shadow: none;
 }
 
+.projects-container .project-index {
+    position: absolute;
+    top: 50%;
+    font-size: clamp(4.5rem, 10vw, 9rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -6px;
+    color: rgba(255, 255, 255, 0.22);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+.projects-container .project-content:nth-child(odd) .project-index {
+    left: 45%;
+    transform: translate(-30%, -50%);
+}
+
+.projects-container .project-content:nth-child(even) .project-index {
+    right: 45%;
+    transform: translate(30%, -50%);
+}
+
 .projects-container .project-content + .project-content {
 
     margin-top: 28px;
@@ -598,12 +850,13 @@ main {
 
 .projects-container .project-image {
     position: relative;
+    z-index: 2;
     width: 45%;
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     background: transparent;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14), 0 3px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.28), 0 8px 18px rgba(0, 0, 0, 0.16);
 }
 
 .projects-container .project-image.is-portrait {
@@ -726,7 +979,10 @@ main {
 }
 
 .projects-container .project-description {
+    position: relative;
+    z-index: 2;
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 12px;
     max-width: 55%;
@@ -742,7 +998,10 @@ main {
 }
 
 .projects-container .project-description h2 {
-    font-size: 2rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.1;
     margin: 0;
     color: var(--text1-color);
 }
@@ -853,10 +1112,16 @@ main {
     grid-row: span 2;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: var(--radius-card);
     background-color: var(--text1-color);
     padding: 2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-soft);
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.form-section:hover {
+    box-shadow: var(--shadow-soft-hover);
+    transform: translateY(-2px);
 }
 
 .form-section input, .form-section textarea {
@@ -874,22 +1139,29 @@ main {
     background-color: var(--secondary-color);
     color: #fff;
     border: none;
-    border-radius: 10px;
+    border-radius: 30px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .navigation, .social-icons {
     background-color: var(--text1-color);
     width: 100%;
-    border-radius: 20px;
+    border-radius: var(--radius-card);
     padding: 2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-soft);
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.navigation:hover, .social-icons:hover {
+    box-shadow: var(--shadow-soft-hover);
+    transform: translateY(-2px);
 }
 
 .form-section button:hover {
     background-color: var(--main-color);
+    transform: scale(1.03);
 }
 
 .navigation {
@@ -956,11 +1228,12 @@ main {
     border-radius: 50%;
     font-size: 1.5rem;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .social-icons a:hover {
     background-color: var(--main-color);
+    transform: scale(1.08);
 }
 
 #hello {
@@ -1007,13 +1280,14 @@ main {
     margin-bottom: 12px;
     background: #fafafa;
     border: 1px solid #eee;
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     overflow: hidden;
+    box-shadow: var(--shadow-soft);
     transition: box-shadow 0.3s, transform 0.3s;
 }
 
 .faq-item:hover {
-    box-shadow: 0 8px 24px rgba(2, 5, 10, 0.06);
+    box-shadow: var(--shadow-soft-hover);
     transform: translateY(-2px);
 }
 
@@ -1086,11 +1360,12 @@ main {
     cursor: pointer;
     border: none;
     border-radius: 50%;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .back-to-top:hover {
     background-color: var(--main-color);
+    transform: scale(1.1);
 }
 
 @media (max-width: 1280px) {
@@ -1115,9 +1390,13 @@ main {
     }
 
     .presentation-container img {
-        height: 200px;
-        width: 200px;
+        height: 220px;
+        width: 220px;
+    }
+
+    .presentation-container .photo {
         margin-right: 0;
+        margin-bottom: 24px;
     }
 
     .presentation-container .text-center {
@@ -1143,6 +1422,10 @@ main {
         flex-direction: column;
         text-align: center;
         padding: 20px;
+    }
+
+    .projects-container .project-index {
+        display: none;
     }
 
     .projects-container .project-description {
@@ -1180,6 +1463,11 @@ main {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .experience-meta {
+        align-items: flex-start;
+        text-align: left;
+    }
 }
 
 @media (max-width: 1040px) {
@@ -1194,7 +1482,8 @@ main {
     }
 
     .presentation-container img {
-        height: 350px;
+        height: 360px;
+        width: 360px;
     }
 }
 
@@ -1208,6 +1497,5 @@ main {
     .presentation-container img {
         height: 300px;
         width: 300px;
-        margin-right: 40px;
     }
 }

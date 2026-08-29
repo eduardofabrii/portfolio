@@ -5,6 +5,145 @@ function scrollToTop() {
     });
 }
 
+// Curta de propósito: o suficiente pra não ser um corte seco, sem virar espera.
+function smoothScrollTo(targetY, duration = 420) {
+    const startY = window.scrollY;
+    const diff = targetY - startY;
+    const startTime = performance.now();
+
+    // easeOutCubic: sai rápido e só desacelera na chegada.
+    function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+    }
+
+    function step(currentTime) {
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        window.scrollTo(0, startY + diff * easeOutCubic(progress));
+
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+
+    requestAnimationFrame(step);
+}
+
+function initSmoothAnchors() {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+            const target = document.getElementById(link.getAttribute('href').slice(1));
+
+            if (!target) {
+                return;
+            }
+
+            event.preventDefault();
+            const offset = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+            smoothScrollTo(target.getBoundingClientRect().top + window.scrollY - offset);
+        });
+    });
+}
+
+function initHeaderDock() {
+    const header = document.getElementById('header');
+
+    if (!header) {
+        return;
+    }
+
+    let ticking = false;
+
+    // O header nunca some: encostado no topo ele fica limpo, e ao rolar
+    // vira a pílula com blur.
+    function update() {
+        header.classList.toggle('is-stuck', window.scrollY > 40);
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+        }
+    }, { passive: true });
+
+    update();
+}
+
+function initExperienceSlides() {
+    const stage = document.querySelector('.experience-stage');
+
+    if (!stage) {
+        return;
+    }
+
+    const track = stage.querySelector('.experience-track');
+    const slides = Array.from(track.children);
+    const dots = Array.from(document.querySelectorAll('.experience-dot'));
+    const next = document.querySelector('.experience-next');
+    const interval = 7000;
+
+    if (!slides.length) {
+        return;
+    }
+
+    let current = 0;
+    let timer = null;
+
+    // O palco tem altura fixa por causa do overflow; sem isso os slides curtos
+    // deixariam o buraco do slide mais alto.
+    function fitHeight() {
+        stage.style.height = slides[current].offsetHeight + 'px';
+    }
+
+    function go(index) {
+        current = (index + slides.length) % slides.length;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
+        dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
+        fitHeight();
+    }
+
+    function stop() {
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    function start() {
+        stop();
+        timer = setInterval(() => go(current + 1), interval);
+    }
+
+    stage.addEventListener('click', () => {
+        go(current + 1);
+        start();
+    });
+
+    if (next) {
+        next.addEventListener('click', () => {
+            go(current + 1);
+            start();
+        });
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', (event) => {
+            event.stopPropagation();
+            go(index);
+            start();
+        });
+    });
+
+    stage.addEventListener('mouseenter', stop);
+    stage.addEventListener('mouseleave', start);
+    window.addEventListener('resize', fitHeight);
+
+    go(0);
+    start();
+}
+
 function initFaq() {
     document.querySelectorAll('.faq-question').forEach((question) => {
         question.addEventListener('click', () => {
@@ -191,4 +330,7 @@ function initProjectCarousels() {
 }
 
 initFaq();
+initSmoothAnchors();
+initHeaderDock();
 document.addEventListener('DOMContentLoaded', initProjectCarousels);
+document.addEventListener('DOMContentLoaded', initExperienceSlides);
