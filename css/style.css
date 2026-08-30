@@ -4,9 +4,8 @@
    FONTES COMPRADAS — Acorn (Typeverything) e GT Standard (Grilli Type).
    As duas são licenciadas: os arquivos não vêm de CDN, precisam ser comprados
    e hospedados aqui. Quando tiver os .woff2:
-     1. crie a pasta  fonts/  na raiz do projeto
-     2. jogue os arquivos lá com estes nomes
-     3. descomente os dois blocos abaixo
+     1. jogue os arquivos na pasta  fonts/  com estes nomes
+     2. descomente os dois blocos abaixo
    Até isso acontecer, a Montserrat assume via fallback nas variáveis.
 
 @font-face {
@@ -1084,6 +1083,16 @@ main {
     background-size: cover;
 }
 
+.contact-reason {
+    width: 50%;
+    max-width: 1200px;
+    margin: 0 auto 24px;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text3-color);
+}
+
 .contact-container {
     display: grid;
     padding: 40px;
@@ -1375,8 +1384,8 @@ main {
 
     .hello-container .text-center {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
     }
 
     .hello-container #hello-text {
@@ -1384,9 +1393,8 @@ main {
     }
 
     .hello-container #name-text {
-        display: flex;
-        justify-content: center;
-        width: 300px;
+        width: fit-content;
+        max-width: 100%;
     }
 
     .presentation-container img {
@@ -1394,15 +1402,17 @@ main {
         width: 220px;
     }
 
+    /* O texto segue a esquerda, mas a foto fica centralizada. */
     .presentation-container .photo {
         margin-right: 0;
         margin-bottom: 24px;
+        align-self: center;
     }
 
     .presentation-container .text-center {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
     }
 
     .presentation-container #curriculobutton {
@@ -1410,8 +1420,21 @@ main {
     }
 
     .hello-container .hello-banner {
-        width: 92%;
+        width: 100%;
+        padding: 0 20px;
         margin: 20px auto;
+    }
+
+    /* O nome ocupa a largura toda no mobile: nao sobra faixa lateral pras
+       estrelas, e puxa-las pra dentro fazia elas caírem em cima das letras. */
+    .hero-star {
+        display: none;
+    }
+
+    /* Um pouco menor pra nao encostar na borda direita. */
+    .hello-container h1#name {
+        font-size: clamp(2.6rem, 13vw, 3.2rem);
+        letter-spacing: -2px;
     }
 
     main {
@@ -1420,8 +1443,8 @@ main {
 
     .projects-container .project-content {
         flex-direction: column;
-        text-align: center;
-        padding: 20px;
+        text-align: left;
+        padding: 0;
     }
 
     .projects-container .project-index {
@@ -1444,19 +1467,53 @@ main {
 
     .projects-container .project-description {
         max-width: 100%;
-        text-align: center;
-        align-items: center;
+        text-align: left;
+        align-items: flex-start;
     }
 
     .projects-container .btn {
         width: 100%;
     }
 
+    /* Empilhados na vertical, os cards colavam um no outro: o filete e o
+       respiro maior dizem onde um projeto acaba e o proximo comeca. */
+    .projects-container .project-content {
+        margin-bottom: 0;
+        padding-bottom: 44px;
+    }
+
+    .projects-container .project-content + .project-content {
+        margin-top: 44px;
+        padding-top: 44px;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .contact-reason {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .projects-container,
+    .experience-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
     .contact-container {
         display: flex;
         flex-direction: column;
-        width: 80%;
-        padding: 20px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    /* Todas as seções encostam na mesma borda de 20px no mobile; antes cada
+       uma tinha o seu padding e davam cinco recuos diferentes. */
+    .presentation-container {
+        padding: 40px 20px;
+    }
+
+    .faq-section .text-center {
+        padding: 40px 20px;
     }
 
     .experience-header {
