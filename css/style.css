@@ -312,6 +312,9 @@ main {
     align-items: center;
     width: 100%;
     height: calc(100vh - 100px);
+    /* Com justify-content:center, a diferenca entre as folgas e o que move o
+       bloco: 40px a mais em cima descem o conteudo 20px. */
+    padding-top: 40px;
     padding-bottom: 100px;
     color: var(--text2-color);
 }
