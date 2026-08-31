@@ -102,6 +102,19 @@ html, body {
     overflow-x: hidden !important;
 }
 
+/* O overscroll (aquele "elástico" ao puxar além do topo ou do fim) mostra o
+   fundo do html. Sem isso ele herdava o branco do body e cortava o verde das
+   duas pontas - a onda do hero em cima e a do contato embaixo. */
+html {
+    background: var(--gradient);
+    /* A area do elastico e pintada com a background-color, nao com o degrade
+       (o atalho acima zera a cor e sobrava uma faixa branca) - navegadores so
+       pintam cor solida ali, nunca a imagem/degrade. Por isso a cor precisa
+       ser uma das que ja existem na paleta, e nao uma media inventada:
+       --main-color e o verde escuro usado no resto do site. */
+    background-color: var(--main-color);
+}
+
 body::-webkit-scrollbar {
     width: 12px;
     background: #ffffff00;
@@ -110,11 +123,11 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
     border-radius: 5px;
     transition: all 0.3s ease;
-    background-color: var(--text3-color);
+    background-color: var(--secondary-color);
 }
 
 body::-webkit-scrollbar-thumb:hover {
-    background: rgba(88, 88, 88, 0.459);
+    background: var(--main-color);
 }
 
 body {
@@ -123,7 +136,15 @@ body {
     font-size: 16px;
     line-height: 1.5;
     width: 100%;
-    height: 100%;
+    /* min-height no lugar de height: com o html colorido, o branco do body
+       para de se propagar pro canvas e passa a cobrir so a propria caixa.
+       Com height:100% ele mediria uma tela e o verde apareceria atras do
+       resto da pagina. */
+    min-height: 100%;
+    /* Faz o body virar contexto de empilhamento: sem isso o fundo branco dele
+       passa a cobrir a .wave do hero, que tem z-index -1. */
+    position: relative;
+    z-index: 0;
 }
 
 header {
