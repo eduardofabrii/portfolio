@@ -109,9 +109,8 @@ html {
     background: var(--gradient);
     /* A area do elastico e pintada com a background-color, nao com o degrade
        (o atalho acima zera a cor e sobrava uma faixa branca) - navegadores so
-       pintam cor solida ali, nunca a imagem/degrade. Por isso a cor precisa
-       ser uma das que ja existem na paleta, e nao uma media inventada:
-       --main-color e o verde escuro usado no resto do site. */
+       pintam cor solida ali, nunca a imagem/degrade. --main-color e o verde
+       escuro usado no resto do site. */
     background-color: var(--main-color);
 }
 
@@ -735,6 +734,20 @@ main {
 .slide-projects p {
     line-height: 1.7;
     color: var(--text3-color);
+}
+
+/* Cabeçalho com logo, usado quando o item da lista tem uma instituição
+   associada (monitoria, voluntariado) - mesmo padrão do .experience-brand
+   da Wise Group, só que dentro de um item de lista em vez do slide inteiro. */
+.slide-project-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.slide-project-header .company-mark {
+    flex-shrink: 0;
 }
 
 .experience-nav {
@@ -1557,26 +1570,9 @@ main {
     }
 }
 
-@media (min-width: 768px) and (max-width: 1650px) {
-    .presentation-container #curriculobutton {
-        margin-top: 20px;
-    }
-
-    .presentation-container img {
-        height: 360px;
-        width: 360px;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1300px) {
-    .presentation-container .text-center {
-        flex-direction: row;
-        align-items: flex-start;
-        text-align: left;
-    }
-
-    .presentation-container img {
-        height: 300px;
-        width: 300px;
-    }
-}
+/* As duas faixas que existiam aqui (768-1650 e 768-1300) eram da época do
+   layout centralizado antigo: forçavam foto+texto lado a lado e um terceiro
+   tamanho de foto bem no meio da faixa de tablet, brigando com o layout em
+   coluna que a media query de 1280px já define. Era isso que quebrava a
+   seção de curiosidades no tablet - removidas, o tablet cai na mesma coluna
+   do mobile. */
