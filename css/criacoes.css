@@ -224,10 +224,12 @@ main {
 }
 
 .capitulo h2 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: -0.6px;
-    line-height: 1.2;
+    /* Era 1.6rem contra os 1.45rem da seção: dois pixels de diferença entre
+       "parte 3" e uma seção qualquer. Agora são três degraus claros. */
+    font-size: clamp(1.9rem, 3.2vw, 2.3rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.15;
     color: var(--main-color);
 }
 
