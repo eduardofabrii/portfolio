@@ -736,6 +736,34 @@ main {
     color: var(--text3-color);
 }
 
+/* Mesmo formato das etapas dos projetos (rótulo em negrito + texto na mesma
+   linha), só que em fundo claro: aqui o rótulo é verde em vez de branco. */
+.slide-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 12px 0 0;
+}
+
+.slide-steps dt,
+.slide-steps dd {
+    display: inline;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text3-color);
+}
+
+.slide-steps dt {
+    font-weight: 700;
+    color: var(--main-color);
+}
+
+.slide-steps dt::after {
+    content: ": ";
+    font-weight: 500;
+}
+
 /* Cabeçalho com logo, usado quando o item da lista tem uma instituição
    associada (monitoria, voluntariado) - mesmo padrão do .experience-brand
    da Wise Group, só que dentro de um item de lista em vez do slide inteiro. */
