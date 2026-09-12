@@ -39,6 +39,20 @@ html {
     /* Só pra área de overscroll: ali o navegador pinta background-color e nada
        mais, então precisa ser cor sólida. */
     background-color: var(--main-color);
+    scroll-behavior: smooth;
+}
+
+/* Quem chega por um link do sumário cai com um respiro em cima, em vez de
+   grudado no topo da janela. */
+.creation,
+.capitulo {
+    scroll-margin-top: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 html, body {
@@ -157,12 +171,11 @@ main {
     padding: 8px 24px 96px;
 }
 
+/* Sem card: é só a abertura do texto, no mesmo tratamento do resto da
+   página - o painel destacava demais e brigava com as seções. */
 .creation-callout {
-    background: var(--verde-claro);
-    border: 1px solid var(--linha);
-    border-radius: var(--radius-card);
-    padding: 34px 36px;
-    margin-bottom: 24px;
+    padding: 12px 0 0;
+    margin-bottom: 8px;
 }
 
 .creation-callout .emoji {
@@ -186,6 +199,50 @@ main {
 
 .creation-callout p + p {
     margin-top: 12px;
+}
+
+/* --- divisória de capítulo: transforma uma lista de 30 seções em cinco
+   partes de seis, e dá ao leitor um ponto de respiro. --- */
+
+.capitulo {
+    margin: 56px 0 4px;
+    padding-top: 30px;
+    border-top: 1px solid var(--linha);
+}
+
+.capitulo:first-of-type {
+    margin-top: 40px;
+}
+
+.capitulo-num {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+}
+
+.capitulo h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+    line-height: 1.2;
+    color: var(--main-color);
+}
+
+.capitulo p {
+    max-width: 52ch;
+    margin-top: 8px;
+    font-size: 0.95rem;
+    color: var(--text3-color);
+}
+
+/* A primeira seção depois de uma divisória não repete a linha fina de cima,
+   senão ficam duas réguas coladas. */
+.capitulo + .creation {
+    border-top: none;
+    padding-top: 34px;
 }
 
 /* Cada bloco ganha um número fantasma no canto, mesma ideia do índice grandão
@@ -262,6 +319,40 @@ main {
     margin-top: 18px;
 }
 
+/* Primeiros links da página: viram chips, mesmo tratamento da .creation-list,
+   só que com a cor de destaque e a seta indicando que levam pra fora. */
+.creation-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.creation-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 15px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--tertiary-color);
+    text-decoration: none;
+    background: var(--verde-claro);
+    border: 1px solid var(--linha);
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.creation-links a::after {
+    content: "↗";
+    font-weight: 500;
+}
+
+.creation-links a:hover {
+    color: var(--main-color);
+    border-color: var(--secondary-color);
+}
+
 .creation-list {
     list-style: none;
     margin-top: 18px;
@@ -309,21 +400,46 @@ main {
     max-width: 300px;
 }
 
-/* Grade pros videos do futebol: mesma logica do grid de fotos, mas sem corte
-   (contain) - sao gravacoes 16/9 da quadra, e cortar tiraria justamente o
-   lance. O fundo escuro preenche a sobra. */
-.creation-video-grid {
+/* Foto de um lado, vídeos empilhados do outro. A foto é em pé e os vídeos
+   são deitados: lado a lado, as duas alturas se aproximam sozinhas, sem
+   precisar cortar nada dos vídeos. */
+.creation-split {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
     margin-top: 26px;
+    align-items: stretch;
 }
 
-.creation-video-grid video {
+.creation-split-foto {
+    min-height: 0;
+}
+
+.creation-split-foto img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+}
+
+.creation-split-videos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0;
+}
+
+/* aspect-ratio fixa a altura de cada vídeo: sem isso o tamanho natural do
+   poster mandaria na linha do grid e estouraria a altura. */
+.creation-split-videos video,
+.creation-split-videos iframe {
     display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: contain;
+    border: 0;
     border-radius: 16px;
     box-shadow: var(--shadow-soft);
     background: var(--main-color);
@@ -421,16 +537,55 @@ main {
     margin-top: 0;
 }
 
+/* Foto única e em pé, fora do grid. Até 1400px ela fica embaixo do texto,
+   com largura limitada pra não virar um paredão; acima disso vai pra margem
+   (ver a media query lá embaixo). */
+.creation .solta-unica {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin-top: 26px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+}
+
+/* Logo não pode ser cortado como foto: o grid usa contain e cada um ganha um
+   quadro claro com respiro, pra marca aparecer inteira independente da
+   proporção (tem logo quadrado e logo bem deitado aqui). */
+.creation-logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.creation-logos img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    padding: 20px;
+    background: var(--background);
+    border: 1px solid var(--linha);
+    border-radius: 16px;
+}
+
 /* Corte quadrado no grid: as fotos aqui misturam retrato e paisagem, e o 4/3
    decapitava as verticais. O quadrado é o que trata as duas orientações com o
    mesmo prejuízo. */
-.creation-photos img {
+.creation-photos img,
+.creation-photos video {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 16px;
     box-shadow: var(--shadow-soft);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Vídeo na grade herda o corte quadrado das fotos, mas com fundo da paleta:
+   é 16/9, então sobra faixa quando o player desenha as barras. */
+.creation-photos video {
+    background: var(--main-color);
 }
 
 /* Foto sozinha não vira faixa esticada nem é recortada: mantém o
@@ -455,9 +610,137 @@ main {
     object-position: top;
 }
 
+/* O contrário: quando o assunto da foto está embaixo (o desenho na mesa, o
+   prato), ancorar no topo só mostraria o teto. */
+.creation-photos img.baixo {
+    object-position: bottom;
+}
+
+/* Meio-termo, pra foto com duas pessoas empilhadas: nem o topo (some quem
+   está embaixo) nem a base (corta o rosto de quem está em cima). */
+.creation-photos img.meio-baixo {
+    object-position: 50% 80%;
+}
+
 .creation-photos img:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-soft-hover);
+}
+
+/* A partir da 3a mídia, a seção joga o excedente pras margens brancas da
+   página - que em tela larga são ~300px de nada de cada lado. Ganha-se altura
+   (a grade encurta) e o ritmo quebra sem esconder nada.
+   Só entra acima de 1360px: abaixo disso não há margem sobrando, e as regras
+   daqui simplesmente não valem - tudo volta pra grade. */
+@media (min-width: 1400px) {
+    main {
+        /* Cresce com a tela até 320px: 50vw - 418px é exatamente a margem que
+           sobra ao lado da coluna, já descontado o respiro das duas pontas. */
+        --solta: clamp(260px, calc(50vw - 418px), 320px);
+    }
+
+    .creation-photos {
+        position: relative;
+    }
+
+    /* Foto única e em pé ficava estreita no meio da coluna, com metade da
+       largura vazia ao lado. Aqui ela sai da coluna e vai pra margem, ao lado
+       do texto - a seção encurta e a foto fica maior do que era. */
+    .creation .solta-unica {
+        position: absolute;
+        top: 50%;
+        max-width: none;
+        margin-top: 0;
+        right: calc((var(--solta) + 30px) * -1);
+        width: var(--solta);
+        height: var(--solta);
+        object-fit: cover;
+        padding: 10px;
+        background: var(--background);
+        border-radius: 4px;
+        transform: translateY(-50%) rotate(1.1deg);
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.13), 0 3px 8px rgba(0, 0, 0, 0.07);
+    }
+
+    /* Sem a foto ocupando altura na coluna, a seção pode ficar mais curta que
+       ela - esse mínimo garante que a foto caiba ao lado do texto. */
+    .creation:has(.solta-unica) {
+        min-height: calc(var(--solta) + 40px);
+    }
+
+
+    .creation-photos .solta {
+        position: absolute;
+        top: 50%;
+        width: var(--solta);
+        height: var(--solta);
+        object-fit: cover;
+        padding: 10px;
+        background: var(--background);
+        border-radius: 4px;
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.13), 0 3px 8px rgba(0, 0, 0, 0.07);
+    }
+
+    .creation-photos img.solta:hover {
+        transform: var(--giro);
+        z-index: 2;
+    }
+
+    /* --giro guarda a rotação de cada uma, pra poder compor com o
+       translateY do alinhamento sem uma sobrescrever a outra. */
+    .creation-photos .solta-1 { --giro: rotate(-1.2deg); left: calc((var(--solta) + 30px) * -1); }
+    .creation-photos .solta-2 { --giro: rotate(1deg); right: calc((var(--solta) + 30px) * -1); }
+    .creation-photos .solta-3 { --giro: rotate(1.4deg); left: calc((var(--solta) + 30px) * -1); }
+    .creation-photos .solta-4 { --giro: rotate(-1deg); right: calc((var(--solta) + 30px) * -1); }
+    .creation-photos .solta-5 { --giro: rotate(-1.3deg); left: calc((var(--solta) + 30px) * -1); }
+
+    /* Sozinha de cada lado: centralizada na altura da grade. */
+    .creation-photos .solta-1,
+    .creation-photos .solta-2 {
+        transform: translateY(-50%) var(--giro);
+    }
+
+    /* Com uma companheira do mesmo lado, viram um par centralizado. */
+    .creation-photos:has(.solta-3) .solta-1 {
+        transform: translateY(-102%) var(--giro);
+    }
+
+    .creation-photos:has(.solta-4) .solta-2 {
+        transform: translateY(-102%) var(--giro);
+    }
+
+    .creation-photos .solta-3,
+    .creation-photos .solta-4 {
+        transform: translateY(2%) var(--giro);
+    }
+
+    /* Com uma terceira do mesmo lado, as três se redistribuem: a de cima
+       sobe, a do meio fica no centro e a nova desce. */
+    .creation-photos:has(.solta-5) .solta-1 {
+        transform: translateY(-154%) var(--giro);
+    }
+
+    .creation-photos:has(.solta-5) .solta-3 {
+        transform: translateY(-50%) var(--giro);
+    }
+
+    .creation-photos .solta-5 {
+        transform: translateY(54%) var(--giro);
+    }
+
+    /* Um par de fotos na margem é mais alto que uma grade de duas fotos, e
+       vazava pra fora da seção. Em vez de empurrar com padding, a própria
+       grade ganha altura mínima suficiente pra conter o par - e a linha dela
+       fica centralizada nessa altura, sem esticar as fotos. */
+    .creation-photos:has(.solta-3),
+    .creation-photos:has(.solta-4) {
+        min-height: calc(var(--solta) * 2 + 16px);
+        align-content: center;
+    }
+
+    .creation-photos:has(.solta-5) {
+        min-height: calc(var(--solta) * 3 + 32px);
+    }
 }
 
 .creations-closing {
@@ -520,8 +803,18 @@ main {
         padding: 8px 20px 64px;
     }
 
-    .creation-callout {
-        padding: 26px 22px;
+    .capitulo {
+        margin: 44px 0 4px;
+        padding-top: 28px;
+    }
+
+    /* Lado a lado em 375px deixaria os dois espremidos - empilha. */
+    .creation-split {
+        grid-template-columns: 1fr;
+    }
+
+    .creation-split-foto img {
+        height: auto;
     }
 
     .creation {
