@@ -309,6 +309,26 @@ main {
     max-width: 300px;
 }
 
+/* Grade pros videos do futebol: mesma logica do grid de fotos, mas sem corte
+   (contain) - sao gravacoes 16/9 da quadra, e cortar tiraria justamente o
+   lance. O fundo escuro preenche a sobra. */
+.creation-video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.creation-video-grid video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    background: var(--main-color);
+}
+
 .creation-video figcaption {
     margin-top: 10px;
     font-size: 0.85rem;
@@ -427,6 +447,12 @@ main {
     width: auto;
     max-width: 100%;
     max-height: 460px;
+}
+
+/* Em foto vertical com o rosto na parte de cima, o corte quadrado
+   centralizado corta a cabeça. Essa classe ancora o recorte no topo. */
+.creation-photos img.topo {
+    object-position: top;
 }
 
 .creation-photos img:hover {
