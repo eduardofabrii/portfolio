@@ -887,8 +887,12 @@ main {
 .projects-container .project-image {
     position: relative;
     z-index: 2;
-    width: 45%;
-    aspect-ratio: 16 / 10;
+    /* 50% e 4/3 no lugar dos 45% e 16/10 originais: com as etapas o texto
+       cresceu, e a imagem precisava crescer junto pra nao ficar pequena ao
+       lado. Nao passa disso porque as screenshots sao paisagem - caixa mais
+       alta que isso comecaria a cortar as laterais delas. */
+    width: 50%;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
     border-radius: var(--radius-card);
     background: transparent;
@@ -1046,6 +1050,41 @@ main {
     margin: 0;
     line-height: 1.6;
     color: var(--text1-color);
+}
+
+/* Cada projeto contado em etapas: o problema que deu origem, como foi feito e
+   o que sobrou dele. O rótulo segue o mesmo tratamento do .section-label
+   (miúdo e espaçado), só que em branco por causa do fundo verde daqui. */
+.projects-container .project-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin: 4px 0 0;
+}
+
+/* Rotulo na mesma linha do texto: em bloco proprio, cada etapa custava uma
+   linha a mais, e a coluna de texto ficava bem mais alta que a imagem. */
+.projects-container .project-steps dt,
+.projects-container .project-steps dd {
+    display: inline;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.projects-container .project-steps dt {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.projects-container .project-steps dt::after {
+    content: ": ";
+    font-weight: 500;
+}
+
+.projects-container .project-steps dd {
+    color: rgba(255, 255, 255, 0.92);
 }
 
 .projects-container .project-tags {
