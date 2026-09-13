@@ -660,8 +660,15 @@ main {
         padding: 10px;
         background: var(--background);
         border-radius: 4px;
-        transform: translateY(-50%) rotate(1.1deg);
+        --sobe: -50%;
+        --giro: rotate(1.1deg);
+        transform: translateY(var(--sobe)) var(--giro);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
         box-shadow: 0 10px 26px rgba(0, 0, 0, 0.13), 0 3px 8px rgba(0, 0, 0, 0.07);
+    }
+
+    .creation img.solta-unica:hover {
+        transform: translateY(calc(var(--sobe) + 2px)) var(--giro);
     }
 
     /* Sem a foto ocupando altura na coluna, a seção pode ficar mais curta que
@@ -681,10 +688,18 @@ main {
         background: var(--background);
         border-radius: 4px;
         box-shadow: 0 10px 26px rgba(0, 0, 0, 0.13), 0 3px 8px rgba(0, 0, 0, 0.07);
+        /* O transform e montado uma vez so, a partir das duas variaveis:
+           --sobe posiciona na altura, --giro da a tortinha. Quem quiser mexer
+           numa delas troca a variavel, nunca o transform - foi assim que o
+           hover antigo apagava o posicionamento e a foto saltava. */
+        transform: translateY(var(--sobe)) var(--giro);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
+    /* Hover soma 2px ao que ja existe, em vez de substituir: a foto so afunda
+       um tiquinho no lugar onde ela esta. */
     .creation-photos img.solta:hover {
-        transform: var(--giro);
+        transform: translateY(calc(var(--sobe) + 2px)) var(--giro);
         z-index: 2;
     }
 
@@ -699,35 +714,35 @@ main {
     /* Sozinha de cada lado: centralizada na altura da grade. */
     .creation-photos .solta-1,
     .creation-photos .solta-2 {
-        transform: translateY(-50%) var(--giro);
+        --sobe: -50%;
     }
 
     /* Com uma companheira do mesmo lado, viram um par centralizado. */
     .creation-photos:has(.solta-3) .solta-1 {
-        transform: translateY(-102%) var(--giro);
+        --sobe: -102%;
     }
 
     .creation-photos:has(.solta-4) .solta-2 {
-        transform: translateY(-102%) var(--giro);
+        --sobe: -102%;
     }
 
     .creation-photos .solta-3,
     .creation-photos .solta-4 {
-        transform: translateY(2%) var(--giro);
+        --sobe: 2%;
     }
 
     /* Com uma terceira do mesmo lado, as três se redistribuem: a de cima
        sobe, a do meio fica no centro e a nova desce. */
     .creation-photos:has(.solta-5) .solta-1 {
-        transform: translateY(-154%) var(--giro);
+        --sobe: -154%;
     }
 
     .creation-photos:has(.solta-5) .solta-3 {
-        transform: translateY(-50%) var(--giro);
+        --sobe: -50%;
     }
 
     .creation-photos .solta-5 {
-        transform: translateY(54%) var(--giro);
+        --sobe: 54%;
     }
 
     /* Um par de fotos na margem é mais alto que uma grade de duas fotos, e
