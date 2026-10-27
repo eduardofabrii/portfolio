@@ -9,6 +9,7 @@ function scrollToTop() {
 function smoothScrollTo(targetY, duration = 420) {
     const startY = window.scrollY;
     const diff = targetY - startY;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { window.scrollTo(0, targetY); return; }
     const startTime = performance.now();
 
     // easeOutCubic: sai rápido e só desacelera na chegada.
@@ -81,14 +82,12 @@ function initExperienceSlides() {
     const slides = Array.from(track.children);
     const dots = Array.from(document.querySelectorAll('.experience-dot'));
     const next = document.querySelector('.experience-next');
-    const interval = 7000;
 
     if (!slides.length) {
         return;
     }
 
-    let current = 0;
-    let timer = null;
+    let current = 2;
 
     // O palco tem altura fixa por causa do overflow; sem isso os slides curtos
     // deixariam o buraco do slide mais alto.
@@ -99,64 +98,41 @@ function initExperienceSlides() {
     function go(index) {
         current = (index + slides.length) % slides.length;
         track.style.transform = `translateX(-${current * 100}%)`;
-        slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
-        dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('is-active', i === current);
+            slide.inert = i !== current;
+            slide.setAttribute('aria-hidden', String(i !== current));
+        });
+        dots.forEach((dot, i) => { dot.classList.toggle('is-active', i === current); dot.setAttribute('aria-pressed', String(i === current)); });
         fitHeight();
     }
 
-    function stop() {
-        if (timer) {
-            clearInterval(timer);
-            timer = null;
-        }
-    }
-
-    function start() {
-        stop();
-        timer = setInterval(() => go(current + 1), interval);
-    }
-
-    stage.addEventListener('click', () => {
-        go(current + 1);
-        start();
-    });
-
-    if (next) {
-        next.addEventListener('click', () => {
-            go(current + 1);
-            start();
-        });
-    }
-
+    if (next) next.addEventListener('click', () => go(current + 1));
     dots.forEach((dot, index) => {
-        dot.addEventListener('click', (event) => {
-            event.stopPropagation();
-            go(index);
-            start();
-        });
+        dot.addEventListener('click', () => go(index));
     });
-
-    stage.addEventListener('mouseenter', stop);
-    stage.addEventListener('mouseleave', start);
     window.addEventListener('resize', fitHeight);
 
-    go(0);
-    start();
+    go(current);
+    if (document.fonts) document.fonts.ready.then(fitHeight);
+    const observer = new ResizeObserver(fitHeight);
+    slides.forEach(slide => observer.observe(slide));
 }
 
 function initFaq() {
-    document.querySelectorAll('.faq-question').forEach((question) => {
+    document.querySelectorAll('.faq-question').forEach((question, index) => {
+        const answer = question.nextElementSibling;
+        answer.id = `faq-answer-${index}`;
+        answer.hidden = true;
+        question.type = 'button';
+        question.setAttribute('aria-controls', answer.id);
+        question.setAttribute('aria-expanded', 'false');
+        question.querySelector('.faq-toggle').textContent = '+';
         question.addEventListener('click', () => {
-            const answer = question.nextElementSibling;
-            const toggleIcon = question.querySelector('.faq-toggle i');
-
-            answer.classList.toggle('active');
-
-            if (answer.classList.contains('active')) {
-                toggleIcon.classList.replace('fa-chevron-down', 'fa-chevron-up');
-            } else {
-                toggleIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
-            }
+            const expanded = question.getAttribute('aria-expanded') !== 'true';
+            question.setAttribute('aria-expanded', String(expanded));
+            answer.hidden = !expanded;
+            question.querySelector('.faq-toggle').textContent = expanded ? '−' : '+';
         });
     });
 }
@@ -267,7 +243,8 @@ function setupCarouselControls(container, track, slideCount) {
 
     function update() {
         track.style.transform = `translateX(${-current * 100}%)`;
-        dotButtons.forEach((dot, index) => dot.classList.toggle('active', index === current));
+        dotButtons.forEach((dot, index) => { dot.classList.toggle('active', index === current); dot.setAttribute('aria-pressed', String(index === current)); });
+        Array.from(track.children).forEach((slide, index) => { slide.inert = index !== current; slide.setAttribute('aria-hidden', String(index !== current)); });
     }
 
     function goTo(index) {

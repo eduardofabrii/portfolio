@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css?v=110">
+    <link rel="stylesheet" href="css/style.css?v=114">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="img/favicon/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
@@ -16,9 +16,9 @@
 <body>
     <header id="header">
         <div class="logo">
-            <img src="img/img-face.jpg" alt="Logo">
+            <img src="img/img-face.jpg" alt="Eduardo Fabri">
         </div>
-        <nav class="nav-bar">
+        <nav class="nav-bar" aria-label="Navegação principal">
             <ul class="nav-links">
                 <li class="center"><a href="#hello">início</a></li>
                 <li class="center"><a href="#about">curiosidades</a></li>
@@ -30,8 +30,8 @@
         </nav>
         <nav>
             <ul class="social-links">
-                <li><a href="https://www.linkedin.com/in/eduardofabri/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                <li><a href="https://github.com/eduardofabrii" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/eduardofabri/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a></li>
+                <li><a href="https://github.com/eduardofabrii" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span></a></li>
             </ul>
         </nav>
     </header>
@@ -71,28 +71,27 @@
 
         <section class="presentation-container" id="about">
             <div class="text-center">
-                <div class="photo" id="photo">
-                    <img src="img/img-cafe.jpg" alt="Eduardo Fabri numa cafeteria">
-                </div>
-                <div class="text-me" id="about-me-sec">
-                    <p id="about-me">curiosidades</p>
-                    <div id="text-aboutme">
-                        <p>primeiramente, é um prazer te ver aqui :)</p>
-                    </div>
-                    <ul class="curiosities-list">
-                        <li>cafeteria nova é meu programa preferido, sempre tem uma na lista esperando</li>
-                        <li>suits é a série pra qual eu sempre volto</li>
-                        <li>planejo muito o futuro, mas tento não esquecer de viver o presente</li>
-                        <li>sou fã do "bora, vamos testar", prefiro descobrir fazendo do que ficar imaginando</li>
-                        <li>gosto de boas histórias, lá que saem as melhores ideias</li>
-                        <li>futebol, boxe e corrida são o que me tiram da frente da tela</li>
-                    </ul>
+                <h2 class="section-title">curiosidades</h2>
+                <p class="section-intro">primeiramente, é um prazer te ver aqui :)</p>
+                <div class="curiosities-grid">
+                    <figure class="curiosity-photo">
+                        <img src="img/img-cafe.jpg" alt="Eduardo Fabri numa cafeteria" loading="lazy">
+                        <figcaption><span class="curiosity-number">01</span>cafeteria nova é meu programa preferido, sempre tem uma na lista esperando</figcaption>
+                    </figure>
+                    <ol class="curiosities-list" start="2">
+                        <li><span class="curiosity-number">02</span>suits é a série pra qual eu sempre volto</li>
+                        <li><span class="curiosity-number">03</span>planejo muito o futuro, mas tento não esquecer de viver o presente</li>
+                        <li><span class="curiosity-number">04</span>sou fã do "bora, vamos testar", prefiro descobrir fazendo do que ficar imaginando</li>
+                        <li><span class="curiosity-number">05</span>gosto de boas histórias, lá que saem as melhores ideias</li>
+                        <li><span class="curiosity-number">06</span>futebol, boxe e corrida são o que me tiram da frente da tela</li>
+                        <li><span class="curiosity-number">07</span>cresci vendo meu pai jogar counter-strike com meu tio, e cheguei ao top 1 de uma liga brasileira na faceit</li>
+                    </ol>
                 </div>
             </div>
         </section>
 
         <section class="experience-container" id="experience">
-            <h1 class="section-title">experiência</h1>
+            <h2 class="section-title">experiência</h2>
             <div class="text-center">
                 <div class="experience-content">
                     <div class="experience-stage">
@@ -122,14 +121,14 @@
                                     No dia a dia, desenvolvo features e APIs em Spring Boot, dou sustentação a sistemas em produção e ajudo a padronizar a documentação com Swagger entre os times.
                                 </p>
                                 <div class="experience-tags">
-                                    <span>Java</span>
-                                    <span>Spring Boot</span>
-                                    <span>Node</span>
-                                    <span>Angular</span>
-                                    <span>PostgreSQL</span>
-                                    <span>MongoDB</span>
-                                    <span>Docker</span>
-                                    <span>GCP</span>
+                                    <span class="tech-badge" data-tech="java"><i class="fa-brands fa-java" aria-hidden="true"></i><span>Java</span></span>
+                                    <span class="tech-badge" data-tech="spring"><i class="fa-solid fa-leaf" aria-hidden="true"></i><span>Spring Boot</span></span>
+                                    <span class="tech-badge" data-tech="node"><i class="fa-brands fa-node-js" aria-hidden="true"></i><span>Node</span></span>
+                                    <span class="tech-badge" data-tech="angular"><i class="fa-brands fa-angular" aria-hidden="true"></i><span>Angular</span></span>
+                                    <span class="tech-badge" data-tech="postgres"><i class="fa-solid fa-database" aria-hidden="true"></i><span>PostgreSQL</span></span>
+                                    <span class="tech-badge" data-tech="mongo"><i class="fa-solid fa-leaf" aria-hidden="true"></i><span>MongoDB</span></span>
+                                    <span class="tech-badge" data-tech="docker"><i class="fa-brands fa-docker" aria-hidden="true"></i><span>Docker</span></span>
+                                    <span class="tech-badge" data-tech="gcp"><i class="fa-brands fa-google" aria-hidden="true"></i><span>GCP</span></span>
                                 </div>
                             </article>
 
@@ -221,11 +220,10 @@
         </section>
 
         <section class="projects-container" id="projects">
-            <h1 class="section-title">projetos</h1>
-            <p class="section-intro">um pouco do que construí fora do trabalho, entre projetos pessoais e da faculdade
+            <h2 class="section-title">projetos</h2>
+            <p class="section-intro">um pouco do que construí fora do trabalho, entre projetos pessoais e da faculdade</p>
             <div class="text-center">
                 <div class="project-content">
-                    <span class="project-index" aria-hidden="true">1</span>
                     <div class="project-image">
                         <img src="img/chrono/01-login.jpg" alt="Chrono - Login" loading="lazy">
                         <img src="img/chrono/02-dashboard.jpg" alt="Chrono - Dashboard" loading="lazy">
@@ -236,17 +234,9 @@
                         <img src="img/chrono/07-gerenciar-usuarios.jpg" alt="Chrono - Gerenciar usuários" loading="lazy">
                         <img src="img/chrono/08-registrar-usuario.jpg" alt="Chrono - Registrar usuário" loading="lazy">
                         <img src="img/chrono/09-editar-perfil.jpg" alt="Chrono - Editar perfil" loading="lazy">
-                        <div class="overlay">
-                            <a href="https://github.com/eduardofabrii/chrono-angular" target="_blank" class="icon-link" aria-label="Ir para o GitHub">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                            <a href="files/chrono.pdf" download class="icon-link" aria-label="Baixar PDF do projeto">
-                                <i class="fa-solid fa-file-pdf"></i>
-                            </a>
-                        </div>
                     </div>
                     <div class="project-description">
-                        <h2>Chrono</h2>
+                        <h3>Chrono</h3>
                         <p>Sistema para lançar e gerenciar horas em projetos, com dashboard, relatórios e controle de usuários e atividades.</p>
                         <dl class="project-steps">
                             <div>
@@ -263,68 +253,15 @@
                             </div>
                         </dl>
                         <div class="project-tags">
-                            <span>Java</span>
-                            <span>Spring Boot</span>
-                            <span>Angular</span>
+                            <span class="tech-badge" data-tech="java"><i class="fa-brands fa-java" aria-hidden="true"></i><span>Java</span></span>
+                            <span class="tech-badge" data-tech="spring"><i class="fa-solid fa-leaf" aria-hidden="true"></i><span>Spring Boot</span></span>
+                            <span class="tech-badge" data-tech="angular"><i class="fa-brands fa-angular" aria-hidden="true"></i><span>Angular</span></span>
                         </div>
-                        <a href="https://github.com/eduardofabrii/chrono-api" target="_blank" class="btn">ir para o github <i class="fa-solid fa-arrow-right"></i></a>
+                        <div class="project-actions"><a href="https://github.com/eduardofabrii/chrono-api" target="_blank" rel="noopener noreferrer" class="btn">ir para o github <i class="fa-solid fa-arrow-right"></i></a><a href="files/chrono.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">ver estudo de caso</a></div>
                     </div>
                 </div>
 
                 <div class="project-content">
-                    <span class="project-index" aria-hidden="true">2</span>
-                    <div class="project-description">
-                        <h2>Agiota Bank</h2>
-                        <p>Simulador de banco digital com API REST e app mobile: autenticação, transferências via PIX, chaves e notificações por e-mail.</p>
-                        <dl class="project-steps">
-                            <div>
-                                <dt>o problema</dt>
-                                <dd>A gente usa banco digital todo dia, mas ninguém do grupo sabia explicar como autenticação, chave PIX e transferência funcionam por dentro.</dd>
-                            </div>
-                            <div>
-                                <dt>como fiz</dt>
-                                <dd>Dividimos o time por frente, cada um com uma parte da API em Spring Boot: autenticação JWT, transferências e chaves. Também desenhei a estrutura das telas - cores e layout - que o time implementou no app em Kotlin.</dd>
-                            </div>
-                            <div>
-                                <dt>o que ficou</dt>
-                                <dd>Como trabalho em equipe foi bom, mas não nos organizamos direito desde o começo. Teríamos entregado mais funcionalidades com um planejamento melhor. Ainda assim, foi um grande aprendizado.</dd>
-                            </div>
-                        </dl>
-                        <div class="project-tags">
-                            <span>Java</span>
-                            <span>Spring Boot</span>
-                            <span>Kotlin</span>
-                        </div>
-                        <a href="https://github.com/eduardofabrii/agiota-server" target="_blank" class="btn">ir para o github <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                    <div class="project-image is-portrait">
-                        <img src="img/agiota/01-signin.png" alt="Agiota Bank - Cadastro" loading="lazy">
-                        <img src="img/agiota/02-login.png" alt="Agiota Bank - Login" loading="lazy">
-                        <img src="img/agiota/03-home.png" alt="Agiota Bank - Home" loading="lazy">
-                        <img src="img/agiota/04-transacao.png" alt="Agiota Bank - Transação" loading="lazy">
-                        <img src="img/agiota/05-pix.png" alt="Agiota Bank - PIX" loading="lazy">
-                        <img src="img/agiota/06-chaves-pix.png" alt="Agiota Bank - Chaves PIX" loading="lazy">
-                        <img src="img/agiota/07-add-cartao.png" alt="Agiota Bank - Adicionar cartão" loading="lazy">
-                        <img src="img/agiota/08-cartao.png" alt="Agiota Bank - Cartão" loading="lazy">
-                        <img src="img/agiota/09-investimentos.png" alt="Agiota Bank - Investimentos" loading="lazy">
-                        <img src="img/agiota/10-comprar-investimento.png" alt="Agiota Bank - Comprar investimento" loading="lazy">
-                        <img src="img/agiota/11-solicitar-emprestimo.png" alt="Agiota Bank - Solicitar empréstimo" loading="lazy">
-                        <img src="img/agiota/12-meus-emprestimos.png" alt="Agiota Bank - Meus empréstimos" loading="lazy">
-                        <img src="img/agiota/13-extrato.png" alt="Agiota Bank - Extrato" loading="lazy">
-                        <img src="img/agiota/14-perfil.png" alt="Agiota Bank - Perfil" loading="lazy">
-                        <div class="overlay">
-                            <a href="https://github.com/eduardofabrii/agiota-server" target="_blank" class="icon-link" aria-label="Ir para o GitHub">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                            <a href="files/agiota-bank.pdf" download class="icon-link" aria-label="Baixar PDF do projeto">
-                                <i class="fa-solid fa-file-pdf"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-content">
-                    <span class="project-index" aria-hidden="true">3</span>
                     <div class="project-image">
                         <img src="img/repz/01-login.png" alt="Repz - Login" loading="lazy">
                         <img src="img/repz/02-admin-dashboard.png" alt="Repz - Dashboard do admin" loading="lazy">
@@ -338,17 +275,9 @@
                         <img src="img/repz/10-personal-ficha-treino.png" alt="Repz - Ficha de treino (personal)" loading="lazy">
                         <img src="img/repz/11-aluno-dashboard.png" alt="Repz - Dashboard do aluno" loading="lazy">
                         <img src="img/repz/12-aluno-ficha-treino.png" alt="Repz - Ficha de treino (aluno)" loading="lazy">
-                        <div class="overlay">
-                            <a href="https://github.com/eduardofabrii/repz" target="_blank" class="icon-link" aria-label="Ir para o GitHub">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                            <a href="files/repz.pdf" download class="icon-link" aria-label="Baixar PDF do projeto">
-                                <i class="fa-solid fa-file-pdf"></i>
-                            </a>
-                        </div>
                     </div>
                     <div class="project-description">
-                        <h2>Repz</h2>
+                        <h3>Repz</h3>
                         <p>Sistema de gestão para academias, com controle de acesso por perfil, fichas de treino, avaliações físicas e check-in de frequência.</p>
                         <dl class="project-steps">
                             <div>
@@ -365,101 +294,16 @@
                             </div>
                         </dl>
                         <div class="project-tags">
-                            <span>Spring Boot</span>
-                            <span>Angular</span>
-                            <span>PostgreSQL</span>
+                            <span class="tech-badge" data-tech="spring"><i class="fa-solid fa-leaf" aria-hidden="true"></i><span>Spring Boot</span></span>
+                            <span class="tech-badge" data-tech="angular"><i class="fa-brands fa-angular" aria-hidden="true"></i><span>Angular</span></span>
+                            <span class="tech-badge" data-tech="postgres"><i class="fa-solid fa-database" aria-hidden="true"></i><span>PostgreSQL</span></span>
                         </div>
-                        <a href="https://github.com/eduardofabrii/repz" target="_blank" class="btn">ir para o github <i class="fa-solid fa-arrow-right"></i></a>
+                        <div class="project-actions"><a href="https://github.com/eduardofabrii/repz" target="_blank" rel="noopener noreferrer" class="btn">ir para o github <i class="fa-solid fa-arrow-right"></i></a><a href="files/repz.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">ver estudo de caso</a></div>
                     </div>
                 </div>
 
-                <div class="project-content">
-                    <span class="project-index" aria-hidden="true">4</span>
-                    <div class="project-description">
-                        <h2>Networker</h2>
-                        <p>Chat em tempo real com Spring Boot e WebSocket, rodando sobre um servidor TCP para testar broadcast na prática.</p>
-                        <dl class="project-steps">
-                            <div>
-                                <dt>o problema</dt>
-                                <dd>Na matéria de Redes, broadcast e TCP eram só diagrama no slide para mim. Eu queria ver aquilo acontecendo de verdade.</dd>
-                            </div>
-                            <div>
-                                <dt>como fiz</dt>
-                                <dd>Subi um servidor TCP, troquei a comunicação para WebSocket com Spring Boot e abri várias janelas ao mesmo tempo para ver a mensagem chegando em todas. Fiz sozinho, com apoio do Copilot na IDE e do GPT.</dd>
-                            </div>
-                            <div>
-                                <dt>o que ficou</dt>
-                                <dd>Um chat em tempo real funcionando, e a teoria da matéria virou algo que eu já tinha visto rodar. Foi curiosidade que virou projeto.</dd>
-                            </div>
-                        </dl>
-                        <div class="project-tags">
-                            <span>Java</span>
-                            <span>Spring Boot</span>
-                        </div>
-                        <a href="https://github.com/eduardofabrii/networker" target="_blank" class="btn">ir para o github <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                    <div class="project-image">
-                        <img src="img/networker/01-identificacao.png" alt="Networker - Identificação do usuário" loading="lazy">
-                        <img src="img/networker/02-chat-inicial.png" alt="Networker - Área de chat" loading="lazy">
-                        <img src="img/networker/03-usuarios-online.png" alt="Networker - Usuários online" loading="lazy">
-                        <img src="img/networker/04-conversa.png" alt="Networker - Conversa em grupo" loading="lazy">
-                        <img src="img/networker/05-broadcast-tcp.png" alt="Networker - Broadcast via TCP" loading="lazy">
-                        <img src="img/networker/06-mobile.png" alt="Networker - Layout mobile" loading="lazy">
-                        <div class="overlay">
-                            <a href="https://github.com/eduardofabrii/networker" target="_blank" class="icon-link" aria-label="Ir para o GitHub">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                            <a href="files/networker.pdf" download class="icon-link" aria-label="Baixar PDF do projeto">
-                                <i class="fa-solid fa-file-pdf"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="project-content">
-                    <span class="project-index" aria-hidden="true">5</span>
-                    <div class="project-image">
-                        <img src="img/academix/01-menu-principal.png" alt="Academix - Menu principal" loading="lazy">
-                        <img src="img/academix/02-painel-cadastro.png" alt="Academix - Painel de cadastro" loading="lazy">
-                        <img src="img/academix/03-cadastro-aluno.png" alt="Academix - Cadastro de aluno" loading="lazy">
-                        <img src="img/academix/04-entrar-como.png" alt="Academix - Seleção de papel" loading="lazy">
-                        <img src="img/academix/05-painel-professor.png" alt="Academix - Painel do professor" loading="lazy">
-                        <img src="img/academix/06-painel-diretor.png" alt="Academix - Painel do diretor" loading="lazy">
-                        <div class="overlay">
-                            <a href="https://github.com/eduardofabrii/academix" target="_blank" class="icon-link" aria-label="Ir para o GitHub">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                            <a href="files/academix.pdf" download class="icon-link" aria-label="Baixar PDF do projeto">
-                                <i class="fa-solid fa-file-pdf"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-description">
-                        <h2>Academix</h2>
-                        <p>Aplicação desktop de gestão escolar em Java e Swing, feita em grupo para treinar os princípios de POO.</p>
-                        <dl class="project-steps">
-                            <div>
-                                <dt>o problema</dt>
-                                <dd>Precisávamos exercitar orientação a objetos em um sistema com regras de verdade, e não em exemplos soltos de sala de aula.</dd>
-                            </div>
-                            <div>
-                                <dt>como fiz</dt>
-                                <dd>Modelamos as classes em grupo e fiquei responsável por toda a interface em Swing, ligando as telas às regras escritas em Java.</dd>
-                            </div>
-                            <div>
-                                <dt>o que ficou</dt>
-                                <dd>Uma aplicação desktop com papéis distintos - aluno, professor e diretor. Nem tudo está 100%: é projeto de estudo, e cumpriu exatamente esse papel.</dd>
-                            </div>
-                        </dl>
-                        <div class="project-tags">
-                            <span>Java</span>
-                            <span>Swing</span>
-                        </div>
-                        <a href="https://github.com/eduardofabrii/academix" target="_blank" class="btn">ir para o github <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
             </div>
-            <p class="section-note">pdfs gerados com apoio de ia</p>
         </section>
 
         <section class="faq-section">
@@ -473,7 +317,7 @@
                 <path fill="url(#gradient4)" fill-opacity="1" d="M0,320L80,293.3C160,267,320,213,480,192C640,171,800,213,960,224C1120,235,1280,213,1360,186.7L1440,160L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
             </svg>
             <div class="text-center" id="faq">
-                <h1 class="section-title">perguntas frequentes</h1>
+                <h2 class="section-title">perguntas frequentes</h2>
                 <p class="section-intro">o que costumam me perguntar quando a conversa sai do currículo</p>
                 <div class="faq-item">
                     <button class="faq-question">
@@ -520,31 +364,15 @@
                     </div>
                 </div>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="transform: rotate(180deg);">
-                <defs>
-                    <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:#8BC34A;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#47753B;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <path fill="url(#gradient5)" fill-opacity="1" d="M0,320L80,293.3C160,267,320,213,480,192C640,171,800,213,960,224C1120,235,1280,213,1360,186.7L1440,160L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
-            </svg>
         </section>
 
-        <section class="contact-section">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <defs>
-                    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:#47753B;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#8BC34A;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <path fill="url(#gradient2)" fill-opacity="1" d="M0,320L60,293.3C120,267,240,213,360,192C480,171,600,213,720,224C840,235,960,213,1080,186.7C1200,160,1320,128,1380,112L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
-            </svg>
-
-            <p class="contact-reason">se você quer trocar uma ideia, falar de uma vaga ou tirar um projeto do papel, me manda uma mensagem</p>
-
-            <div class="contact-container" id="contact-id">
+        <section class="contact-section" id="contact-id">
+            <div class="contact-container">
+                <div class="contact-copy">
+                    <h2>bora tirar uma<br>ideia do papel<span>?</span></h2>
+                    <p>se você quer trocar uma ideia, falar de uma vaga ou tirar um projeto do papel, me manda uma mensagem</p>
+                    <svg class="contact-arrow" viewBox="0 0 200 90" fill="none" aria-hidden="true"><path d="M12 8c0 68 118 86 168 22m-30-3 30 3-8 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
                 <div class="form-section" id="contact-form">
                     <h2>contato</h2>
                     <form action="https://formsubmit.co/eduardohfabri@gmail.com" method="POST">
@@ -552,47 +380,23 @@
                         <input type="hidden" name="_next" value="https://eduardofabrii.github.io/portfolio/email.html">
                         <input type="hidden" name="_subject" value="Entrando em contato através do portfólio.">
                         <input type="hidden" name="_autoresponse" value="Obrigado por entrar em contato! Em breve retornarei sua mensagem.">
-                        <input name="name" placeholder="Informe seu nome" required>
-                        <input type="email" name="email" placeholder="Informe seu e-mail" required>
-                        <textarea name="message" placeholder="Informe sua mensagem" required style="resize: none;"></textarea>
+                        <label for="contact-name">nome</label>
+                        <input id="contact-name" autocomplete="name" name="name" placeholder="Informe seu nome" required>
+                        <label for="contact-email">e-mail</label>
+                        <input id="contact-email" autocomplete="email" type="email" name="email" placeholder="Informe seu e-mail" required>
+                        <label for="contact-message">mensagem</label>
+                        <textarea id="contact-message" rows="4" name="message" placeholder="Informe sua mensagem" required style="resize: none;"></textarea>
                         <button type="submit" data-button>Enviar</button>
                     </form>
                 </div>
-                <div class="navigation" id="navigation">
-                    <h2>navegar</h2>
-                    <ul>
-                        <li><a href="#hello">início</a></li>
-                        <li><a href="#about">curiosidades</a></li>
-                        <li><a href="#experience">experiência</a></li>
-                        <li><a href="#projects">projetos</a></li>
-                        <li><a href="#faq">perguntas</a></li>
-                    </ul>
-                </div>
-                <div class="social-icons" id="social-icons">
-                    <h2>redes sociais</h2>
-                    <div class="social-icons-elements">
-                        <a href="https://www.linkedin.com/in/eduardofabri/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/eduardofabrii" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://www.instagram.com/eduardofabr/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
             </div>
-
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="transform: rotate(180deg);">
-                <defs>
-                    <linearGradient id="gradient3" x1="100%" y1="0%" x2="0%" y2="0%">
-                        <stop offset="0%" style="stop-color:#47753B;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#8BC34A;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <path fill="url(#gradient3)" fill-opacity="1" d="M0,320L60,293.3C120,267,240,213,360,192C480,171,600,213,720,224C840,235,960,213,1080,186.7C1200,160,1320,128,1380,112L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
-            </svg>
         </section>
+        <footer class="site-footer"><a href="#hello">eduardo fabri.</a></footer>
 
-        <button class="back-to-top" onclick="scrollToTop()">
+        <button aria-label="Voltar ao início" class="back-to-top" onclick="scrollToTop()">
             <i class="fa-solid fa-arrow-up"></i>
         </button>
     </main>
-    <script src="script/script.js?v=17" defer></script>
+    <script src="script/script.js?v=18" defer></script>
 </body>
 </html>
