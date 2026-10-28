@@ -1,8 +1,7 @@
-/* Hairline 0.5.1, Copyright (c) 2026 Lucas Marques. MIT license: vendor/hairline-LICENSE.txt. Adapted for Eduardo Fabri. */
+/* Hairline 0.5.1, Copyright (c) 2026 Lucas Marques. MIT license: vendor/hairline-LICENSE.txt. Adapted for Eduardo Fabri: fixed portrait screen and animated keyboard. */
 
 // ../../../../../private/tmp/hairline-source/packages/hairline/src/core/iso.ts
 var clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-var lerp = (a, b, t) => a + (b - a) * t;
 var rad = (d) => d * Math.PI / 180;
 var r2 = (n) => Math.round(n * 100) / 100;
 var poly = (pts) => "M" + pts.map((p) => r2(p[0]) + " " + r2(p[1])).join("L") + "Z";
@@ -90,6 +89,7 @@ var reduced = false;
 var setReducedMotion = (on) => {
   reduced = on;
 };
+var reducedMotion = () => reduced;
 function spring(x, o = {}) {
   return { x, v: 0, t: x, k: o.k ?? 100, c: o.c ?? 18, m: o.m ?? 1, eps: o.eps ?? 0.01 };
 }
@@ -352,7 +352,7 @@ function keys() {
 }
 var mount = ({ stage: stage2, svg, read }, value) => {
   const bag = disposer();
-  let maxA = value, over = null;
+  let intensity = 1;
   const C = Cam(45, 0.5, 1.3), pts = [[0, 0, 0], [W, 0, 0], [0, D, 0], [W, D, 0]];
   for (const th of [MIN, 90, REST, 125]) for (const u of [0, W]) for (const v of [0, D]) for (const w of [-T / 2, T / 2]) pts.push(lidAt(th)(u, v, w));
   fit(C, pts, 200, 166);
@@ -367,7 +367,12 @@ var mount = ({ stage: stage2, svg, read }, value) => {
   put(solid(g), prism(P, front, br, bi, 0, HB));
   const top = (q) => poly(q.map((s) => P(s.u, s.v, HB)));
   const kb = keys();
-  mk("path", { class: "nf lo", d: kb.out.map(([a, b, c, d]) => top(rrect(a + 0.5, b + 0.5, c - 0.5, d - 0.5, 1.1, 2))).join("") }, g);
+  const caps = kb.out.map(([a, b, c, d]) => {
+    const [outer, inner] = rings(a + 0.65, b + 0.65, c - 0.65, d - 0.65, 1.2, 0.35);
+    const body = solid(g);
+    body.g.classList.add("portrait-key");
+    return { outer, inner, body, at: P((a + c) / 2, (b + d) / 2, HB + 3.4), spring: spring(0, { k: 360, c: 25, eps: 5e-3 }), drawn: NaN };
+  });
   mk("path", { class: "nf", d: top(rrect(kb.x0 - 1.6, KY - 1.6, W - kb.x0 + 1.6, kb.y1 + 1.6, 3, 4)) }, g);
   mk("path", { class: "nf", d: top(rrect(W / 2 - 35, D - 45, W / 2 + 35, D - 5, 3.2, 4)) }, g);
   const lidG = mk("g", {}, g), lid = solid(lidG), scr = mk("g", {}, lidG);
@@ -400,53 +405,88 @@ var mount = ({ stage: stage2, svg, read }, value) => {
     const tl = on(BZ, VT), tr = on(W - BZ, VT), bl = on(BZ, CHIN);
     photograph.setAttribute("transform", `matrix(${(tr[0] - tl[0]) / 230} ${(tr[1] - tl[1]) / 230} ${(bl[0] - tl[0]) / 155} ${(bl[1] - tl[1]) / 155} ${tl[0]} ${tl[1]})`);
   }
-  const sp = spring(REST, { eps: 0.05 });
-  const Bk = register(stage2, (dt) => {
-    const m = stepS(sp, dt);
-    drawLid(sp.x);
-    return m;
-  });
-  bag.add(Bk.unregister);
   drawLid(REST);
-  const yTop = P(W / 2, 0, HZ + D)[1] + 12, yBot = P(W / 2, D, 0)[1] - 12;
-  function retarget() {
-    if (over === null) {
-      sp.t = Math.min(REST, maxA);
-      read.textContent = "rest";
-    } else {
-      sp.t = lerp(maxA, MIN, clamp((over - yTop) / (yBot - yTop), 0, 1));
-      read.textContent = sp.t <= MIN + 0.5 ? "shut" : sp.t >= maxA - 0.5 ? "open" : `lid ${Math.round(sp.t)}\xB0`;
-    }
-    Bk.wake();
-  }
+  let point = null, clock = 0, keyboardPulse = -1;
+  let ripple = null;
+  let keyboardUntil = 0;
+  const nearest = (p) => {
+    if (!p) return -1;
+    let best = -1, distance = 15;
+    caps.forEach((key, i) => {
+      const d = Math.hypot(p[0] - key.at[0], p[1] - key.at[1]);
+      if (d < distance) {
+        distance = d;
+        best = i;
+      }
+    });
+    return best;
+  };
+  const board = register(stage2, (dt) => {
+    clock += dt;
+    const reduced2 = reducedMotion();
+    const hover = nearest(point);
+    const typing = !point && !reduced2 && keyboardPulse < 0;
+    const autoKey = typing ? (Math.floor(clock / 0.48) * 23 + 17) % caps.length : -1;
+    const autoPress = typing ? Math.sin(Math.PI * Math.min(1, clock % 0.48 / 0.24)) : 0;
+    if (clock > keyboardUntil) keyboardPulse = -1;
+    if (ripple && clock - ripple.start > 0.85) ripple = null;
+    let moving = false;
+    caps.forEach((key, i) => {
+      let press = i === hover || i === keyboardPulse ? 1 : 0;
+      if (hover >= 0) {
+        const h = caps[hover].at;
+        press = Math.max(press, Math.max(0, 1 - Math.hypot(key.at[0] - h[0], key.at[1] - h[1]) / 18) * 0.7);
+      }
+      if (autoKey === i) press = Math.max(press, autoPress);
+      if (ripple && !reduced2) {
+        const distance = Math.hypot(key.at[0] - ripple.at[0], key.at[1] - ripple.at[1]);
+        const wave = Math.max(0, 1 - Math.abs(distance - (clock - ripple.start) * 150) / 18);
+        press = Math.max(press, wave * Math.max(0, 1 - (clock - ripple.start) / 0.85));
+      }
+      key.spring.t = press * 2.8 * intensity;
+      moving = stepS(key.spring, dt) || moving;
+      if (key.drawn !== key.spring.x) {
+        key.drawn = key.spring.x;
+        put(key.body, prism(P, front, key.outer, key.inner, HB + 0.15, HB + 3.4 - key.spring.x));
+      }
+    });
+    return moving || !!ripple || !reduced2 || keyboardPulse >= 0;
+  });
+  bag.add(board.unregister);
   bag.add(pointer(stage2, {
     move: (p) => {
-      over = p[1];
-      retarget();
+      point = p;
+      board.wake();
+    },
+    down: (p) => {
+      point = p;
+      if (nearest(p) >= 0) ripple = { at: p, start: clock };
+      board.wake();
     },
     leave: () => {
-      over = null;
-      retarget();
+      point = null;
+      board.wake();
     }
   }));
   bag.on(stage2, "keydown", (e) => {
-    if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+    if (e.key.length !== 1 && !e.key.startsWith("Arrow")) return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
     e.preventDefault();
-    sp.t = clamp(sp.t + (e.key === "ArrowUp" ? 10 : -10), MIN, maxA);
-    Bk.wake();
+    keyboardPulse = e.key.charCodeAt(0) % caps.length;
+    keyboardUntil = clock + 0.2;
+    ripple = { at: caps[keyboardPulse].at, start: clock };
+    board.wake();
   });
   bag.on(stage2, "blur", () => {
-    over = null;
-    retarget();
+    point = null;
+    keyboardPulse = -1;
+    board.wake();
   });
   bag.add(() => svg.replaceChildren());
-  return {
-    set: (v) => {
-      maxA = v;
-      retarget();
-    },
-    destroy: bag.dispose
-  };
+  return { set: (v) => {
+    intensity = clamp(v, 0.3, 1);
+    board.wake();
+  }, destroy: bag.dispose };
 };
 
 // ../../../../../private/tmp/hairline-source/packages/hairline/src/core/styles.ts
