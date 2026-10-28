@@ -433,7 +433,7 @@ var mount = ({ stage: stage2, svg, read }, value) => {
   const board = register(stage2, (dt) => {
     clock += dt;
     const reduced2 = reducedMotion();
-    yaw.t = reduced2 || !drag ? 45 : 45 + clamp(drag.dx / 100, -1, 1) * 20;
+    yaw.t = reduced2 || !drag ? 45 : 45 - clamp(drag.dx / 100, -1, 1) * 20;
     tilt.t = reduced2 || !drag ? 0.5 : 0.5 + clamp(drag.dy / 100, -1, 1) * 0.08;
     stepS(yaw, dt);
     stepS(tilt, dt);
