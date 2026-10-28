@@ -353,7 +353,7 @@ function keys() {
 var mount = ({ stage: stage2, svg, read }, value) => {
   const bag = disposer();
   let intensity = 1;
-  const C = Cam(45, 0.5, 1.48), pts = [[0, 0, 0], [W, 0, 0], [0, D, 0], [W, D, 0]];
+  const C = Cam(20, 0.46, 1.48), pts = [[0, 0, 0], [W, 0, 0], [0, D, 0], [W, D, 0]];
   for (const th of [MIN, 90, REST, 125]) for (const u of [0, W]) for (const v of [0, D]) for (const w of [-T / 2, T / 2]) pts.push(lidAt(th)(u, v, w));
   fit(C, pts, 200, 166);
   let P = proj(C), front = facing(C);
@@ -426,15 +426,15 @@ var mount = ({ stage: stage2, svg, read }, value) => {
     });
     return best;
   };
-  const yaw = spring(45, { k: 40, c: 13, eps: 3e-3 });
-  const tilt = spring(0.5, { k: 40, c: 13, eps: 1e-4 });
+  const yaw = spring(20, { k: 180, c: 26, eps: 3e-3 });
+  const tilt = spring(0.46, { k: 180, c: 26, eps: 1e-4 });
   let pose = "";
   let drag = null;
   const board = register(stage2, (dt) => {
     clock += dt;
     const reduced2 = reducedMotion();
-    yaw.t = reduced2 || !drag ? 45 : 45 - clamp(drag.dx / 100, -1, 1) * 20;
-    tilt.t = reduced2 || !drag ? 0.5 : 0.5 + clamp(drag.dy / 100, -1, 1) * 0.08;
+    yaw.t = reduced2 || !drag ? 20 : clamp(20 - drag.dx / 120 * 32, 3, 60);
+    tilt.t = reduced2 || !drag ? 0.46 : 0.46 - clamp(drag.dy / 100, -1, 1) * 0.24;
     stepS(yaw, dt);
     stepS(tilt, dt);
     const bob = 0;
