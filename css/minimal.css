@@ -63,16 +63,10 @@ footer a span { padding-left: 8px; }
 @media (max-width: 370px) { footer { flex-direction: column; gap: 8px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .project-row, .project-row::before, .project-description, .project-row > .arrow { transition: none; } }
 
-/* Notebook em wireframe, com a foto integrada à tela. */
-.portrait--laptop { width: 350px; padding: 0; background: none; transform: none; box-shadow: none; }
-.portrait-laptop { display: block; width: 100%; height: auto; overflow: visible; }
-.laptop-outline { fill: none; stroke: #888b90; stroke-width: .85; stroke-linecap: round; stroke-linejoin: round; }
-.laptop-surface { fill: #080808; }
-.laptop-photo { filter: grayscale(1) contrast(1.16) brightness(.92); }
-.laptop-screen-edge { fill: none; stroke: #777; stroke-width: 1; }
-.laptop-keyboard { stroke: #64676c; stroke-width: .8; }
-.laptop-key { fill: #111214; animation: laptop-type 9s var(--key-delay) infinite; }
-.portrait--laptop figcaption { padding: 12px 0 0; color: var(--muted); }
-@keyframes laptop-type { 0%, 3%, 100% { fill: #111214; } 1.5% { fill: #80858c; } }
-@media (max-width: 650px) { .portrait--laptop { width: min(330px, 100%); margin-top: 0; } }
-@media (prefers-reduced-motion: reduce) { .laptop-key { animation: none; } }
+/* Adaptacao do notebook Hairline com a foto projetada na tampa. */
+.portrait--hairline { width: 380px; max-width: 100%; padding: 0; background: none; transform: none; box-shadow: none; }
+.portrait-stage { width: 100%; aspect-ratio: 5 / 4; position: relative; --hairline-plate: #080808; --hairline-hi: #b7b9be; --hairline-edge: #777a80; --hairline-mid: #62656a; --hairline-lo: #3e4146; --hairline-stroke: .65; }
+.portrait-stage > svg { display: block; width: 100%; height: 100%; }
+.hairline-portrait-photo { filter: grayscale(1) contrast(1.16) brightness(.95); }
+.portrait--hairline figcaption { padding: 12px 0 0; color: var(--muted); }
+@media (max-width: 650px) { .portrait--hairline { width: min(350px, 100%); margin-top: 0; } }
