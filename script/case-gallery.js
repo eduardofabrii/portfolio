@@ -6,6 +6,7 @@ document.querySelectorAll('.case-carousel').forEach((carousel) => {
 
     function show(index) {
         current = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => { if (i !== current) slide.querySelectorAll('video').forEach(video => video.pause()); });
         track.style.transform = `translateX(-${current * 100}%)`;
         slides.forEach((slide, i) => {
             slide.inert = i !== current;
@@ -19,7 +20,9 @@ document.querySelectorAll('.case-carousel').forEach((carousel) => {
 
     carousel.querySelector('[data-carousel-prev]').addEventListener('click', () => show(current - 1));
     carousel.querySelector('[data-carousel-next]').addEventListener('click', () => show(current + 1));
+    carousel.addEventListener('case-gallery:show', event => { if (Number.isInteger(event.detail?.index)) show(event.detail.index); });
     carousel.addEventListener('keydown', (event) => {
+        if (event.target.closest('video')) return;
         if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
             event.preventDefault();
             show(current + (event.key === 'ArrowRight' ? 1 : -1));
@@ -28,6 +31,7 @@ document.querySelectorAll('.case-carousel').forEach((carousel) => {
 
     let start = null;
     carousel.addEventListener('touchstart', (event) => {
+        if (event.target.closest('video')) { start = null; return; }
         const touch = event.touches[0];
         start = { x: touch.clientX, y: touch.clientY };
     }, { passive: true });

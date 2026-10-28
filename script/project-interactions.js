@@ -46,7 +46,9 @@
         source.style.visibility = '';
         current = (current + direction + gallery.length) % gallery.length;
         // Keep the carousel underneath on the same image, including its focus target.
-        carousel?.querySelector(direction > 0 ? '[data-carousel-next]' : '[data-carousel-prev]')?.click();
+        const selectedSlide = gallery[current].closest('.case-image');
+        const slideIndex = [...carousel.querySelectorAll('.case-image')].indexOf(selectedSlide);
+        carousel.dispatchEvent(new CustomEvent('case-gallery:show', { detail: { index: slideIndex } }));
         await loadCurrent();
         source.style.visibility = 'hidden';
         if (!reduced.matches) {
