@@ -353,7 +353,7 @@ function keys() {
 var mount = ({ stage: stage2, svg, read }, value) => {
   const bag = disposer();
   let intensity = 1;
-  const C = Cam(45, 0.5, 1.3), pts = [[0, 0, 0], [W, 0, 0], [0, D, 0], [W, D, 0]];
+  const C = Cam(45, 0.5, 1.48), pts = [[0, 0, 0], [W, 0, 0], [0, D, 0], [W, D, 0]];
   for (const th of [MIN, 90, REST, 125]) for (const u of [0, W]) for (const v of [0, D]) for (const w of [-T / 2, T / 2]) pts.push(lidAt(th)(u, v, w));
   fit(C, pts, 200, 166);
   const P = proj(C), front = facing(C);
