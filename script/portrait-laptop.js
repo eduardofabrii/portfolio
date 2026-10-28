@@ -1,4 +1,4 @@
-/* Hairline 0.5.1, Copyright (c) 2026 Lucas Marques. MIT license: vendor/hairline-LICENSE.txt. Adapted for Eduardo Fabri: fixed portrait screen and animated keyboard. */
+/* Hairline 0.5.1, Copyright (c) 2026 Lucas Marques. MIT license: vendor/hairline-LICENSE.txt. Adapted for Eduardo Fabri: portrait, keyboard animation and floating camera. */
 
 // ../../../../../private/tmp/hairline-source/packages/hairline/src/core/iso.ts
 var clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -356,25 +356,30 @@ var mount = ({ stage: stage2, svg, read }, value) => {
   const C = Cam(45, 0.5, 1.48), pts = [[0, 0, 0], [W, 0, 0], [0, D, 0], [W, D, 0]];
   for (const th of [MIN, 90, REST, 125]) for (const u of [0, W]) for (const v of [0, D]) for (const w of [-T / 2, T / 2]) pts.push(lidAt(th)(u, v, w));
   fit(C, pts, 200, 166);
-  const P = proj(C), front = facing(C);
-  const o = P(0, 0, 0), ex = P(1, 0, 0), ey = P(0, 1, 0), ez = P(0, 0, 1);
-  const r1 = [ex[0] - o[0], ey[0] - o[0], ez[0] - o[0]], r22 = [ex[1] - o[1], ey[1] - o[1], ez[1] - o[1]];
-  let eye = [r1[1] * r22[2] - r1[2] * r22[1], r1[2] * r22[0] - r1[0] * r22[2], r1[0] * r22[1] - r1[1] * r22[0]];
-  if (eye[2] < 0) eye = eye.map((n) => -n);
+  let P = proj(C), front = facing(C);
+  let eye = [];
+  function updateEye() {
+    const o = P(0, 0, 0), ex = P(1, 0, 0), ey = P(0, 1, 0), ez = P(0, 0, 1);
+    const a = [ex[0] - o[0], ey[0] - o[0], ez[0] - o[0]], b = [ex[1] - o[1], ey[1] - o[1], ez[1] - o[1]];
+    eye = [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+    if (eye[2] < 0) eye = eye.map((n) => -n);
+  }
+  updateEye();
   const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
   const g = mk("g", {}, svg);
   const [br, bi] = rings(0, 0, W, D, R, B);
-  put(solid(g), prism(P, front, br, bi, 0, HB));
+  const base = solid(g);
+  put(base, prism(P, front, br, bi, 0, HB));
   const top = (q) => poly(q.map((s) => P(s.u, s.v, HB)));
   const kb = keys();
   const caps = kb.out.map(([a, b, c, d]) => {
     const [outer, inner] = rings(a + 0.65, b + 0.65, c - 0.65, d - 0.65, 1.2, 0.35);
     const body = solid(g);
     body.g.classList.add("portrait-key");
-    return { outer, inner, body, at: P((a + c) / 2, (b + d) / 2, HB + 3.4), spring: spring(0, { k: 360, c: 25, eps: 5e-3 }), drawn: NaN };
+    return { outer, inner, body, center: [(a + c) / 2, (b + d) / 2], at: P((a + c) / 2, (b + d) / 2, HB + 3.4), spring: spring(0, { k: 360, c: 25, eps: 5e-3 }), drawn: NaN };
   });
-  mk("path", { class: "nf", d: top(rrect(kb.x0 - 1.6, KY - 1.6, W - kb.x0 + 1.6, kb.y1 + 1.6, 3, 4)) }, g);
-  mk("path", { class: "nf", d: top(rrect(W / 2 - 35, D - 45, W / 2 + 35, D - 5, 3.2, 4)) }, g);
+  const keyboardWell = mk("path", { class: "nf", d: top(rrect(kb.x0 - 1.6, KY - 1.6, W - kb.x0 + 1.6, kb.y1 + 1.6, 3, 4)) }, g);
+  const trackpad = mk("path", { class: "nf", d: top(rrect(W / 2 - 35, D - 45, W / 2 + 35, D - 5, 3.2, 4)) }, g);
   const lidG = mk("g", {}, g), lid = solid(lidG), scr = mk("g", {}, lidG);
   lid.sil.classList.add("hi");
   const [lr, li] = rings(0, 0, W, D, R, B);
@@ -421,9 +426,36 @@ var mount = ({ stage: stage2, svg, read }, value) => {
     });
     return best;
   };
+  const yaw = spring(45, { k: 40, c: 13, eps: 3e-3 });
+  const tilt = spring(0.5, { k: 40, c: 13, eps: 1e-4 });
+  let pose = "";
   const board = register(stage2, (dt) => {
     clock += dt;
     const reduced2 = reducedMotion();
+    yaw.t = reduced2 ? 45 : point ? 45 + clamp((point[0] - 200) / 145, -1, 1) * 14 : 45 + Math.sin(clock * 0.48) * 3;
+    tilt.t = reduced2 ? 0.5 : point ? 0.5 + clamp((point[1] - 160) / 120, -1, 1) * 0.065 : 0.5 + Math.sin(clock * 0.6) * 0.012;
+    stepS(yaw, dt);
+    stepS(tilt, dt);
+    const bob = reduced2 ? 0 : Math.sin(clock * 0.95) * 3.5;
+    const nextPose = `${yaw.x.toFixed(3)}:${tilt.x.toFixed(4)}:${bob.toFixed(2)}`;
+    if (nextPose !== pose) {
+      pose = nextPose;
+      C.az = rad(yaw.x);
+      C.k = tilt.x;
+      fit(C, pts, 200, 166 + bob);
+      P = proj(C);
+      front = facing(C);
+      updateEye();
+      put(base, prism(P, front, br, bi, 0, HB));
+      keyboardWell.setAttribute("d", top(rrect(kb.x0 - 1.6, KY - 1.6, W - kb.x0 + 1.6, kb.y1 + 1.6, 3, 4)));
+      trackpad.setAttribute("d", top(rrect(W / 2 - 35, D - 45, W / 2 + 35, D - 5, 3.2, 4)));
+      drawn = NaN;
+      drawLid(REST);
+      caps.forEach((key) => {
+        key.at = P(key.center[0], key.center[1], HB + 3.4);
+        key.drawn = NaN;
+      });
+    }
     const hover = nearest(point);
     const typing = !point && !reduced2 && keyboardPulse < 0;
     const autoKey = typing ? (Math.floor(clock / 0.48) * 23 + 17) % caps.length : -1;
