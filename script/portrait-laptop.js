@@ -429,14 +429,15 @@ var mount = ({ stage: stage2, svg, read }, value) => {
   const yaw = spring(45, { k: 40, c: 13, eps: 3e-3 });
   const tilt = spring(0.5, { k: 40, c: 13, eps: 1e-4 });
   let pose = "";
+  let drag = null;
   const board = register(stage2, (dt) => {
     clock += dt;
     const reduced2 = reducedMotion();
-    yaw.t = reduced2 ? 45 : point ? 45 + clamp((point[0] - 200) / 145, -1, 1) * 14 : 45 + Math.sin(clock * 0.48) * 3;
-    tilt.t = reduced2 ? 0.5 : point ? 0.5 + clamp((point[1] - 160) / 120, -1, 1) * 0.065 : 0.5 + Math.sin(clock * 0.6) * 0.012;
+    yaw.t = reduced2 || !drag ? 45 : 45 + clamp(drag.dx / 100, -1, 1) * 20;
+    tilt.t = reduced2 || !drag ? 0.5 : 0.5 + clamp(drag.dy / 100, -1, 1) * 0.08;
     stepS(yaw, dt);
     stepS(tilt, dt);
-    const bob = reduced2 ? 0 : Math.sin(clock * 0.95) * 3.5;
+    const bob = 0;
     const nextPose = `${yaw.x.toFixed(3)}:${tilt.x.toFixed(4)}:${bob.toFixed(2)}`;
     if (nextPose !== pose) {
       pose = nextPose;
@@ -486,20 +487,35 @@ var mount = ({ stage: stage2, svg, read }, value) => {
   });
   bag.add(board.unregister);
   bag.add(pointer(stage2, {
-    move: (p) => {
+    move: (p, e) => {
+      if (drag && e.pointerId === drag.id) { drag.dx = p[0] - drag.x; drag.dy = p[1] - drag.y; }
       point = p;
       board.wake();
     },
-    down: (p) => {
+    down: (p, e) => {
+      if (e.button !== 0) return;
+      drag = { id: e.pointerId, x: p[0], y: p[1], dx: 0, dy: 0 };
+      stage2.dataset.dragging = "true";
+      if (e.pointerType === "mouse") stage2.setPointerCapture(e.pointerId);
       point = p;
       if (nearest(p) >= 0) ripple = { at: p, start: clock };
       board.wake();
     },
     leave: () => {
+      if (drag) return;
       point = null;
       board.wake();
     }
   }));
+  const releaseDrag = () => {
+    drag = null;
+    delete stage2.dataset.dragging;
+    point = null;
+    board.wake();
+  };
+  bag.on(stage2, "pointerup", releaseDrag);
+  bag.on(stage2, "pointercancel", releaseDrag);
+  bag.on(stage2, "lostpointercapture", releaseDrag);
   bag.on(stage2, "keydown", (e) => {
     if (e.key.length !== 1 && !e.key.startsWith("Arrow")) return;
     if (e.ctrlKey || e.metaKey || e.altKey) return;
@@ -510,6 +526,7 @@ var mount = ({ stage: stage2, svg, read }, value) => {
     board.wake();
   });
   bag.on(stage2, "blur", () => {
+    releaseDrag();
     point = null;
     keyboardPulse = -1;
     board.wake();
