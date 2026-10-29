@@ -73,3 +73,9 @@ footer a span { padding-left: 8px; }
 
 .portrait-stage { cursor: grab; }
 .portrait-stage[data-dragging] { cursor: grabbing; }
+
+/* Product context stays beside the name, within the existing compact rows. */
+.project-row:has(.project-status) { gap: 8px; }
+.project-description--status { line-height: 1.4; }
+.project-purpose { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.project-status { display: block; font-size: 10px; white-space: nowrap; }

@@ -388,7 +388,7 @@ var mount = ({ stage: stage2, svg, read }, value) => {
   const clip = mk("clipPath", { id: "hairline-portrait-clip" }, defs);
   mk("rect", { width: 230, height: 155, rx: 4 }, clip);
   const photograph = mk("g", { "clip-path": "url(#hairline-portrait-clip)" }, scr);
-  mk("image", { href: new URL("../img/img-cafe.jpg", document.baseURI).href, width: 230, height: 155, preserveAspectRatio: "xMidYMid slice", class: "hairline-portrait-photo" }, photograph);
+  mk("image", { href: new URL("../img/img-cafe.jpg", import.meta.url).href, width: 230, height: 155, preserveAspectRatio: "xMidYMid slice", class: "hairline-portrait-photo" }, photograph);
   const VT = D - BZ;
   let faced = null, drawn = NaN;
   function drawLid(th) {

@@ -1,401 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <link rel="icon" href="img/favicon/favicon.ico?v=ef1" sizes="any">
     <link rel="icon" type="image/svg+xml" href="img/favicon/favicon.svg?v=ef1">
     <link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png?v=ef1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css?v=114">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="manifest" href="img/favicon/site.webmanifest">
-    <meta name="theme-color" content="#4CA035">
-    <title>Eduardo Fabri: Desenvolvedor de Software</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#080808">
+    <meta name="description" content="Eduardo Fabri. Desenvolvedor de software em Curitiba. Backend com Java e Spring Boot, interfaces com Angular e ideias que viram produtos.">
+    <title>eduardo fabri</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/minimal.css?v=24">
 </head>
 <body>
-    <header id="header">
-        <div class="logo">
-            <img src="img/img-face.jpg" alt="Eduardo Fabri">
-        </div>
-        <nav class="nav-bar" aria-label="Navegação principal">
-            <ul class="nav-links">
-                <li class="center"><a href="#hello">início</a></li>
-                <li class="center"><a href="#about">curiosidades</a></li>
-                <li class="center"><a href="#experience">experiência</a></li>
-                <li class="center"><a href="#projects">projetos</a></li>
-                <li class="center"><a href="#faq">perguntas</a></li>
-                <li class="center"><a href="#contact-id">contato</a></li>
-            </ul>
-        </nav>
-        <nav>
-            <ul class="social-links">
-                <li><a href="https://www.linkedin.com/in/eduardofabri/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a></li>
-                <li><a href="https://github.com/eduardofabrii" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span></a></li>
-            </ul>
-        </nav>
+    <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+        <symbol id="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+        <symbol id="github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m15 5v-4a3.5 3.5 0 0 0-1-2.7c3.3-.4 6.7-1.6 6.7-7.3A5.7 5.7 0 0 0 22 4a5.3 5.3 0 0 0-.1-4s-1.3-.4-4.3 1.6a15 15 0 0 0-7.8 0C6.8-.4 5.5 0 5.5 0A5.3 5.3 0 0 0 5.4 4a5.7 5.7 0 0 0-1.7 4c0 5.7 3.4 6.9 6.7 7.3A3.5 3.5 0 0 0 9.4 18v4" transform="translate(0 2) scale(.9)"/></symbol>
+        <symbol id="linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7m0-10v.1M11 17v-7m0 3a3 3 0 0 1 6 0v4"/></symbol>
+        <symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></symbol>
+        <symbol id="file" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8l-5-5v5h5M8 12h8m-8 4h6"/></symbol>
+        <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></symbol>
+        <symbol id="activity" viewBox="0 0 24 24"><path d="M2 12h5l3-8 4 16 3-8h5"/></symbol>
+        <symbol id="code" viewBox="0 0 24 24"><path d="m7 7-5 5 5 5m10-10 5 5-5 5m-3-13-4 20"/></symbol>
+        <symbol id="book" viewBox="0 0 24 24"><path d="M12 5v16M3 3c4-1 6 0 9 2 3-2 5-3 9-2v15c-4-1-6 0-9 3-3-3-5-4-9-3z"/></symbol>
+        <symbol id="instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+        <symbol id="basket" viewBox="0 0 24 24"><path d="M4 9h16l-2 11H6L4 9Zm4 0 4-7 4 7m-6 4v4m4-4v4"/></symbol>
+    </defs></svg>
+    <header class="masthead">
+        <a class="signature" href="./" aria-label="Eduardo Fabri, início">ef<span>.</span></a>
+        <span class="masthead-note">desenvolvedor de software<br>curitiba, pr</span>
     </header>
-
-    <main>
-        <section class="hello-container" id="hello">
-            <div class="hello-banner">
-                <div class="text-center">
-                  <div id="greeting-text">
-                      <span id="hello-text">olá<em>,</em></span>
-                      <span id="im-text">eu sou o</span>
-                  </div>
-                  <div id="name-text">
-                      <span class="hero-star hero-star--one" aria-hidden="true">
-                          <svg viewBox="0 0 66 66"><path d="m28.1267 4.23225c1.1879-5.175299 8.5587-5.175287 9.7466.00001l3.7596 16.38014c.4287 1.8676 1.8871 3.326 3.7547 3.7547l16.3802 3.7596c5.1752 1.1879 5.1752 8.5587-.0001 9.7466l-16.3801 3.7596c-1.8676.4287-3.326 1.8871-3.7547 3.7547l-3.7596 16.3802c-1.1879 5.1752-8.5587 5.1752-9.7466-.0001l-3.7596-16.3801c-.4287-1.8676-1.8871-3.326-3.7547-3.7547l-16.38015-3.7596c-5.175299-1.1879-5.175287-8.5587.00001-9.7466l16.38014-3.7596c1.8676-.4287 3.326-1.8871 3.7547-3.7547z"/></svg>
-                      </span>
-                      <span class="hero-star hero-star--two" aria-hidden="true">
-                          <svg viewBox="0 0 66 66"><path d="m28.1267 4.23225c1.1879-5.175299 8.5587-5.175287 9.7466.00001l3.7596 16.38014c.4287 1.8676 1.8871 3.326 3.7547 3.7547l16.3802 3.7596c5.1752 1.1879 5.1752 8.5587-.0001 9.7466l-16.3801 3.7596c-1.8676.4287-3.326 1.8871-3.7547 3.7547l-3.7596 16.3802c-1.1879 5.1752-8.5587 5.1752-9.7466-.0001l-3.7596-16.3801c-.4287-1.8676-1.8871-3.326-3.7547-3.7547l-16.38015-3.7596c-5.175299-1.1879-5.175287-8.5587.00001-9.7466l16.38014-3.7596c1.8676-.4287 3.326-1.8871 3.7547-3.7547z"/></svg>
-                      </span>
-                      <h1 id="name">eduardo fabri</h1>
-                  </div>
-                  <p id="hero-tagline">apaixonado pela criação de produtos e ideias inovadoras</p>
-                    <div class="wave">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                            <defs>
-                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#47753B;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#8BC34A;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <path fill="url(#gradient)" fill-opacity="1" d="M0,320L60,293.3C120,267,240,213,360,192C480,171,600,213,720,224C840,235,960,213,1080,186.7C1200,160,1320,128,1380,112L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
-                        </svg>
-                    </div>
-                </div>
+    <main class="layout">
+        <section class="intro" aria-labelledby="name">
+            <div class="intro-copy">
+                <h1 id="name">olá, me chamo<br>eduardo fabri.</h1>
             </div>
-          </section>
-
-        <section class="presentation-container" id="about">
-            <div class="text-center">
-                <h2 class="section-title">curiosidades</h2>
-                <p class="section-intro">primeiramente, é um prazer te ver aqui :)</p>
-                <div class="curiosities-grid">
-                    <figure class="curiosity-photo">
-                        <img src="img/img-cafe.jpg" alt="Eduardo Fabri numa cafeteria" loading="lazy">
-                        <figcaption><span class="curiosity-number">01</span>cafeteria nova é meu programa preferido, sempre tem uma na lista esperando</figcaption>
-                    </figure>
-                    <ol class="curiosities-list" start="2">
-                        <li><span class="curiosity-number">02</span>suits é a série pra qual eu sempre volto</li>
-                        <li><span class="curiosity-number">03</span>planejo muito o futuro, mas tento não esquecer de viver o presente</li>
-                        <li><span class="curiosity-number">04</span>sou fã do "bora, vamos testar", prefiro descobrir fazendo do que ficar imaginando</li>
-                        <li><span class="curiosity-number">05</span>gosto de boas histórias, lá que saem as melhores ideias</li>
-                        <li><span class="curiosity-number">06</span>futebol, boxe e corrida são o que me tiram da frente da tela</li>
-                        <li><span class="curiosity-number">07</span>cresci vendo meu pai jogar counter-strike com meu tio, e cheguei ao top 1 de uma liga brasileira na faceit</li>
-                    </ol>
-                </div>
-            </div>
+            <figure class="portrait portrait--hairline">
+                <div class="portrait-stage" data-portrait-laptop tabindex="0" role="img" aria-label="Notebook com a foto de Eduardo Fabri. Clique e arraste para girar o notebook ou clique nas teclas para animar o teclado."><svg class="portrait-laptop" viewBox="0 0 400 320" aria-hidden="true">
+                    <title id="laptop-photo-title">Eduardo Fabri em uma cafeteria, na tela de um notebook em wireframe</title>
+                    <defs><clipPath id="laptop-screen-clip"><rect width="230" height="155" rx="3"/></clipPath></defs>
+                    <g class="laptop-outline">
+                        <path class="laptop-surface" d="M135 157 165 12Q166 7 172 10L366 107Q372 110 371 116L341 260 336 264 130 162Z"/>
+                        <path d="M135 157 336 257 366 112Q367 108 362 105L171 10M336 257 336 264"/>
+                    </g>
+                    <g transform="matrix(.8 .4 -.16 .8 169 25)" clip-path="url(#laptop-screen-clip)">
+                        <image class="laptop-photo" href="img/img-cafe.jpg" width="230" height="155" preserveAspectRatio="xMidYMid slice"/>
+                        <rect class="laptop-screen-edge" width="230" height="155" rx="3"/>
+                    </g>
+                    <g class="laptop-outline">
+                        <path class="laptop-surface" d="M130 162 336 264 232 326Q227 329 220 326L30 231Q24 228 25 222L26 216Z"/>
+                        <path d="M26 216 221 314Q227 317 233 314L336 253M25 222 220 320Q226 323 232 320L336 258"/>
+                        <g class="laptop-keyboard" transform="matrix(.8 .4 -.65 .38 139 174)"><rect class="laptop-key" x="0" y="0" width="14" height="13" rx="2" style="--key-delay:0.00s"/><rect class="laptop-key" x="17" y="0" width="14" height="13" rx="2" style="--key-delay:0.17s"/><rect class="laptop-key" x="34" y="0" width="14" height="13" rx="2" style="--key-delay:0.34s"/><rect class="laptop-key" x="51" y="0" width="14" height="13" rx="2" style="--key-delay:0.51s"/><rect class="laptop-key" x="68" y="0" width="14" height="13" rx="2" style="--key-delay:0.68s"/><rect class="laptop-key" x="85" y="0" width="14" height="13" rx="2" style="--key-delay:0.85s"/><rect class="laptop-key" x="102" y="0" width="14" height="13" rx="2" style="--key-delay:1.02s"/><rect class="laptop-key" x="119" y="0" width="14" height="13" rx="2" style="--key-delay:1.19s"/><rect class="laptop-key" x="136" y="0" width="14" height="13" rx="2" style="--key-delay:1.36s"/><rect class="laptop-key" x="153" y="0" width="14" height="13" rx="2" style="--key-delay:1.53s"/><rect class="laptop-key" x="170" y="0" width="14" height="13" rx="2" style="--key-delay:1.70s"/><rect class="laptop-key" x="187" y="0" width="14" height="13" rx="2" style="--key-delay:1.87s"/><rect class="laptop-key" x="0" y="17" width="14" height="13" rx="2" style="--key-delay:2.04s"/><rect class="laptop-key" x="17" y="17" width="14" height="13" rx="2" style="--key-delay:2.21s"/><rect class="laptop-key" x="34" y="17" width="14" height="13" rx="2" style="--key-delay:2.38s"/><rect class="laptop-key" x="51" y="17" width="14" height="13" rx="2" style="--key-delay:2.55s"/><rect class="laptop-key" x="68" y="17" width="14" height="13" rx="2" style="--key-delay:2.72s"/><rect class="laptop-key" x="85" y="17" width="14" height="13" rx="2" style="--key-delay:2.89s"/><rect class="laptop-key" x="102" y="17" width="14" height="13" rx="2" style="--key-delay:3.06s"/><rect class="laptop-key" x="119" y="17" width="14" height="13" rx="2" style="--key-delay:3.23s"/><rect class="laptop-key" x="136" y="17" width="14" height="13" rx="2" style="--key-delay:3.40s"/><rect class="laptop-key" x="153" y="17" width="14" height="13" rx="2" style="--key-delay:3.57s"/><rect class="laptop-key" x="170" y="17" width="14" height="13" rx="2" style="--key-delay:3.74s"/><rect class="laptop-key" x="187" y="17" width="14" height="13" rx="2" style="--key-delay:3.91s"/><rect class="laptop-key" x="0" y="34" width="14" height="13" rx="2" style="--key-delay:4.08s"/><rect class="laptop-key" x="17" y="34" width="14" height="13" rx="2" style="--key-delay:4.25s"/><rect class="laptop-key" x="34" y="34" width="14" height="13" rx="2" style="--key-delay:4.42s"/><rect class="laptop-key" x="51" y="34" width="14" height="13" rx="2" style="--key-delay:4.59s"/><rect class="laptop-key" x="68" y="34" width="14" height="13" rx="2" style="--key-delay:4.76s"/><rect class="laptop-key" x="85" y="34" width="14" height="13" rx="2" style="--key-delay:4.93s"/><rect class="laptop-key" x="102" y="34" width="14" height="13" rx="2" style="--key-delay:5.10s"/><rect class="laptop-key" x="119" y="34" width="14" height="13" rx="2" style="--key-delay:5.27s"/><rect class="laptop-key" x="136" y="34" width="14" height="13" rx="2" style="--key-delay:5.44s"/><rect class="laptop-key" x="153" y="34" width="14" height="13" rx="2" style="--key-delay:5.61s"/><rect class="laptop-key" x="170" y="34" width="14" height="13" rx="2" style="--key-delay:5.78s"/><rect class="laptop-key" x="187" y="34" width="14" height="13" rx="2" style="--key-delay:5.95s"/><rect class="laptop-key" x="0" y="51" width="14" height="13" rx="2" style="--key-delay:6.12s"/><rect class="laptop-key" x="17" y="51" width="14" height="13" rx="2" style="--key-delay:6.29s"/><rect class="laptop-key" x="34" y="51" width="14" height="13" rx="2" style="--key-delay:6.46s"/><rect class="laptop-key" x="51" y="51" width="14" height="13" rx="2" style="--key-delay:6.63s"/><rect class="laptop-key" x="68" y="51" width="14" height="13" rx="2" style="--key-delay:6.80s"/><rect class="laptop-key" x="85" y="51" width="14" height="13" rx="2" style="--key-delay:6.97s"/><rect class="laptop-key" x="102" y="51" width="14" height="13" rx="2" style="--key-delay:7.14s"/><rect class="laptop-key" x="119" y="51" width="14" height="13" rx="2" style="--key-delay:7.31s"/><rect class="laptop-key" x="136" y="51" width="14" height="13" rx="2" style="--key-delay:7.48s"/><rect class="laptop-key" x="153" y="51" width="14" height="13" rx="2" style="--key-delay:7.65s"/><rect class="laptop-key" x="170" y="51" width="14" height="13" rx="2" style="--key-delay:7.82s"/><rect class="laptop-key" x="187" y="51" width="14" height="13" rx="2" style="--key-delay:7.99s"/><rect x="38" y="68" width="125" height="12" rx="2"/></g>
+                        <path d="m135 236 59 29-29 17-59-29Z"/>
+                    </g>
+                </svg></div>
+            </figure>
         </section>
 
-        <section class="experience-container" id="experience">
-            <h2 class="section-title">experiência</h2>
-            <div class="text-center">
-                <div class="experience-content">
-                    <div class="experience-stage">
-                        <div class="experience-track">
-                            <article class="experience-slide">
-                                <span class="slide-label">onde estou</span>
-                                <div class="experience-header">
-                                    <div class="experience-brand">
-                                        <img class="company-mark" src="img/wise-logo.jpg" alt="Logo Wise Group">
-                                        <div>
-                                            <h2>Wise Group</h2>
-                                            <span class="experience-role">Desenvolvedor</span>
-                                        </div>
-                                    </div>
-                                    <div class="experience-meta">
-                                        <span class="experience-period">Desde abril de 2025</span>
-                                        <span class="experience-place">Curitiba, PR</span>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="experience-slide">
-                                <span class="slide-label">o que eu faço</span>
-                                <p class="experience-summary">
-                                    Atuo no back-end com Java, em produtos de saúde e odontologia, autoatendimento financeiro e suporte ao consumidor via WhatsApp.
-                                    <br><br>
-                                    No dia a dia, desenvolvo features e APIs em Spring Boot, dou sustentação a sistemas em produção e ajudo a padronizar a documentação com Swagger entre os times.
-                                </p>
-                                <div class="experience-tags">
-                                    <span class="tech-badge" data-tech="java"><i class="fa-brands fa-java" aria-hidden="true"></i><span>Java</span></span>
-                                    <span class="tech-badge" data-tech="spring"><i class="fa-solid fa-leaf" aria-hidden="true"></i><span>Spring Boot</span></span>
-                                    <span class="tech-badge" data-tech="node"><i class="fa-brands fa-node-js" aria-hidden="true"></i><span>Node</span></span>
-                                    <span class="tech-badge" data-tech="angular"><i class="fa-brands fa-angular" aria-hidden="true"></i><span>Angular</span></span>
-                                    <span class="tech-badge" data-tech="postgres"><i class="fa-solid fa-database" aria-hidden="true"></i><span>PostgreSQL</span></span>
-                                    <span class="tech-badge" data-tech="mongo"><i class="fa-solid fa-leaf" aria-hidden="true"></i><span>MongoDB</span></span>
-                                    <span class="tech-badge" data-tech="docker"><i class="fa-brands fa-docker" aria-hidden="true"></i><span>Docker</span></span>
-                                    <span class="tech-badge" data-tech="gcp"><i class="fa-brands fa-google" aria-hidden="true"></i><span>GCP</span></span>
-                                </div>
-                            </article>
-
-                            <article class="experience-slide">
-                                <span class="slide-label">projetos em que trabalhei</span>
-                                <ul class="slide-projects">
-                                    <li>
-                                        <h3>Autocontratação de Empréstimo Consignado</h3>
-                                        <p>Sistema de autoatendimento para contratação de empréstimo consignado, desenvolvido com Java e React. Atuação no desenvolvimento e evolução de funcionalidades, integração com a API Direct Data para consulta e validação de dados cadastrais, integração entre serviços e manutenção da plataforma.</p>
-                                    </li>
-                                    <li>
-                                        <h3>Suporte ao Consumidor via WhatsApp</h3>
-                                        <p>Plataforma de atendimento integrada à API do WhatsApp, desenvolvida com Node.js e Java. Atuação na evolução do backend, integração com Google Cloud Storage (GCP), otimização do processamento e transferência de arquivos, implementação de internacionalização (i18n) e desenvolvimento de funcionalidades voltadas à escalabilidade e desempenho da plataforma.</p>
-                                    </li>
-                                    <li>
-                                        <h3>Migração de Sistema Odontológico Legado</h3>
-                                        <p>Migração de um sistema odontológico legado para uma arquitetura moderna baseada em Spring Boot. Atuação na análise e modernização de módulos da aplicação, migração do sistema legado (JSP/Java EE) para uma arquitetura mais moderna, evolução da arquitetura backend, adequação de regras de negócio e apoio ao processo de modernização com auxílio de IA.</p>
-                                    </li>
-                                </ul>
-                            </article>
-
-                            <article class="experience-slide">
-                                <span class="slide-label">outras experiências</span>
-                                <ul class="slide-projects">
-                                    <li>
-                                        <div class="slide-project-header">
-                                            <img class="company-mark" src="img/pucpr-logo.png" alt="Logo PUCPR">
-                                            <div>
-                                                <h3>Monitoria de Programação Orientada a Objetos</h3>
-                                                <span class="experience-role">PUCPR · desde agosto de 2026</span>
-                                            </div>
-                                        </div>
-                                        <p>Auxilio outros alunos durante o aprendizado de POO. Ainda em andamento, até o fim do semestre.</p>
-                                        <dl class="slide-steps">
-                                            <div>
-                                                <dt>como participo</dt>
-                                                <dd>Preparo o material das sessões, entro nas reuniões pelo Meet e faço a correção dos simulados junto com os alunos, questão por questão.</dd>
-                                            </div>
-                                            <div>
-                                                <dt>o canal aberto</dt>
-                                                <dd>As dúvidas não esperam o horário da monitoria: chegam no WhatsApp na hora em que o aluno trava, e respondo ali mesmo.</dd>
-                                            </div>
-                                            <div>
-                                                <dt>o que aprendi</dt>
-                                                <dd>Explicar herança e polimorfismo para quem está vendo aquilo pela primeira vez me obriga a entender o assunto de verdade, e não só o suficiente para fazer funcionar.</dd>
-                                            </div>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <div class="slide-project-header">
-                                            <img class="company-mark" src="img/prefeitura-logo.svg" alt="Logo da Secretaria de Estado da Educação do Paraná">
-                                            <div>
-                                                <h3>Voluntariado - Projeto Comunidade Escola</h3>
-                                                <span class="experience-role">Secretaria de Estado da Educação do Paraná · abril a junho de 2026</span>
-                                            </div>
-                                        </div>
-                                        <p>Projeto de aproximação entre gerações na Escola Municipal Tanira Regina Schmidt, no bairro Abranches. A proposta era juntar jovens e idosos, mas quem mais apareceu foram as crianças.</p>
-                                        <dl class="slide-steps">
-                                            <div>
-                                                <dt>como participei</dt>
-                                                <dd>Chegava antes para ajudar a preparar o espaço. No primeiro dia meu grupo ficou responsável por planejar duas atividades da semana: uma caça ao tesouro e uma corrida de jokenpô.</dd>
-                                            </div>
-                                            <div>
-                                                <dt>o resto dos dias</dt>
-                                                <dd>Acompanhar de perto, brincar junto e participar das oficinas de pintura com as crianças.</dd>
-                                            </div>
-                                            <div>
-                                                <dt>o que aprendi</dt>
-                                                <dd>Cheguei achando que não tinha muita paciência com criança. Saí de lá sabendo que tinha, sim - só precisava tentar.</dd>
-                                            </div>
-                                        </dl>
-                                    </li>
-                                </ul>
-                            </article>
-                        </div>
-                    </div>
-
-                    <div class="experience-nav">
-                        <div class="experience-dots">
-                            <button class="experience-dot" type="button" aria-label="Onde estou"></button>
-                            <button class="experience-dot" type="button" aria-label="O que eu faço"></button>
-                            <button class="experience-dot" type="button" aria-label="Projetos em que trabalhei"></button>
-                            <button class="experience-dot" type="button" aria-label="Outras experiências"></button>
-                        </div>
-                        <button class="experience-next" type="button">próximo <i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
+        <div class="work-directory" id="projetos">
+            <section class="work-group" aria-labelledby="contact-heading">
+                <h2 id="contact-heading">contato</h2>
+                <div class="project">
+                    <a class="project-row" href="https://github.com/eduardofabrii" target="_blank" rel="noopener noreferrer">
+                        <svg class="icon" aria-hidden="true"><use href="#github"/></svg>
+                        <span class="row-name">github</span>
+                        <span class="project-description">@eduardofabrii</span>
+                        <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg>
+                    </a>
                 </div>
-            </div>
-        </section>
-
-        <section class="projects-container" id="projects">
-            <h2 class="section-title">projetos</h2>
-            <p class="section-intro">um pouco do que construí fora do trabalho, entre projetos pessoais e da faculdade</p>
-            <div class="text-center">
-                <div class="project-content">
-                    <div class="project-image">
-                        <img src="img/chrono/01-login.jpg" alt="Chrono - Login" loading="lazy">
-                        <img src="img/chrono/02-dashboard.jpg" alt="Chrono - Dashboard" loading="lazy">
-                        <img src="img/chrono/03-projetos.jpg" alt="Chrono - Projetos" loading="lazy">
-                        <img src="img/chrono/04-registro-horas.jpg" alt="Chrono - Registro de horas" loading="lazy">
-                        <img src="img/chrono/05-lancar-horas-modal.jpg" alt="Chrono - Lançar horas" loading="lazy">
-                        <img src="img/chrono/06-atividades.jpg" alt="Chrono - Atividades" loading="lazy">
-                        <img src="img/chrono/07-gerenciar-usuarios.jpg" alt="Chrono - Gerenciar usuários" loading="lazy">
-                        <img src="img/chrono/08-registrar-usuario.jpg" alt="Chrono - Registrar usuário" loading="lazy">
-                        <img src="img/chrono/09-editar-perfil.jpg" alt="Chrono - Editar perfil" loading="lazy">
-                    </div>
-                    <div class="project-description">
-                        <h3>Chrono</h3>
-                        <p>Sistema para lançar e gerenciar horas em projetos, com dashboard, relatórios e controle de usuários e atividades.</p>
-                        <dl class="project-steps">
-                            <div>
-                                <dt>o problema</dt>
-                                <dd>Acompanhar quanto tempo vai para cada projeto vira bagunça em planilha, e no fim do mês ninguém sabe dizer onde as horas foram parar.</dd>
-                            </div>
-                            <div>
-                                <dt>como fiz</dt>
-                                <dd>Planejei a execução antes de escrever código e organizei as prioridades no Trello. Montei o backend em Java com Spring Boot, com ajuda dos tutores na estrutura do banco, depois a interface em Angular - e levei os dois para o ar: API na Heroku e front na Vercel.</dd>
-                            </div>
-                            <div>
-                                <dt>o que ficou</dt>
-                                <dd>A experiência mais completa que tive: levei sozinho do zero ao deploy e apresentei como projeto do trainee na empresa onde trabalho hoje. Ficou o entendimento do caminho inteiro de um produto, não só da parte de escrever código.</dd>
-                            </div>
-                        </dl>
-                        <div class="project-tags">
-                            <span class="tech-badge" data-tech="java"><i class="fa-brands fa-java" aria-hidden="true"></i><span>Java</span></span>
-                            <span class="tech-badge" data-tech="spring"><i class="fa-solid fa-leaf" aria-hidden="true"></i><span>Spring Boot</span></span>
-                            <span class="tech-badge" data-tech="angular"><i class="fa-brands fa-angular" aria-hidden="true"></i><span>Angular</span></span>
-                        </div>
-                        <div class="project-actions"><a href="https://github.com/eduardofabrii/chrono-api" target="_blank" rel="noopener noreferrer" class="btn">ir para o github <i class="fa-solid fa-arrow-right"></i></a><a href="files/chrono.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">ver estudo de caso</a></div>
-                    </div>
+                <div class="project">
+                    <a class="project-row" href="https://www.linkedin.com/in/eduardofabri/" target="_blank" rel="noopener noreferrer">
+                        <svg class="icon" aria-hidden="true"><use href="#linkedin"/></svg>
+                        <span class="row-name">linkedin</span>
+                        <span class="project-description">/in/eduardofabri</span>
+                        <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg>
+                    </a>
                 </div>
-
-                <div class="project-content">
-                    <div class="project-image">
-                        <img src="img/repz/01-login.png" alt="Repz - Login" loading="lazy">
-                        <img src="img/repz/02-admin-dashboard.png" alt="Repz - Dashboard do admin" loading="lazy">
-                        <img src="img/repz/03-admin-academias.png" alt="Repz - Academias (admin)" loading="lazy">
-                        <img src="img/repz/04-admin-usuarios.png" alt="Repz - Usuários (admin)" loading="lazy">
-                        <img src="img/repz/05-academia-dashboard.png" alt="Repz - Dashboard da academia" loading="lazy">
-                        <img src="img/repz/06-academia-personais.png" alt="Repz - Personais (academia)" loading="lazy">
-                        <img src="img/repz/07-academia-alunos.png" alt="Repz - Alunos (academia)" loading="lazy">
-                        <img src="img/repz/08-personal-dashboard.png" alt="Repz - Dashboard do personal" loading="lazy">
-                        <img src="img/repz/09-personal-aluno-detalhes.png" alt="Repz - Detalhes do aluno" loading="lazy">
-                        <img src="img/repz/10-personal-ficha-treino.png" alt="Repz - Ficha de treino (personal)" loading="lazy">
-                        <img src="img/repz/11-aluno-dashboard.png" alt="Repz - Dashboard do aluno" loading="lazy">
-                        <img src="img/repz/12-aluno-ficha-treino.png" alt="Repz - Ficha de treino (aluno)" loading="lazy">
-                    </div>
-                    <div class="project-description">
-                        <h3>Repz</h3>
-                        <p>Sistema de gestão para academias, com controle de acesso por perfil, fichas de treino, avaliações físicas e check-in de frequência.</p>
-                        <dl class="project-steps">
-                            <div>
-                                <dt>o problema</dt>
-                                <dd>Muita academia ainda controla ficha de treino e avaliação física no papel, e o aluno acaba sem histórico nenhum para saber se evoluiu.</dd>
-                            </div>
-                            <div>
-                                <dt>como fiz</dt>
-                                <dd>Começamos montando o quadro no GitHub Projects, em equipe de três. Arquitetei o backend em camadas, modelei os perfis e as permissões de cada um e fiz a revisão dos códigos. O front partiu de um desenho do Lovable com alterações minhas, e a implementação teve apoio de IA.</dd>
-                            </div>
-                            <div>
-                                <dt>o que ficou</dt>
-                                <dd>Cada perfil enxerga só o que precisa, com ficha, avaliação e check-in no mesmo lugar. Foi bem legal, e fechou com apresentação final para a turma na faculdade.</dd>
-                            </div>
-                        </dl>
-                        <div class="project-tags">
-                            <span class="tech-badge" data-tech="spring"><i class="fa-solid fa-leaf" aria-hidden="true"></i><span>Spring Boot</span></span>
-                            <span class="tech-badge" data-tech="angular"><i class="fa-brands fa-angular" aria-hidden="true"></i><span>Angular</span></span>
-                            <span class="tech-badge" data-tech="postgres"><i class="fa-solid fa-database" aria-hidden="true"></i><span>PostgreSQL</span></span>
-                        </div>
-                        <div class="project-actions"><a href="https://github.com/eduardofabrii/repz" target="_blank" rel="noopener noreferrer" class="btn">ir para o github <i class="fa-solid fa-arrow-right"></i></a><a href="files/repz.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">ver estudo de caso</a></div>
-                    </div>
+                <div class="project">
+                    <a class="project-row" href="https://www.instagram.com/eduardofabr/" target="_blank" rel="noopener noreferrer">
+                        <svg class="icon" aria-hidden="true"><use href="#instagram"/></svg>
+                        <span class="row-name">instagram</span>
+                        <span class="project-description">@eduardofabr</span>
+                        <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg>
+                    </a>
                 </div>
-
-
-            </div>
-        </section>
-
-        <section class="faq-section">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <defs>
-                    <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:#47753B;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#8BC34A;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <path fill="url(#gradient4)" fill-opacity="1" d="M0,320L80,293.3C160,267,320,213,480,192C640,171,800,213,960,224C1120,235,1280,213,1360,186.7L1440,160L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
-            </svg>
-            <div class="text-center" id="faq">
-                <h2 class="section-title">perguntas frequentes</h2>
-                <p class="section-intro">o que costumam me perguntar quando a conversa sai do currículo</p>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <p>De onde você é?</p>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        Sou de Curitiba, mas nem sempre morei aqui: passei boa parte da vida em Blumenau e um tempo em Balneário Camboriú antes de voltar pro Paraná.
-                    </div>
+                <div class="project">
+                    <a class="project-row" href="files/eduardofabricv.pdf" download="eduardofabricv.pdf">
+                        <svg class="icon" aria-hidden="true"><use href="#file"/></svg>
+                        <span class="row-name">cv</span>
+                        <span class="project-description">currículo em pdf</span>
+                        <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg>
+                    </a>
                 </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <p>Com quais tecnologias você trabalha?</p>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        No dia a dia uso Java e Spring Boot no back-end e Angular no front-end. Também trabalho com SQL e PostgreSQL.                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <p>Como você aprende algo novo?</p>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        Construindo. Prefiro pegar uma ideia e transformar em projeto de verdade, foi assim com o Chrono, o Repz e o Agiota Bank, o que é só assistir aula sem colocar a mão no código.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <p>E fora do código, o que você curte?</p>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        Gosto de desacelerar em lugares tranquilos, como cafeterias e praia, e de maratonar um bom filme pra desligar a cabeça.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <p>O que te motiva a desenvolver?</p>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        Eu gosto de criar produtos que tenham algum valor para alguém, o que mais faz sentido pra mim é ver alguém usando uma solução que eu ajudei a ter a ideia e até implementar, sou apaixonado na criação de produtos.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="contact-section" id="contact-id">
-            <div class="contact-container">
-                <div class="contact-copy">
-                    <h2>bora tirar uma<br>ideia do papel<span>?</span></h2>
-                    <p>se você quer trocar uma ideia, falar de uma vaga ou tirar um projeto do papel, me manda uma mensagem</p>
-                    <svg class="contact-arrow" viewBox="0 0 200 90" fill="none" aria-hidden="true"><path d="M12 8c0 68 118 86 168 22m-30-3 30 3-8 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <div class="form-section" id="contact-form">
-                    <h2>contato</h2>
-                    <form action="https://formsubmit.co/eduardohfabri@gmail.com" method="POST">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_next" value="https://eduardofabrii.github.io/portfolio/email.html">
-                        <input type="hidden" name="_subject" value="Entrando em contato através do portfólio.">
-                        <input type="hidden" name="_autoresponse" value="Obrigado por entrar em contato! Em breve retornarei sua mensagem.">
-                        <label for="contact-name">nome</label>
-                        <input id="contact-name" autocomplete="name" name="name" placeholder="Informe seu nome" required>
-                        <label for="contact-email">e-mail</label>
-                        <input id="contact-email" autocomplete="email" type="email" name="email" placeholder="Informe seu e-mail" required>
-                        <label for="contact-message">mensagem</label>
-                        <textarea id="contact-message" rows="4" name="message" placeholder="Informe sua mensagem" required style="resize: none;"></textarea>
-                        <button type="submit" data-button>Enviar</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-        <footer class="site-footer"><a href="#hello">eduardo fabri.</a></footer>
-
-        <button aria-label="Voltar ao início" class="back-to-top" onclick="scrollToTop()">
-            <i class="fa-solid fa-arrow-up"></i>
-        </button>
+            </section>
+            <section class="work-group" aria-labelledby="products-heading">
+                <h2 id="products-heading">produtos</h2>
+                <article class="project" aria-labelledby="chrono-heading">
+                    <a class="project-row" href="chrono/">
+                        <svg class="icon" aria-hidden="true"><use href="#clock"/></svg>
+                        <h3 id="chrono-heading">chrono</h3>
+                        <span class="project-description project-description--status"><span class="project-purpose" title="gestão de horas">gestão de horas</span><span class="project-status">em desenvolvimento</span></span>
+                        <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg>
+                    </a>
+                </article>
+                            <article class="project" aria-labelledby="minhacestinha-heading"><a class="project-row" href="minhacestinha/"><svg class="icon" aria-hidden="true"><use href="#basket"/></svg><h3 id="minhacestinha-heading">minha cestinha</h3><span class="project-description project-description--status"><span class="project-purpose" title="enxoval de casa nova">enxoval de casa nova</span><span class="project-status">em desenvolvimento</span></span><svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a></article>
+            </section>
+            <section class="work-group" aria-labelledby="projects-heading">
+                <h2 id="projects-heading">projetos</h2>
+                <article class="project" aria-labelledby="repz-heading">
+                    <a class="project-row" href="repz/">
+                        <svg class="icon" aria-hidden="true"><use href="#activity"/></svg>
+                        <h3 id="repz-heading">repz</h3>
+                        <span class="project-description project-description--status"><span class="project-purpose" title="gestão de academias">gestão de academias</span><span class="project-status">trabalho de faculdade</span></span>
+                        <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg>
+                    </a>
+                </article>
+            </section>
+        </div>
     </main>
-    <script src="script/script.js?v=18" defer></script>
+    <footer><span>© eduardo fabri</span></footer>
+    <script type="module" src="script/portrait-laptop.js?v=10"></script>
 </body>
 </html>
