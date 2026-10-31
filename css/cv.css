@@ -7,3 +7,7 @@
 .cv-sheet img { display: block; width: 100%; height: auto; }
 .cv-accessible-text { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 @media (max-width: 600px) { .cv-toolbar { flex-wrap: wrap; gap: 12px; padding: 16px 0; } .cv-toolbar h1 { flex-basis: calc(100% - 70px); font-size: 13px; } .cv-actions { margin-left: 0; width: 100%; justify-content: flex-end; } .cv-viewer { width: 100%; } }
+
+.cv-document-link { position: absolute; display: block; border-radius: 2px; }
+.cv-document-link:hover { background: rgb(45 91 255 / 10%); }
+.cv-document-link:focus-visible { outline: 2px solid #2d5bff; outline-offset: 3px; }
