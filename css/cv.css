@@ -2,6 +2,8 @@
 .cv-toolbar { width: min(1200px, calc(100% - 40px)); margin-inline: auto; display: flex; align-items: center; gap: 24px; padding: 20px 0; font-size: 13px; }
 .cv-toolbar h1 { margin: 0; font-size: 14px; font-weight: 500; color: var(--muted); }
 .cv-actions { margin-left: auto; display: flex; gap: 24px; }
-.cv-viewer { flex: 1; display: flex; min-height: 0; }
-.cv-viewer iframe { display: block; width: 100%; height: calc(100vh - 64px); height: calc(100dvh - 64px); min-height: 420px; border: 0; }
-@media (max-width: 600px) { .cv-toolbar { flex-wrap: wrap; gap: 12px; padding: 16px 0; } .cv-toolbar h1 { flex-basis: calc(100% - 70px); font-size: 13px; } .cv-actions { margin-left: 0; width: 100%; justify-content: flex-end; } .cv-viewer iframe { height: calc(100dvh - 96px); } }
+.cv-viewer { width: min(1000px, calc(100% - 40px)); margin: 0 auto 32px; }
+.cv-sheet { position: relative; margin: 0 0 20px; background: white; }
+.cv-sheet img { display: block; width: 100%; height: auto; }
+.cv-accessible-text { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 600px) { .cv-toolbar { flex-wrap: wrap; gap: 12px; padding: 16px 0; } .cv-toolbar h1 { flex-basis: calc(100% - 70px); font-size: 13px; } .cv-actions { margin-left: 0; width: 100%; justify-content: flex-end; } .cv-viewer { width: 100%; } }
