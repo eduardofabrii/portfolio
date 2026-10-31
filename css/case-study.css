@@ -74,3 +74,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) { .case-carousel-track { transition: none; } }
+
+.case-publication { margin: 24px 0 0; }
