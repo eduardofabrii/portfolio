@@ -8,15 +8,13 @@
 .resume-header h1 { font-size: clamp(42px, 6vw, 64px); }
 .resume-header h1 span { color: #858585; }
 .resume-role { margin: 22px 0 4px; font-size: var(--resume-body); line-height: 1.85; color: #bdbdbb; }
-.resume-focus { margin: 0; font-size: var(--resume-body); line-height: 1.85; color: #a2a2a0; }
-.resume-focus span { margin-inline: 5px; color: #696967; }
-.resume-location { margin: 12px 0 2px; color: var(--muted); font-size: var(--resume-caption); }
+.resume-location { margin: 12px 0 2px; color: var(--muted); font-size: var(--resume-body); }
 .resume-contacts { display: flex; flex-wrap: wrap; gap: 4px 20px; list-style: none; margin: 0; padding: 0; font-size: var(--resume-caption); }
 .resume-contacts a { display: inline-flex; gap: 6px; align-items: center; min-height: 32px; }
 .resume-contacts a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .resume-contacts span, .resume-entry h3 a span { color: #818180; font-size: var(--resume-caption); }
 .resume-section { display: grid; grid-template-columns: 154px minmax(0, 1fr); column-gap: 38px; margin-bottom: 54px; }
-.resume-section h2 { margin: 0; font-size: var(--resume-heading); font-weight: 500; line-height: 1.6; color: #c8c8c5; }
+.resume-section h2 { margin: 0; font-size: var(--resume-caption); font-weight: 500; line-height: 1.6; color: #c8c8c5; }
 .resume-section-content { min-width: 0; font-size: var(--resume-body); line-height: 1.85; color: #bdbdbb; }
 .resume-section-content p { margin: 0 0 12px; }
 .resume-section-content p:last-child { margin-bottom: 0; }
