@@ -6,7 +6,7 @@
 .resume-header { padding: 66px 0 64px; }
 .resume-eyebrow { margin: 0 0 18px; color: var(--muted); font-size: var(--resume-type); }
 .resume-header h1 { font-size: clamp(42px, 6vw, 64px); }
-.resume-header h1 span { color: #858585; }
+.resume-header h1 span { color: inherit; }
 .resume-role { margin: 22px 0 4px; font-size: var(--resume-type); line-height: 1.85; color: #bdbdbb; }
 .resume-location { margin: 12px 0 2px; color: var(--muted); font-size: var(--resume-type); }
 .resume-contacts { display: flex; flex-wrap: wrap; gap: 4px 20px; list-style: none; margin: 12px 0 0; padding: 0; font-size: var(--resume-type); }
