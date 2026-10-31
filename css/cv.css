@@ -1,0 +1,7 @@
+.cv-page { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+.cv-toolbar { width: min(1200px, calc(100% - 40px)); margin-inline: auto; display: flex; align-items: center; gap: 24px; padding: 20px 0; font-size: 13px; }
+.cv-toolbar h1 { margin: 0; font-size: 14px; font-weight: 500; color: var(--muted); }
+.cv-actions { margin-left: auto; display: flex; gap: 24px; }
+.cv-viewer { flex: 1; display: flex; min-height: 0; }
+.cv-viewer iframe { display: block; width: 100%; height: calc(100vh - 64px); height: calc(100dvh - 64px); min-height: 420px; border: 0; }
+@media (max-width: 600px) { .cv-toolbar { flex-wrap: wrap; gap: 12px; padding: 16px 0; } .cv-toolbar h1 { flex-basis: calc(100% - 70px); font-size: 13px; } .cv-actions { margin-left: 0; width: 100%; justify-content: flex-end; } .cv-viewer iframe { height: calc(100dvh - 96px); } }
