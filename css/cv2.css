@@ -9,7 +9,7 @@
 .resume-header h1 span { color: #858585; }
 .resume-role { margin: 22px 0 4px; font-size: var(--resume-body); line-height: 1.85; color: #bdbdbb; }
 .resume-location { margin: 12px 0 2px; color: var(--muted); font-size: var(--resume-body); }
-.resume-contacts { display: flex; flex-wrap: wrap; gap: 4px 20px; list-style: none; margin: 0; padding: 0; font-size: var(--resume-caption); }
+.resume-contacts { display: flex; flex-wrap: wrap; gap: 4px 20px; list-style: none; margin: 12px 0 0; padding: 0; font-size: var(--resume-caption); }
 .resume-contacts a { display: inline-flex; gap: 6px; align-items: center; min-height: 32px; }
 .resume-contacts a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .resume-contacts span, .resume-entry h3 a span { color: #818180; font-size: var(--resume-caption); }
