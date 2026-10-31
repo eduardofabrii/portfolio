@@ -1,6 +1,6 @@
 .cv-page { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
-.cv-toolbar { width: min(1200px, calc(100% - 40px)); margin-inline: auto; display: flex; align-items: center; gap: 24px; padding: 20px 0; font-size: 13px; }
-.cv-toolbar h1 { margin: 0; font-size: 14px; font-weight: 500; color: var(--muted); }
+.cv-toolbar { width: min(1200px, calc(100% - 40px)); margin-inline: auto; display: flex; align-items: center; gap: 24px; padding: 20px 0; font-size: var(--site-text); }
+.cv-toolbar h1 { margin: 0; font-size: var(--site-text); font-weight: 500; color: var(--muted); }
 .cv-actions { margin-left: auto; display: flex; gap: 24px; }
 .cv-viewer { width: min(1000px, calc(100% - 40px)); margin: 0 auto 32px; }
 .cv-sheet { position: relative; margin: 0 0 20px; background: white; }
@@ -8,10 +8,10 @@
 .cv-accessible-text { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 @media (max-width: 600px) {
     .cv-toolbar { width: calc(100% - 24px); margin: 12px auto; padding: 14px 12px 12px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px 12px; background: #111; border-radius: 12px; }
-    .cv-toolbar nav { white-space: nowrap; font-size: 12px; }
-    .cv-toolbar h1 { text-align: right; font-size: 12px; }
+    .cv-toolbar nav { white-space: nowrap; font-size: var(--site-text); }
+    .cv-toolbar h1 { text-align: right; font-size: var(--site-text); }
     .cv-actions { grid-column: 1 / -1; margin: 0; padding-top: 12px; border-top: 1px solid #292929; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-    .cv-actions a { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 8px; border-radius: 8px; background: #272727; color: var(--text); font-size: 13px; }
+    .cv-actions a { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 8px; border-radius: 8px; background: #272727; color: var(--text); font-size: var(--site-text); }
     .cv-actions a:hover { background: #333; }
     .cv-viewer { width: 100%; }
 }

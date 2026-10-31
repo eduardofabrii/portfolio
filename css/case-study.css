@@ -1,4 +1,4 @@
-.case-page { --case-text-size: 14px; --case-line-height: 1.7; }
+.case-page { --case-text-size: var(--site-text); --case-line-height: 1.7; }
 .case-nav, .case-main, .case-footer { width: min(840px, calc(100% - 80px)); margin-inline: auto; }
 .case-nav { padding-block: 28px 14px; font-size: var(--case-text-size); color: var(--muted); }
 .back-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }
@@ -26,12 +26,12 @@
 .mac-dots span { width: 9px; height: 9px; border-radius: 50%; background: #ff5f57; }
 .mac-dots span:nth-child(2) { background: #febc2e; }
 .mac-dots span:nth-child(3) { background: #28c840; }
-.safari-address { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 10px; background: #101113; border-radius: 6px; color: #8d9199; font-size: 10px; }
+.safari-address { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 10px; background: #101113; border-radius: 6px; color: #8d9199; font-size: var(--site-caption); }
 .safari-address > svg { width: 13px; height: 13px; flex-shrink: 0; }
 .safari-address > span { text-align: center; min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .safari-right { display: flex; align-items: center; justify-content: flex-end; gap: 16px; color: #8d9199; }
 .safari-share svg { display: block; width: 15px; height: 15px; }
-.mac-counter { font-size: 10px; white-space: nowrap; }
+.mac-counter { font-size: var(--site-caption); white-space: nowrap; }
 .case-carousel-viewport { overflow: hidden; }
 .case-carousel-track { display: flex; align-items: flex-start; transition: transform .35s var(--ease); }
 .case-carousel .case-image { flex: 0 0 100%; }
@@ -45,7 +45,7 @@
 
 .case-image > a { display: block; background: #121315; }
 .case-image img { display: block; width: 100%; height: auto; border-radius: 0 0 10px 10px; }
-.case-image figcaption { font-size: 11px; line-height: 1.6; color: #85898f; margin: 0; padding: 12px 0 0; }
+.case-image figcaption { font-size: var(--site-text); line-height: 1.6; color: #85898f; margin: 0; padding: 12px 0 0; }
 .case-footer { padding-block: 40px 28px; }
 @media (max-width: 1000px) {
     .case-carousel-arrow { z-index: 2; background: #0b0c0ebf; border-radius: 5px; }
@@ -57,14 +57,14 @@
     .case-nav { padding-block: 16px 10px; }
     .case-summary { padding-block: 20px 32px; }
     .case-meta { padding: 0; }
-    .case-title { font-size: 52px; }
+    .case-title { font-size: clamp(40px, 12vw, 52px); }
     .case-intro { max-width: 40ch; }
     .case-button { padding-inline: 13px; }
     .case-actions { gap: 10px; }
     .case-stack ul { gap: 10px 18px; }
-    .case-image figcaption { font-size: 10px; padding: 10px 0 0; }
+    .case-image figcaption { font-size: var(--site-text); padding: 10px 0 0; }
     .mac-titlebar { height: 40px; padding-inline: 10px; grid-template-columns: 42px minmax(0, 1fr) 36px; gap: 8px; }
-    .safari-address { height: 25px; padding-inline: 6px; font-size: 9px; gap: 4px; }
+    .safari-address { height: 25px; padding-inline: 6px; font-size: var(--site-caption); gap: 4px; }
     .safari-address > svg { width: 10px; height: 10px; }
     .safari-share { display: none; }
     .mac-dots { gap: 5px; }
