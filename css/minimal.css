@@ -26,7 +26,7 @@ h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(44px, 5.2v
 .project { border-top: 1px solid #2b2c2e; border-bottom: 1px solid #2b2c2e; }
 .project + .project { border-top: none; }
 .work-group h2 { font-size: var(--site-text); margin-bottom: 4px; }
-.project-row { display: grid; grid-template-columns: 20px minmax(100px, 1fr) minmax(0, 1.2fr) 12px; align-items: center; gap: 8px; min-height: 48px; padding: 10px 12px; position: relative; isolation: isolate; transition: color .35s var(--ease), padding .35s var(--ease); }
+.project-row { display: grid; grid-template-columns: 20px minmax(100px, 1fr) min(148px, calc(100% - 156px)) 12px; align-items: center; gap: 8px; min-height: 48px; padding: 10px 12px; position: relative; isolation: isolate; transition: color .35s var(--ease), padding .35s var(--ease); }
 .project-row::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--text); transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
 .project-row > .icon { width: 20px; height: 20px; color: inherit; }
 .project-row h3, .project-row .row-name { flex-shrink: 0; white-space: nowrap; font-family: 'Bricolage Grotesque', sans-serif; letter-spacing: -.01em; font-size: var(--site-text); font-weight: 600; margin: 0; }
