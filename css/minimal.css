@@ -26,7 +26,7 @@ h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(44px, 5.2v
 .project { border-top: 1px solid #2b2c2e; border-bottom: 1px solid #2b2c2e; }
 .project + .project { border-top: none; }
 .work-group h2 { font-size: var(--site-text); margin-bottom: 4px; }
-.project-row { display: grid; grid-template-columns: 20px minmax(100px, 1fr) min(148px, calc(100% - 156px)) 12px; align-items: center; gap: 8px; min-height: 48px; padding: 10px 12px; position: relative; isolation: isolate; transition: color .35s var(--ease), padding .35s var(--ease); }
+.project-row { display: grid; grid-template-columns: 20px minmax(98px, 1fr) min(148px, calc(100% - 145px)) 12px; align-items: center; gap: 5px; min-height: 48px; padding: 10px 8px; position: relative; isolation: isolate; transition: color .35s var(--ease), padding .35s var(--ease); }
 .project-row::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--text); transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
 .project-row > .icon { width: 20px; height: 20px; color: inherit; }
 .project-row h3, .project-row .row-name { flex-shrink: 0; white-space: nowrap; font-family: 'Bricolage Grotesque', sans-serif; letter-spacing: -.01em; font-size: var(--site-text); font-weight: 600; margin: 0; }
@@ -56,11 +56,10 @@ footer a span { padding-left: 8px; }
     .portrait { width: 250px; justify-self: center; margin-top: 8px; }
     .photo-frame img { height: 230px; }
     .work-directory { grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
-    .project-row { gap: 8px; }
     .project-description { font-size: var(--site-text); }
     footer { font-size: var(--site-text); gap: 16px; }
 }
-@media (max-width: 370px) { .project-row, .project-row:has(.project-status) { grid-template-columns: 20px minmax(96px, 1fr) minmax(0, 1.2fr) 12px; gap: 4px; padding-inline: 8px; } footer { flex-direction: column; gap: 8px; } }
+@media (max-width: 370px) { footer { flex-direction: column; gap: 8px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .project-row, .project-row::before, .project-description, .project-row > .arrow { transition: none; } }
 
 /* Adaptacao do notebook Hairline com a foto projetada na tampa. */
@@ -75,7 +74,6 @@ footer a span { padding-left: 8px; }
 .portrait-stage[data-dragging] { cursor: grabbing; }
 
 /* Product context stays beside the name, within the existing compact rows. */
-.project-row:has(.project-status) { gap: 8px; }
 .project-description--status { line-height: 1.4; }
 .project-purpose { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .project-status { display: block; font-size: var(--site-caption); white-space: normal; overflow-wrap: anywhere; }
